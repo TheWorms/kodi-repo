@@ -94,7 +94,11 @@ def main():
             continue
         addon_id, version, root = addon_meta(src)
         print(f"[{addon_id}] v{version}")
-        zip_addon(src, addon_id, version)
+        zpath = zip_addon(src, addon_id, version)
+        if addon_id == "repository.theworms":
+            stable = os.path.join(OUTPUT_DIR, addon_id, addon_id + ".zip")
+            shutil.copy2(zpath, stable)
+            print(f"     alias stable -> {stable}")
         copy_assets(src, addon_id, root)
         addon_nodes.append(root)
 
