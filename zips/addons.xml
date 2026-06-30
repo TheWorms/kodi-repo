@@ -10,8 +10,11 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="fr_FR">Dépôt personnel d'addons Kodi</summary>
-    <description lang="fr_FR">Dépôt regroupant les addons maintenus par theworms : ProtonVPN Manager, SoundCloud, Radio.de Light.</description>
+    <description lang="fr_FR">Dépôt regroupant les addons maintenus par theworms : ProtonVPN Manager, SoundCloud, Radio.</description>
     <platform>all</platform>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
   </extension>
 </addon>
 <addon id="service.protonvpn.manager" name="ProtonVPN" version="0.5.8" provider-name="TheWorms">
