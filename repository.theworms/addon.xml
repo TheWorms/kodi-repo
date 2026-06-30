@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.theworms"
+       name="TheWorms Repository"
+       version="1.0.0"
+       provider-name="theworms">
+  <extension point="xbmc.addon.repository" name="TheWorms Repo">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/addons.xml.md5</checksum>
+      <datadir zip="true">https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">Dépôt personnel d'addons Kodi</summary>
+    <description lang="fr_FR">Dépôt regroupant les addons maintenus par theworms : ProtonVPN Manager, SoundCloud, Radio.de Light.</description>
+    <platform>all</platform>
+  </extension>
+</addon>

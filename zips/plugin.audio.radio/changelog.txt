@@ -1,0 +1,28 @@
+1.0.7
+- Identite du module : « Radio ». Nettoyage et installation propre.
+
+1.0.6
+- Nouvelle vue "cinéma" (activée par défaut) : pendant la lecture, le logo de la station s affiche en plein écran sur fond sombre.
+- Barre de pulsation (égaliseur animé) sous le logo, désactivable dans les réglages.
+- Remarque : la barre est une animation rythmique, non pilotée par le spectre audio (non exposé aux modules Python par Kodi).
+
+1.0.5
+- Suppression de toutes les couleurs dans les textes (villes, pays, genres, navigation). Le gras est conservé.
+
+1.0.4
+- Suppression de la couleur jaune dans les textes (genres et éléments de navigation) pour le confort visuel.
+
+1.0.3
+- Correction d'un plantage lors de l'ajout aux favoris (param "image" perdu quand le logo contenait un "?version=").
+- Correction des stations injouables dont le nom contient des caractères spéciaux (ex. "Radio 50/50") : tous les paramètres d'URL (nom, logo, description) sont désormais correctement encodés.
+
+1.0.2
+- Interface entièrement localisée via gettext (.po) : français (fr_FR), anglais (en_GB) et allemand d'origine (de_DE).
+- Le français est désormais la langue de l'interface lorsque Kodi est en français.
+- Correction : le clavier de recherche ne renvoyait aucun résultat (appel getText() invalide).
+- Correction : la pagination de la recherche basculait par erreur vers la liste régionale.
+- Ajout de l'en-tête Accept-Language fr-FR pour privilégier les stations françaises.
+- Basé sur le module original de Publish3r (GPL v2).
+
+1.0.1
+- Release.

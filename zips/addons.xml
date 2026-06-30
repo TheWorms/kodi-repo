@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="repository.theworms" name="TheWorms Repository" version="1.0.0" provider-name="theworms">
+  <extension point="xbmc.addon.repository" name="TheWorms Repo">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/addons.xml.md5</checksum>
+      <datadir zip="true">https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">Dépôt personnel d'addons Kodi</summary>
+    <description lang="fr_FR">Dépôt regroupant les addons maintenus par theworms : ProtonVPN Manager, SoundCloud, Radio.de Light.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.5.8" provider-name="TheWorms">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.python.module" library="lib" />
+  <extension point="xbmc.service" library="service.py" start="startup" />
+  <extension point="xbmc.addon.metadata">
+    <platform>linux</platform>
+    <summary lang="en_GB">Manage ProtonVPN connections (OpenVPN and WireGuard) from Kodi with a graphical interface.</summary>
+    <summary lang="fr_FR">Gérer les connexions ProtonVPN (OpenVPN et WireGuard) depuis Kodi avec une interface graphique.</summary>
+    <description lang="en_GB">Connect to ProtonVPN servers from Kodi using OpenVPN or WireGuard. Import your configuration files, browse servers by country, connect/disconnect, auto-connect at boot and reconnect on drop. Designed for CoreELEC/LibreELEC and other Linux Kodi installs. Independent project, not affiliated with Proton AG.</description>
+    <description lang="fr_FR">Connectez-vous aux serveurs ProtonVPN depuis Kodi via OpenVPN ou WireGuard. Importez vos fichiers de configuration, parcourez les serveurs par pays, connectez/déconnectez, connexion automatique au démarrage et reconnexion en cas de coupure. Conçu pour CoreELEC/LibreELEC et autres installations Linux de Kodi. Projet indépendant, non affilié à Proton AG.</description>
+    <license>GPL-2.0-or-later</license>
+    <source>https://github.com/TheWorms/kodi-addon-protonvpn</source>
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6020" provider-name="TheWorms">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0" />
+        <import addon="script.module.requests" version="2.29.0" />
+        
+        <import addon="script.module.pil" version="1.0.0" optional="true" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.python.script" library="script.py">
+        <provides>audio</provides>
+    </extension>
+    
+    <extension point="xbmc.service" library="service.py" start="login">
+        <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="de_DE">SoundCloud – Musik- und Podcast-Streaming-Plattform</summary>
+        <summary lang="en_GB">SoundCloud – Music and podcast streaming platform</summary>
+        <summary lang="fr_FR">SoundCloud – Plateforme de streaming musical et de podcasts</summary>
+        <summary lang="nl_NL">SoundCloud – Muziek- en podcaststreamingplatform</summary>
+        <description lang="de_DE">SoundCloud ist eine Musik- und Podcast-Streaming-Plattform, mit der Du Millionen von Songs aus der ganzen Welt anhören kannst.</description>
+		<description lang="en_GB">SoundCloud is a music and podcast streaming platform that lets you listen to millions of songs from around the world.</description>
+        <description lang="fr_FR">SoundCloud est une plateforme de streaming musical et de podcasts qui vous permet d'écouter des millions de titres du monde entier.</description>
+        <description lang="nl_NL">SoundCloud is een muziek- en podcaststreamingplatform waarmee je naar miljoenen nummers van over de hele wereld kunt luisteren.</description>
+        <disclaimer lang="en_GB">This plugin is not official, approved or endorsed by SoundCloud.</disclaimer>
+        <disclaimer lang="fr_FR">Ce plugin n'est pas officiel, approuvé ou soutenu par SoundCloud.</disclaimer>
+        <disclaimer lang="nl_NL">Deze plugin is niet officieel, goedgekeurd of gesteund door SoundCloud.</disclaimer>
+        <platform>all</platform>
+        <license>MIT</license>
+        <forum>https://forum.kodi.tv/showthread.php?tid=206635</forum>
+        <website>https://soundcloud.com</website>
+        <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
+        <credits>jaylinski (original add-on), bromix, SLiX</credits>
+        <news>5.9.6020 (2026-06-29) - widgets now show real artwork, not generic icons
+Two related bugs in the artwork extraction were causing skin widgets (Likes, Playlists, Following, Trending, Discover) to fall back to Kodi's default icons for many items:
+
+BUG 1: dict.get() default ignored on explicit null. SoundCloud commonly returns "artwork_url": null when a track or playlist doesn't have a custom cover. Python's dict.get("artwork_url", fallback) returns the explicit None, NOT the fallback — so the chain to avatar_url was never reached. Switched to "or" chaining which treats nulls and missing keys the same way.
+
+BUG 2: tracks without artwork had no fallback at all. soundcloud.com itself falls back to the uploading artist's avatar (track.user.avatar_url) when a track has no cover. We now do the same. Result: every track widget tile gets a meaningful image — either the track's own artwork or the artist's avatar.
+
+This affects all artwork extraction across the addon: home screen, widgets, search results, playlists, the now-playing overlay. Tracks and playlists that previously showed generic Kodi icons should now display the artist's avatar at minimum.
+
+5.9.6019 (2026-06-29) - multilingual readme (EN + FR)
+Updated the readme.md to cover all the v5.9.6xxx features: background service, splash screen, Free-tier playback fix, account tier detection, keyboard shortcuts in Now Playing, and the updated launching options. Also bumped the Kodi version badge from v19 Matrix to v21 Omega.
+
+Added readme.fr.md as a full French translation. Both files have a language switcher at the top. German and Dutch translations to follow.
+
+5.9.6018 (2026-06-29) - service opt-in by default + create-favourite removed
+Three changes based on user feedback after testing 5.9.6017:
+
+SERVICE OFF BY DEFAULT: the background service is now disabled out of the box. Users who want the faster open have to opt in via Settings &gt; Account &gt; "Background service (faster open)" and then restart Kodi. Defaults to off so users on low-RAM boxes don't unknowingly consume memory. The help text now says "REQUIRES A KODI RESTART after toggling" explicitly. To make this even harder to miss: when plugin.py is invoked and detects the service is enabled but not actually running (the service hasn't set its "alive" property), it shows a one-shot notification reminding the user to restart Kodi.
+
+CREATE-FAVOURITE BUTTON REMOVED: the "Create Kodi favourite" button in settings was crashing on some setups (likely because we called ReloadSkin() from within a plugin handler, which Kodi doesn't like). Removed the button from the UI. Users wanting a favourite can use the standard Kodi long-press / context menu on the addon in the music browser, then "Add to favourites" — works reliably across all skins. The underlying handler stays in plugin.py for any existing favourites that point at it.
+
+SERVICE.PRELOAD LOGIC: changed from "true unless explicitly 'false'" to "false unless explicitly 'true'". This means the service stays off until the user makes a conscious choice to enable it.
+
+5.9.6017 (2026-06-29) - background service for instant splash (EmbyCon-inspired)
+Looking at how EmbyCon (plugin.video.embycon) starts up gave the idea for this release. They run a small xbmc.service from Kodi login until Kodi shutdown, which keeps things warm in the background. We adapted the approach for our specific bottleneck: the splash window.
+
+What it does:
+  - service.py starts at Kodi login and runs in the background
+  - At startup, it reads our heavy Python module files into the OS page cache (so cold imports are faster the first time the user opens the addon)
+  - It then polls every 50ms for a window property "soundcloud.splash"
+  - When plugin.py is invoked (user clicks the addon), it sets that property to "show" — the service picks it up within ~50ms and displays the splash window
+  - When script.py finishes loading and is ready to open the home, it sets the property to "hide" — the service closes the splash
+
+Net effect: the splash appears within ~50ms of the click instead of ~330ms (waiting for script.py to cold-start). No more music browser flash for users who launch via Music &gt; Add-ons &gt; Run.
+
+Memory cost: a few MB of resident Python interpreter, plus the splash window when it's actually displayed. Disable via Settings &gt; Account &gt; "Background service (faster open)" if you're on a low-RAM device.
+
+For Arctic Zephyr Reloaded users: the service approach works regardless of how you launch the addon (plugin URL, favourite, skin shortcut), so you no longer NEED to set up a favourite to avoid the flash. The favourite is still faster though, because it skips plugin.py entirely.
+
+5.9.6016 (2026-06-29) - critical: UnboundLocalError on every plugin call (5.9.6014/15 regression)
+The create-favourite handler added in 5.9.6014 did `addon_id = addon.getAddonInfo("id")` inside the run() function. Python sees ANY assignment to a name inside a function as making that name local for the WHOLE function body — even references that happen BEFORE the assignment line. So when an earlier code path (the launch-UI section, line 136) did `xbmc.executebuiltin("RunScript(" + addon_id + ")")`, Python raised UnboundLocalError because the local `addon_id` wasn't bound yet.
+
+Fix: dropped the redundant local assignment and use the module-level `addon_id` directly (it's the same value). Also added a static analysis pass to the build that walks the AST of plugin.py and warns if any function re-assigns a module global — so this whole category of bug can't slip through again.
+
+Sorry about that — the 5.9.6014 and 5.9.6015 builds were unusable.
+
+5.9.6015 (2026-06-29) - bridge the bootstrap with Kodi's busy dialog
+The 5.9.6014 log showed the music browser was still visible for ~500ms between click and splash, even though our splash itself was rendering fast. The reason: our splash is owned by script.py, which doesn't get scheduled until plugin.py has exited (T+140ms), then needs another ~190ms to load enough Python to instantiate the splash window. Between T+0 and T+330ms the music browser was the only thing on screen.
+
+Fix: plugin.py now activates Kodi's NATIVE busy dialog at T+0ms — before launching RunScript. The busy dialog is owned by Kodi (not by our Python script), so it survives the death of plugin.py and stays visible until script.py reaches the point where our pretty SoundCloud splash takes over. Right after script.py shows the splash, it closes the busy dialog. The transition busy → splash is essentially seamless.
+
+Net result: instead of 500ms of music browser visible, you now see a Kodi spinner for ~300ms (matches the skin look), then the SoundCloud splash with the orange ring, then the home. No more music browser flash.
+
+This works even when launching via the "Run" button on the addon in the music browser — which was the user's actual scenario.
+
+5.9.6014 (2026-06-29) - localized splash + favourite-creation button
+LOCALIZED SPLASH: the splash screen now reads "Chargement..." in French, "Lädt..." in German, "Laden..." in Dutch (was always "Loading..."). Implemented via the standard Kodi $ADDON[plugin.audio.soundcloud 30248] skin variable, which picks up the user's Kodi UI language at runtime.
+
+CREATE-FAVOURITE BUTTON: added a new button in Settings &gt; Advanced (next to "Clear cache") labeled "Create Kodi favourite (fast open)". When clicked, it writes a favourites.xml entry pointing at RunScript(plugin.audio.soundcloud). The favourite then appears in Kodi's standard Favourites menu, and skin shortcut managers (like Arctic Zephyr Reloaded's home menu editor) can pick it up as a menu target.
+
+Why: Arctic Zephyr Reloaded (and several other skins) don't expose a raw "RunScript" option in their menu editor, only Plugins and Favourites. Users who wanted instant-open (no music browser flash) had to manually edit favourites.xml — now it's one button click.
+
+The handler is defensive: parses the existing favourites.xml without destroying it, deduplicates if the entry already exists, backs up if it's corrupt, and reloads the skin so the new favourite appears immediately without a Kodi restart.
+
+5.9.6013 (2026-06-29) - hotfix for 5.9.6012 broken addon.xml
+The 5.9.6012 release notes contained a literal XML tag inside the news text that wasn't escaped, which made addon.xml invalid and caused Kodi to refuse the install with "Error reading end tag" at line 455. This release fixes just that. Functionally identical to 5.9.6012: animated orange spinner on the splash, with the same PNG and rotate animation.
+
+5.9.6012 (2026-06-29) - splash now has an animated orange spinner
+The static "Loading..." label was replaced with a proper animated loading spinner. The PNG itself (spinner.png, 128x128) is an orange ring with a gradient fade tail and a rounded head — the standard look for spinners. The XML applies a continuous Kodi rotate animation (effect=rotate, loop=true) to it, so the spinner turns smoothly (1.2 seconds per turn) while the rest of the bootstrap finishes loading. Kodi renders the rotation on the GPU compositor, so it costs effectively nothing CPU-wise.
+
+The "Loading..." label is kept below the spinner for accessibility.
+
+For users (like Arctic Zephyr Reloaded skin users) who already have a home menu shortcut to SoundCloud and still see the music browser flash: the shortcut is probably pointing at "plugin://plugin.audio.soundcloud/" instead of "RunScript(plugin.audio.soundcloud)". The plugin:// path forces Kodi to navigate into the music browser as the directory container. RunScript starts our script process directly with no music browser involved. Editing the shortcut to use RunScript will eliminate the flash entirely.
+
+5.9.6011 (2026-06-29) - critical .po fix + favourite bypass for instant open
+Two issues from a user log:
+
+POPARSER ERROR FIXED: the 30026 strings (Help dialog body) were broken in all 4 language files because a previous regex-based write inserted LITERAL newline characters inside msgid/msgstr instead of escaped \n sequences. Kodi's POParser then refused the entry with "missing msgstr line", which is why the Help dialog was sometimes showing English text or blank content. Rewrote the fix with a callable re.sub replacement to prevent backslash interpretation, and verified the resulting file has no literal newlines inside any string. Help dialog now renders correctly in French.
+
+OPEN-FROM-MUSIC-BROWSER FLASH: as the 5.9.6010 timing logs showed, the music browser is visible for ~460ms before the splash appears (because Kodi navigates into the music browser as part of normal directory loading, then our plugin URL returns failed, then Kodi schedules our RunScript, then our script.py runs, then our splash renders). On a Cortex-A73 there is no realistic way to make this chain shorter from inside the addon.
+
+THE ONLY WAY to eliminate the flash entirely is to bypass the music browser, by launching the addon directly via RunScript. Shipped a ready-to-import Kodi favourite file at docs/soundcloud-favourite.xml — see the readme for the import procedure. With this favourite, the splash appears within ~200ms of click and the music browser is never visible.
+
+5.9.6010 (2026-06-29) - splash screen during the bootstrap phase
+The 5.9.6009 timing logs revealed where the open delay was actually spent on ODROID-N2Plus:
+
+  T+0ms       plugin.py run() entry
+  T+8ms       plugin.py exited
+  T+0ms       script.py entry (Kodi queueing the new Python invoker)
+  T+1238ms    all modules imported     ← 870ms of pure Python imports
+  T+1262ms    SoundCloudHomeWindow onInit (skin XML loaded in 21ms)
+
+The XML parsing is fast (21ms), but importing resources/lib/ui/window.py (1700+ lines plus transitive imports) on a Cortex-A73 ARM CPU takes ~870ms cold. We can't really make Python imports faster without restructuring half the codebase.
+
+What we CAN do: hide the delay behind a splash. This release adds a tiny splash window (script-soundcloud-splash.xml, 3 controls, no animations, no skin conditionals) that script.py shows IMMEDIATELY on entry — before any heavy import. The user sees SoundCloud branding + "Loading..." within ~100-200ms after clicking, instead of the music browser or a frozen screen for 1+ second. The home window then replaces the splash once everything is ready.
+
+Total open time is unchanged. Perceived open time goes from "1.4s of nothing happening" to "instant splash, then home appears". That's a much better feel.
+
+The splash is also defensively wrapped: if its XML or Python instantiation fails for any reason, we silently skip it and proceed with the boot — no risk of breaking the addon for a cosmetic feature.
+
+5.9.6009 (2026-06-29) - timing instrumentation (diagnostic release)
+A user log showed the open-from-music-browser delay jumped from ~932ms to ~5.5 seconds with no obvious cause. Before guessing at fixes, this release adds precise timing logs at every phase of the bootstrap so we can see exactly where the time is spent:
+
+  plugin.py:    T+0ms run() entry
+  plugin.py:    T+Xms after RunScript() call
+  plugin.py:    T+Xms plugin.py exiting
+  script.py:    T+0ms script.py entry
+  script.py:    T+Xms after Dialog.Close + ReplaceWindow
+  script.py:    T+Xms addon loaded
+  script.py:    T+Xms all modules imported
+  script.py:    T+Xms API/settings/cache constructed
+  script.py:    T+Xms calling open_home()
+  window.py:    SoundCloudHomeWindow onInit (skin XML loaded)
+
+Install this version, open the addon, then send the log lines containing "timing T+". The delta between plugin.py exit and script.py entry tells us if Kodi's Python invoker is queueing scripts (likely culprit when other plugins like embycon are loading in parallel). The delta between script.py entry and onInit tells us how long imports + XML parsing take.
+
+No functional changes — just observability.
+
+5.9.6008 (2026-06-29) - playback keys in the fullscreen overlay
+The fullscreen "now playing" overlay was only handling Back/Menu/Exit. The arrow keys did nothing — you couldn't seek inside a track or change track from the overlay. Added the standard music-player key bindings:
+
+  Left arrow         seek -10s in the current track
+  Right arrow        seek +10s
+  Up arrow           next track in playlist
+  Down arrow         if &gt;3s in: rewind to start of current track
+                     else: previous track (standard car-stereo behavior)
+  OK / Enter         toggle play/pause
+  Standard remote    Step-forward/back, play, next, previous keys
+                     also work (ACTION_STEP_FORWARD, ACTION_STEP_BACK,
+                     ACTION_PLAYER_PLAY, ACTION_NEXT_ITEM, ACTION_PREV_ITEM)
+
+All actions wrap their player calls in try/except so an unexpected error never brings the overlay down — at worst a single key press becomes a no-op and gets logged. The seek step is clamped to [0, duration-0.5s] so we don't crash near the boundaries.
+
+5.9.6007 (2026-06-29) - faster open (round 2) + help URL in orange
+Tuning pass on the open-from-music-browser timing:
+
+OPEN SPEED: script.py now also issues Dialog.Close(all,true) + ReplaceWindow(home) at the very top of its bootstrap, BEFORE importing our (heavy) Python modules. This way the music browser starts disappearing immediately on Kodi's GUI thread while we're still loading code in parallel. Combined with the plugin.py change from 5.9.6006, the perceived delay should drop again.
+
+HELP DIALOG URL: the helper-page URL is now displayed in SoundCloud orange via Kodi BBCode ([COLOR=FFFF5500]...[/COLOR]) so it visually stands out in the otherwise-plain dialog.ok() body.
+
+If you still see the music browser flash, the only fully-eliminating workaround remains the documented one in the readme: bind a skin home shortcut or Kodi favourite to RunScript(plugin.audio.soundcloud), which bypasses the music browser entirely.
+
+5.9.6006 (2026-06-29) - faster open + help dialog renders reliably
+Two UX fixes from a user report:
+
+OPEN FROM MUSIC BROWSER: previously the addon took ~1.4s on slower devices (ODROID-N2Plus etc.) between the click and the full-screen UI appearing. During that window the music browser was visible. Re-ordered the launch sequence: RunScript(plugin) now fires FIRST so the script process can start loading Python modules and parsing the window XML in parallel with Kodi's music-browser cleanup. The UI shows up roughly as soon as it's ready, instead of waiting for cleanup to finish first.
+
+HELP DIALOG ("How to get a token"): switched from xbmcgui.Dialog().textviewer() to dialog.ok(). Some Kodi skins on 4K TV resolutions were rendering the textviewer with a blank body. dialog.ok() is plainer-looking but renders consistently everywhere. Also added a defensive fallback: if the localization didn't load for some reason, the dialog shows a hard-coded English message with the helper-page URL instead of a blank screen.
+
+Note on HLS AAC migration: SoundCloud announced removal of MP3/Opus transcodings on 2025-12-31, but as of 2026-06 their edge is still serving them for backward compatibility. We're keeping the MP3 progressive code path for now (it still works for the user). When MP3 actually breaks, we'll do the HLS AAC migration as a focused release — see the code comments in _extract_media_url for the planned approach.
+
+5.9.6005 (2026-06-29) - api: Origin/Referer headers + auth test cascade + tier detection
+Three fixes diagnosed by testing endpoints directly from a browser console:
+
+API HEADERS: SoundCloud's edge started returning HTTP 403 on /me (and 404 on /me/play-history) for requests that don't look like they come from soundcloud.com. The fix: every api-v2 request now sends Origin: https://soundcloud.com and Referer: https://soundcloud.com/ headers alongside the OAuth token. With these headers in place, /me works, /users/{id}/* works, and the addon no longer relies on endpoints SoundCloud has been quietly removing.
+
+AUTH TEST: rewrote the "Test OAuth token" cascade. It now hits /me first (with proper browser headers — should work for everyone), and if that fails, falls back to /users/{my_id}/track_likes which is the same endpoint used for the Likes home row. As long as ANY of these returns 200, auth is confirmed.
+
+ACCOUNT TIER DETECTION: when /me returns 200, the addon now reads consumer_subscription.product.id and displays it in the success dialog ("Account: Free", "Account: Go+", "Account: Pro Unlimited"). The tier is also persisted in settings under account.tier for future use (filter Preview tracks for Free accounts, expose Pro-only options, etc).
+
+5.9.6004 (2026-06-29) - playback fixed + auth test fixed + help dialog simplified
+Three real bugs diagnosed from a user log:
+
+PLAYBACK: every track was failing with HTTP 404 on its /media/.../stream/progressive URL, causing Kodi to skip through the entire playlist. Root cause: since 2025, SoundCloud requires a `track_authorization` query parameter (a JWT, valid ~2h) on stream URLs IN ADDITION to the OAuth token in the Authorization header. We were only passing the OAuth token. Fixed: read `track_authorization` from each track object and stitch it onto the transcoding URL at extraction time.
+
+AUTH TEST: the "Test OAuth token" button always failed with HTTP 403 even for fully-valid tokens, because SoundCloud started blocking the /me endpoint specifically. Other user-scoped endpoints (/me/track_likes, /me/play-history, /users/{id}/...) still work fine. Switched the test to hit /me/play-history?limit=1 instead, then optimistically tries /me afterwards to enrich the success message with the username (but doesn't fail if /me is blocked). Added a new generic success message (string 30246) for when we can't get the username but auth is confirmed working.
+
+HELP DIALOG: the "How to get a token" button in settings used to show a long step-by-step text. Replaced with a short message pointing to the web helper page (https://theworms.github.io/kodi-addon-soundcloud/) which now does all the work — both the automatic snippet and the manual fallback method are documented there.
+
+5.9.6003 (2026-06-29) - helper page snippet: minification bugfix (URLs no longer eaten)
+The console snippet on the helper page was broken by a bug in its own minification: the regex stripping line comments (//...) was also matching the // in URLs like https://api-v2.soundcloud.com/... and truncating the source. Result: SyntaxError "missing ) after argument list" in the browser console, and nothing ran at all — no popup, no alert, no logs.
+
+Fixed by removing the buggy comment-stripping pass entirely and removing inline // comments from the snippet source. The minification now only collapses whitespace, which is safe for URLs. Validated end-to-end on soundcloud.com.
+
+5.9.6002 (2026-06-29) - helper page: multi-strategy token discovery + manual method as first-class
+The previous snippet only hooked window.fetch and triggered /me, which often failed silently because SoundCloud's frontend caches the fetch reference at startup — patching it after the snippet runs doesn't intercept their requests. New approach searches multiple places in order: 1) document.cookie, 2) localStorage values, 3) sessionStorage values, 4) hook fetch+XHR and trigger /me/track_likes as last resort.
+
+Verbose console output at every step so the user can see exactly what is happening: "[SC] Step 1/4 cookies: miss", "[SC] Step 2/4 localStorage (47 keys): HIT", "[SC] Token found: 2-XXXXXX...". Token is also printed in green in the console so even if the popup fails, the user can copy from there. Both an alert() AND a custom DOM popup are tried (alert is a guaranteed fallback if the popup creation fails).
+
+The manual Network-tab method is now documented as a full first-class section on the helper page (not hidden in a fallback details/summary), with the clear honest note that SoundCloud sometimes keeps the token out of reach for scripts and the manual method is the reliable fallback.
+
+5.9.6001 (2026-06-28) - helper page redesigned: console snippet instead of bookmarklet
+The bookmarklet approach didn't work in practice because SoundCloud serves a strict Content-Security-Policy header that blocks javascript: URIs from bookmark clicks (a known limitation of modern sites). Switched the helper page to a different approach: a code snippet to copy-paste into the browser's DevTools console (which is exempt from CSP).
+
+New flow on the helper page: 1) open soundcloud.com signed in, 2) press F12 to open the Console tab, 3) click "Copy snippet" on the helper page and paste in the console, 4) press Enter — a popup appears with the token. Still no token sent anywhere; everything runs in your browser.
+
+Also added a Firefox-specific warning about the "allow pasting" security prompt that newer Firefox versions show on first paste into the console.
+
+Readme: the helper page is now also highlighted in the top-of-readme "What's new in v5" bullets so users see it immediately, not just buried in the Authentication section.
+
+5.9.6000 (2026-06-28) - shuffle fix + Back stack + readme simplified
+Switched versioning to 4-digit patch numbers (5.9.6000 instead of 5.9.6) per fork maintainer preference.
+
+Fixes:
+- Shuffle/random play now actually shuffles. Previously we called PlayerControl(RandomOn) AFTER play() which Kodi often ignored (timing race with stream URL resolution). Now we shuffle the Python track list BEFORE adding it to the Kodi playlist, pinning the clicked track at position 0. The PlayerControl is still called for visual consistency in the player UI.
+
+- Back no longer drops you out of the addon when navigating inside a playlist or folder. Added a navigation stack: when you open a playlist/user/folder, the previous page state is pushed; Back pops the stack and re-renders the previous page. The stack is cleared when returning to home. Back from home still exits the addon to Kodi's home screen.
+
+Readme:
+- "How to get your OAuth token" section drastically simplified to a 3-paragraph pointer to the helper page at https://theworms.github.io/kodi-addon-soundcloud/ which contains the full flow (bookmarklet + manual fallback). Removed the duplicated Test/Expiration/Common pitfalls sub-sections.
+
+Known issues not yet addressed (need log to diagnose):
+- Playback can crash Kodi on some tracks — waiting for log
+- Addon loads in 2 stages (music browser flash) — Kodi-side limitation, documented workaround via RunScript favourite
+
+5.9.6 (2026-06-28) - helper page: fix HTML injection bug + wider layout
+The helper page on GitHub Pages had a serious bug: the bookmarklet's inline href contained literal angle brackets (from innerHTML strings inside it), which the browser's HTML parser interpreted as real page elements. Result: the bookmarklet's popup DOM was rendered directly on the helper page at load, breaking the layout entirely (visible "Token found!" button, fake textarea, raw JS code at the bottom).
+
+Fixed by building the bookmarklet href in JavaScript at page load (encodeURIComponent), and using createElement / appendChild inside the bookmarklet instead of innerHTML — no angle brackets ever appear in the HTML source.
+
+Layout widened from 720px to 880px max-width, hover state on the orange button now has explicit black text color so it stays readable.
+
+5.9.5 (2026-06-28) - web helper page for token retrieval
+A new helper page is published at https://theworms.github.io/kodi-addon-soundcloud/ with a one-click bookmarklet that grabs your SoundCloud OAuth token automatically — no more F12 / Network tab / Request Headers fiddling. Drag the bookmarklet to your browser's bookmarks bar, click it while logged into soundcloud.com, copy the token from the popup, paste into Kodi.
+
+The bookmarklet runs entirely in the browser — the token never leaves your machine, it's not sent to any server (not to TheWorms, not to GitHub).
+
+The help dialog (Settings &gt; Account &gt; How to get a token) now leads with this URL, and falls back to the manual F12 method as alternative. Readme updated to mirror this. Page is bilingual (EN/FR), auto-detects browser language.
+
+5.9.4 (2026-06-28) - clearer token instructions + actionable expiry notification
+The "How to get a token" help dialog (Settings &gt; Account) is fully rewritten: SoundCloud URL displayed prominently at the top, clearer step-by-step instructions with visual separators (▶ markers and ═══ section dividers), explicit "on your computer, not on this device" guidance, and a "Common mistakes" section listing the typical traps (cookie vs Authorization header, OAuth prefix, etc.).
+
+Token-expired notification now displays for 8 seconds (was 5) and points directly to the help button: "OAuth token expired — open Settings &gt; Account &gt; How to get a token". No more silently empty Likes lists with confused users.
+
+Note: a "sign in with email/password" flow was considered for this release but rejected on safety grounds (SoundCloud's web-auth endpoint requires captcha after a few attempts, would store the password in plaintext in settings.xml, and risks account suspension for non-official client traffic). The token-based flow remains the safer approach.
+
+5.9.3 (2026-06-28) - readme: dropped Development and Roadmap
+Removed the Development section (Pipenv setup/build/lint/test instructions — anyone cloning the repo can read Pipfile directly) and the Roadmap section (vague bullets that mostly tracked upstream). The readme is now focused on what users actually need: install, launch, authenticate, configure overlays, integrate widgets.
+
+5.9.2 (2026-06-28) - readme refresh for v5.9 reality
+Updated the readme to match what the addon actually does in v5.9:
+- Dropped the obsolete "API" section that documented plugin://...play/ URLs (no longer publicly callable since the classic plugin menu was removed in 5.7).
+- New "Fullscreen Now Playing overlays" section with a comparison table of the 5 styles (Off / Cinema / Waveform / Editorial / Vinyl) and honest limitations (waveform not actually audio-reactive, vinyl may stutter on Raspberry Pi 3, editorial pull quote depends on track having a description, no custom fonts allowed by Kodi).
+- New "Optional dependency — Pillow" subsection explaining what Pillow buys you (real Gaussian blur for the overlay backgrounds) and that it's optional.
+- Consolidated launching-the-addon coverage so it's documented in one place, not duplicated.
+- "Manual install" download link now points to this fork's releases.
+
+5.9.1 (2026-04-29) - readme: explicit fork notice
+The readme now clearly states upfront that this is a community fork of jaylinski/kodi-addon-soundcloud (link), maintained at github.com/TheWorms/kodi-addon-soundcloud. Badges updated to point to this fork's tag releases instead of upstream. Attributions section consolidated. What's new and Features lists now mention the four fullscreen "Now Playing" overlay styles (Cinema, Waveform, Editorial, Vinyl) added in v5.8+.
+
+5.9.0 (2026-04-29) - Vinyl style + complete spec
+New "Vinyl" fullscreen overlay! Editorial-vinyl layout: a detailed black vinyl record on the left half (with the cover art embedded in the central label), title and artist on the right. The disc rotates continuously at 33⅓ RPM (one turn every 12 seconds) — both the record and the cover label rotate together as a rigid unit so the cover stays oriented with the disc.
+
+The vinyl PNG is generated at build time with subtle concentric grooves, a diagonal light reflection sweep, rim highlights, and a transparent label hole that reveals the cover art underneath.
+
+Performance note: continuous rotation animations may stutter on lower-end devices (Raspberry Pi 3 etc.). If you experience this, please report and we'll add a "static disc" toggle.
+
+This release completes the full 5-style fullscreen overlay spec: Off / Cinema / Waveform / Editorial / Vinyl.
+
+5.8.9 (2026-04-29) - editorial: no fallback metadata
+The Editorial pull quote area is now left empty when the track has no description, instead of falling back to "Genre · Year" or "...". Empty whitespace reads as intentional editorial restraint; fake filler doesn't.
+
+5.8.8 (2026-04-29) - Editorial fullscreen style
+New "Editorial" fullscreen overlay! A magazine-style layout with the cover art on the left third and large display typography on the right two-thirds. Pulls a clean version of the track's SoundCloud description and uses it as a pull quote (URLs and trailing hashtag chains are stripped, content is truncated to ~280 characters at a sentence boundary). Falls back to genre + year if no description is available.
+
+Honest note on typography: Kodi's Python WindowXML system does NOT allow addons to register their own TTF fonts (documented limitation). Times New Roman bundled with the addon would not work. The editorial feel is therefore achieved through layout, sizing, letter-spacing and rule lines using only the standard Kodi font names — visually convincing but not actually serif. Sorry about the earlier promise.
+
+5.8.7 (2026-04-29) - waveform becomes a visualizer
+The Waveform overlay no longer uses the static SoundCloud waveform shape — instead 90 orange bars are continuously animated at 12 FPS to simulate a live audio visualizer. Bars on the left move slowly with medium amplitude (bass), middle ones vary fast and tall (mids), right ones flicker quickly with smaller amplitude (highs). The result LOOKS audio-reactive even though Kodi's Python API doesn't expose actual audio samples.
+
+A thin orange progress bar above the visualizer shows the real playback position based on Player.Time, so users still have an accurate playback indicator.
+
+5.8.6 (2026-04-28) - waveform bars now actually colour orange
+Reverted to the dual-bar approach (grey background + orange foreground stacked, foreground hidden by default). Python now flips visibility of the orange bars as the track plays, instead of using setColorDiffuse which is silently no-op on some Kodi/skin combinations (notably Arctic Zephyr Reloaded).
+
+5.8.5 (2026-04-28) - hide unimplemented styles
+Removed "Vinyl" and "Editorial" from the fullscreen style picker — they were silently doing nothing because their XML+Python isn't done yet. They'll come back when implemented in 5.8.6+. The picker now shows only Off / Cinema / Waveform.
+
+5.8.4 (2026-04-28) - simpler waveform XML
+Halved the number of waveform bar controls (from 180 to 90) by using setColorDiffuse to switch played bars from grey to orange instead of stacking two image controls per position. This may have been the reason the waveform overlay wouldn't open on some Kodi builds — too many controls. Removed the dedicated background image control too, the cover art is shown directly (dimmed) when Pillow isn't installed.
+
+5.8.3 (2026-04-28) - Pillow dependency + diagnostic
+Declared Pillow (script.module.pil) as an OPTIONAL dependency in addon.xml so Kodi proposes its installation automatically when missing. The addon still loads without it (overlays fall back to unblurred covers).
+
+Added detailed logging in NowPlayingDialog and PlayerObserver to diagnose cases where the fullscreen overlay doesn't appear. Look for "NowPlayingDialog onInit" and "_maybe_open_now_playing" in kodi.log.
+
+5.8.2 (2026-04-28) - Waveform fullscreen style
+New "Waveform" fullscreen overlay style — the SoundCloud signature look. Set Settings &gt; Playback &gt; Fullscreen on playback &gt; Style to "Waveform" to enable.
+
+Features: blurred cover art as fullscreen background (real Gaussian blur via Pillow if installed, fallback to dimmed cover otherwise), 90 vertical bars showing the actual track waveform downloaded from SoundCloud's waveform JSON, bars turn from grey to orange as the track plays, smooth Ken Burns zoom on background, slide-in title and artist.
+
+Requires Pillow (script.module.pil from the Kodi addon repository) for the best visual experience. Without Pillow the dialog still works but uses the unblurred cover and a fallback dominant colour.
+
+5.8.1 (2026-04-28) - opaque mask for fullscreen overlay
+The Cinema overlay now has a solid black background as its first layer, fully masking the home UI underneath. Previously the home UI was visible "showing through" the dialog because WindowXMLDialog draws over the existing window without hiding it.
+
+5.8.0 (2026-04-27) - fullscreen overlay (Cinema style)
+New "Now Playing" fullscreen overlay! When audio playback starts, a custom dialog can open on top of the home UI showing the cover art with Ken Burns animation, title, artist, time and an orange progress bar.
+
+Configure via Settings &gt; Playback &gt; Fullscreen on playback. Available styles in this release: "Cinema" (Apple Music / Spotify style with blurred background and centred cover) and "Off" (no overlay). Other styles (Waveform, Vinyl, Editorial) coming in 5.8.x.
+
+Default is "Off" — opt in by changing the setting.
+
+5.7.7 (2026-04-27) - widget detection improved + flash workaround documented
+Improved widget vs user detection: now explicitly detects MyMusicNav.xml, musicfiles, addonbrowser, filemanager as user-browsing contexts. Previously relied on Window.IsActive(home) which gave false negatives in some Kodi builds. Diagnostic logs are still active to help debug edge cases.
+
+The music-browser flash on launch can't be fully eliminated from inside the addon (Kodi renders the music page before calling the plugin), but the readme now documents how to bypass it entirely using a Kodi favourite or skin home shortcut that calls RunScript(plugin.audio.soundcloud) directly.
+
+5.7.6 (2026-04-27) - aggressive flash hiding
+Reordered the launch sequence and added Dialog.Close(all,true) before ReplaceWindow(home) — the "music addons" page is now closed immediately along with any modal dialog spinner before our UI launches, reducing the music-window flash to near-invisible.
+
+5.7.5 (2026-04-26) - token resilience + diagnostics
+The token is no longer disabled on the FIRST 401 response. SoundCloud occasionally returns transient 401s for valid tokens (network blips, rate limits, backend deploys), and the previous code was way too aggressive. Now we wait for 2 consecutive 401s before disabling the token, and the counter resets on any successful authenticated call.
+
+Also added detailed logging for every authenticated API call: endpoint, status code, response time, token call count and lifetime tracking. When a 401 finally hits, the log shows how long the token actually lived and how many calls it served — making it possible to diagnose the real cause of token expiry.
+
+Tests for the new behaviour added (28 tests now passing).
+
+5.7.4 (2026-04-26) - hide music window flash
+When opening the addon from Music &gt; Add-ons, Kodi briefly shows the music browser before our full-screen UI takes over. Now we call ReplaceWindow(home) right before launching the script, so the music window is replaced (not stacked) — the flash is invisible and Back from the UI goes straight to home instead of bouncing back to the music browser.
+
+5.7.3 (2026-04-26) - diagnostic
+Logs detailed window/context info on every root call so we can identify why the widget/UI auto-detection fails on Arctic Zephyr Reloaded. Look for "ROOT context diag" lines in kodi.log.
+
+5.7.2 (2026-04-26) - smart UI auto-launch
+Auto-detect whether the addon is being called by a skin home widget (data fetch — return a directory) or by the user clicking the addon (open the full UI). Detection is based on whether the Kodi Home screen is active. Fixes the regression where users had to click "▶ Open SoundCloud" every time after 5.7.1.
+
+5.7.1 (2026-04-26) - widget compatibility fix
+Fixed: skin home widgets (Arctic Zephyr Reloaded, etc.) used to launch the full-screen UI when added — kicking the user out of their home screen. The addon root URL now returns a flat directory listing of widget shortcuts, so widgets show actual content. Users clicking on the addon from Kodi's add-on browser see a "▶ Open SoundCloud" entry as the first item to launch the full UI.
+
+5.7.0 (2026-04-26) - simplification
+Removed the classic plugin-style menu — the full-screen UI is now the only interface. Removes 75 lines of code, the "Auto-launch" setting, the ?legacy=1 escape hatch and the /launch-ui/ route. Skin home widgets continue to work via the dedicated /widget/* routes (independent of the menu). The "Off" option in Widget mode now shows the full UI instead of the classic menu.
+
+5.6.1 (2026-04-26) - widget mode for Arctic Zephyr
+Arctic Zephyr Reloaded only lets widgets point at the addon root, so the previous /widget/likes/ etc. routes weren't reachable through its UI. Added a "Widget mode" setting (Settings &gt; Display &gt; Skin home widget) that changes what the root returns. Pick Likes / Playlists / Following / Trending / Discover and the home widget will display that. Use ?legacy=1 to keep accessing the menu.
+
+5.6.0 (2026-04-26) - skin widgets
+Added 5 widget shortcut routes that any skin can target as a flat directory: /widget/likes/, /widget/playlists/, /widget/following/, /widget/trending/, /widget/discover/. A new "Widgets" entry in the classic plugin menu lets you browse them from a skin's "Add Widget" picker. See the readme for the Arctic Zephyr Reloaded setup procedure.
+
+5.5.14 (2026-04-25) - progress bar fix v3
+Progress bar updater is now started AFTER the GUI is built (in onInit) instead of in __init__ — that's why no setWidth() calls were being made. Added explicit logging so we can verify the thread is running and the values are being computed. Look for "ProgressUpdater" lines in kodi.log.
+
+5.5.13 (2026-04-25) - progress bar v3
+Progress bar now resized directly via Python control.setWidth() instead of relying on $INFO[Window.Property] in XML width (which Kodi doesn't re-evaluate per frame). The orange fill image has a fixed XML id and the background thread calls setWidth() every 500ms with the computed pixel width. This works regardless of skin or audio format.
+
+5.5.12 (2026-04-25) - custom progress bar
+Replaced the native Kodi progress bar (which was hijacked by Arctic Zephyr Reloaded's blue styling and frozen for HLS streams) with two stacked custom images. A background Python thread polls the player position every 500ms and updates the orange fill width via Window.Property. This fixes both the "always blue" and "never moves" issues at once.
+
+5.5.11 (2026-04-25)
+Time/Duration labels in the mini-player are now wider, brighter (white instead of grey), and use a bigger font (font12) so 1:23:45-style timestamps display fully without truncation
+Removed unnecessary border attributes from progress bar that were causing rendering issues on some skins (orange.png is now a flat 1x1 pixel that Kodi stretches reliably)
+
+NOTE: if the progress bar still doesn't move, check Settings &gt; Playback &gt; Audio format — set it to "Standard stable (MP3 progressive)" rather than "Standard adaptive (MP3 HLS)". HLS streams can prevent Player.Progress from updating on some Kodi builds.
+
+5.5.10 (2026-04-25)
+Updated readme.md with the new v5 interface description and a corrected, step-by-step OAuth token procedure (using the Authorization header, with explicit warnings about the cookie pitfall)
+
+5.5.9 (2026-04-25)
+Added TheWorms as a contributor (visible in Kodi's add-on info screen)
+
+5.5.8 (2026-04-25) - progress bar fix
+Fixed progress bar showing as fully filled and frozen: switched midtexture to use 9-patch border rendering and added explicit empty lefttexture/righttexture/overlaytexture so Kodi correctly interpolates the fill width
+Resized orange.png from 4x4 to 8x8 so it survives the border="2" 9-patch slicing
+Progress bar now shows in SoundCloud orange (#FF5500) and updates in real-time as the track plays
+
+5.5.7 (2026-04-25)
+Fixed: changes to OAuth token (or any setting) now take effect immediately without needing to restart Kodi
+The Settings class now creates a fresh xbmcaddon.Addon() instance on every read, bypassing Kodi's in-memory cache that was hiding the new value
+Auto-reset of the "token invalid" flag when the user changes the token — no more stuck 401 state after a paste
+
+5.5.6 (2026-04-24) - diagnostic
+"Test OAuth token" now shows the actual error body from SoundCloud (not just the HTTP code), and logs the full request + response details to kodi.log for debugging.
+
+5.5.5 (2026-04-24)
+OAuth token cleaning is now much more aggressive: strips ALL whitespace and non-printable characters anywhere in the token (not just leading/trailing). Catches Windows clipboard \r\n, zero-width spaces, BOM, etc. that were silently breaking authentication.
+"Test OAuth token" now displays a token preview (length + first/last chars) so you can verify the paste was clean.
+
+5.5.4 (2026-04-24)
+Rewrote "How to get a token" help text — now correctly recommends the Authorization HTTP header (not the cookie). The cookie method silently fails, which is what was causing persistent 401 errors.
+
+5.5.3 (2026-04-24)
+After closing SoundCloud (Back), now go straight to Kodi home instead of bouncing back to the Music files / add-ons window
+OAuth token field auto-strips "OAuth " or "Bearer " prefix if pasted by mistake (and surrounding quotes)
+
+5.5.2 (2026-04-24)
+Added "Test OAuth token" button in Settings &gt; Account, right below the token field — verifies the token by calling /me and shows your username on success
+Optimized /me handling: when the token is known invalid, skip the call entirely instead of doing 2 round-trips per UI page
+
+5.5.1 (2026-04-24)
+Fixed cascade of HTTP 401 errors on public endpoints when an OAuth token is expired/invalid: the API now drops the bad token after the first 401 and retries anonymously, so charts/discover/trending keep working until the user updates the token
+
+5.5.0 (2026-04-24) - settings reorganization
+Settings reorganized into 3 user-friendly categories: Display / Playback / Account
+Audio format options renamed to friendlier labels (Light Opus / Standard adaptive MP3 / Standard stable MP3)
+"Tracks per page" replaces the old "Search items size" wording (used by both search and pagination)
+Advanced API options (custom Client-ID, locale, search history size) moved to Expert level (use Kodi's Settings level slider to see them)
+
+5.4.1 (2026-04-24)
+Fixed first card of each row being clipped on the left
+Fixed orange focus border persisting on rows that no longer have focus (now only the focused row shows the orange highlight)
+Fixed mini-player buttons rendering as empty squares (replaced Unicode chars with ASCII)
+Fixed progress bar showing in cyan instead of orange (dedicated orange texture instead of colordiffuse)
+
+5.4.0 (2026-04-24)
+Home now has 4 configurable rows (Likes / Trending / Playlists / Following) in a vertically scrollable container
+Each row can be configured/reordered/disabled in Settings &gt; Home rows
+Added pagination: pages now show a "Next page" item at the end when there are more results
+Page size honors the existing "Items per page" setting
+Selection now follows the playing track when autoplay moves to the next song
+Mini-player has a new "Compact" mode (cover + title + wide progress bar, no controls)
+Progress bar made thicker (8px) and properly themed in SoundCloud orange
+
+5.3.0 (2026-04-24)
+Removed "Classic interface" button from sidebar — switching back to the classic UI is now done via Settings &gt; Interface &gt; "Use the new interface" toggle (turn it off)
+Sidebar now has 6 buttons: Home, Search, Likes, My playlists, Following, Settings
+
+5.2.3 (2026-04-24)
+Fixed all addon-localized labels using $ADDON[plugin.audio.soundcloud XXXXX] instead of $LOCALIZE[XXXXX] (which was looking up Kodi core strings, not ours)
+Widened sidebar from 180px to 240px so French labels like "Vos abonnements" and "Interface classique" fit without truncation
+
+5.2.2 (2026-04-24)
+DIAGNOSTIC: hardcoded sidebar labels (no $LOCALIZE) to determine why text was invisible
+
+5.2.1 (2026-04-24)
+Fixed all text being invisible in the new UI (sidebar buttons, page titles, mini-player labels): removed broken custom Font.xml and switched to Kodi's standard font names guaranteed by every skin
+
+5.2.0 (2026-04-24)
+Added auto-play next track: clicking a track now queues all visible tracks so Kodi plays them in sequence
+Added "Auto-play next track" toggle in Settings &gt; Interface (on by default)
+
+5.1.4 (2026-04-24)
+Fixed sidebar buttons appearing as solid white blocks (removed broken transparent texture)
+Fixed last sidebar button being cut off by the mini-player (tightened vertical layout)
+
+5.1.3 (2026-04-24)
+Fixed sidebar text being invisible (explicit text positioning + better focus contrast)
+
+5.1.2 (2026-04-24)
+Fixed playback interruption caused by a window reload loop after auto-launching the new UI
+Added re-entrancy guard to prevent stacking multiple WindowXML instances
+Made focus assignment defensive (no more "Control X cannot focus" warnings)
+
+5.1.1 (2026-04-24)
+Fixed audio decoder crash when SoundCloud transcoding URLs expire (now properly tells Kodi to skip the track instead of feeding it a None path)
+Improved logging when stream URL resolution fails
+
+5.1.0 (2026-04-24)
+New full-screen interface (V2): sidebar navigation, horizontal carousel rows, mini-player with controls
+Auto-launches by default — disable in Settings &gt; Interface
+Layout (rows-only or sidebar+rows) and mini-player mode (off/display/controls) configurable in Settings
+Classic plugin still accessible via plugin://plugin.audio.soundcloud/?legacy=1 for widgets and fallback
+
+5.0.3 (2026-04-24)
+Fixed 404 on Mon profil sub-menus: api-v2 doesn't expose /me/* sub-resources, now resolves user_id via /me and uses /users/{id}/* paths
+
+5.0.2 (2026-04-24)
+Fixed crash on empty/non-JSON API responses (was crashing /me/* with JSONDecodeError on auth failure)
+HTTP errors and empty bodies now return an empty collection and log a clear warning instead of crashing
+401/403 responses now properly trigger the "OAuth token invalid or expired" notification
+
+5.0.1 (2026-04-24)
+Fixed authenticated /me/* endpoints returning empty collections (no client_id when authenticated)
+Fixed likes/reposts/playlist-likes envelope unwrapping for authenticated endpoints
+
+4.3.0 (2026-04-24)
+Added experimental full-screen UI (WindowXML script) with horizontal track carousel and mini-player
+Launch via "New interface (beta)" from the root menu, or via RunScript(plugin.audio.soundcloud)
+
+4.2.0 (2026-04-24)
+Added optional OAuth token login to access likes, playlists, following and reposts
+Added French translation
+Added proper content types per view (songs/albums/artists) so skins pick the right layout
+Added per-item fanart (artwork for tracks/playlists, profile banners for artists)
+Added sort methods on song views (title, artist, duration, playcount)
+Improved playlist and artist metadata (track count, follower count, mediatype)
+Fixed crash on tracks without a display_date
+
+4.1.0 (2025-10-06)
+Fixed error when using addon
+Added description and follower-counts to user profiles
+Added description and likes to playlists
+Added playcount to tracks
+Updated Dutch translations
+
+4.0.2 (2022-03-13)
+Fixed random CloudFront errors when sending requests
+Added context-menu option for removing search-history items
+
+4.0.1 (2021-11-02)
+Fixed error in "Discover"-folder
+
+4.0.0 (2020-12-12)
+Added support for Kodi v19 (Matrix)
+        </news>
+        <assets>
+            <icon>resources/icon.png</icon>
+            <fanart>resources/fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>
+<addon id="plugin.audio.radio" name="Radio" provider-name="Publish3r" version="1.0.7">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">Radio – écoute de flux radio en français</summary>
+    <summary lang="en_GB">Radio – listen to radio streams</summary>
+    <summary lang="de_DE">Radio – Radiostreams hören</summary>
+    <description lang="fr_FR">Module Kodi pour écouter des flux radio en streaming, avec une interface en français. Inspiré du service radio.de. Code dérivé du module original de Publish3r, sous licence GPL v2.</description>
+    <description lang="en_GB">Kodi add-on to listen to radio streams, with a French interface. Inspired by the radio.de service. Derived from Publish3r's original add-on, licensed under GPL v2.</description>
+    <description lang="de_DE">Kodi-Addon zum Hören von Radiostreams, mit französischer Oberfläche. Inspiriert vom Dienst radio.de. Abgeleitet vom ursprünglichen Addon von Publish3r, unter GPL v2.</description>
+    <language>fr de</language>
+    <platform>all</platform>
+    <news>v1.0.7 - Identite « Radio », nettoyage. v1.0.6 - Vue cinema (logo plein ecran + barre animee). v1.0.5 - Suppression des couleurs. v1.0.2 - Interface francaise (gettext .po).</news>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
+</addons>

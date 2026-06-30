@@ -1,0 +1,313 @@
+v0.5.8
+- CORRECTIF trafic a zero (WireGuard) : publish_home_props ecrasait la propriete
+  canonique protonvpn.backend avec la valeur d'affichage 'WireGuard', si bien que
+  snapshot() repartait dans la branche OpenVPN/tun et ne lisait jamais le
+  transfert WireGuard (RX/TX = 0). Lecture du backend normalisee en minuscules.
+  (Mise a jour add-on + redemarrage Kodi ; pas besoin de reinstaller le widget.)
+
+v0.5.7
+- CORRECTIF detail widget : le panneau 'Infos systeme' sous les cartes est enfin
+  remplace par le detail ProtonVPN 'Etat du tunnel'. Cause : l'attribut
+  'condition' d'un <include> est evalue au chargement du skin (pas en direct),
+  donc le test sur le widget focalise echouait. Desormais les deux blocs sont
+  enrobes dans un <control type="group"> avec <visible> evalue en temps reel.
+
+v0.5.6
+- Widget en temps reel : le service publie Duree/Trafic/Debit toutes les
+  secondes quand le tunnel est actif (tick 1s), au lieu de l'intervalle
+  moniteur (15s). Cadence lente au repos ; reconnexion immediate en cas de
+  coupure. (Simple mise a jour de l'add-on + redemarrage Kodi, pas besoin de
+  reinstaller le widget pour ce point.)
+
+v0.5.5
+- Menu Serveurs reordonne : Gerer les serveurs favoris, Se connecter WireGuard,
+  Se connecter OpenVPN, Importer une configuration serveur (+ Supprimer).
+- Demarrage : 'Connexion automatique aleatoire sur un favori' OU 'Connexion
+  automatique sur un serveur' (choix du serveur). default_country retire.
+- Widget : carte IP corrigee (IP externe publiee avec cache 60s) ; detail bas
+  intitule 'Etat du tunnel' (au lieu d'Infos systeme) ; avertissement en aide
+  des boutons (rechargement de l'interface a l'install/desinstall).
+- Bloc Etat (et autres) ouvrent les reglages de l'add-on.
+
+v0.5.4
+- Widget au plus pres de la maquette : icones maison (bouclier, globe, reseau,
+  cadenas, horloge, flux) au lieu des icones systeme ; libelles nettoyes
+  (Etat, Serveur, IP, Protocole, Duree, Trafic) avec 2e ligne de detail.
+- PLUS d'infos systeme parasites : le panneau de detail 'Infos systeme' affiche
+  par AZ sous le widget est remplace par un detail ProtonVPN ('Etat du tunnel')
+  uniquement pour notre widget (patch cible dans Includes_Home.xml, sauvegarde
+  + restauration ; le vrai widget Infos systeme reste intact).
+  Note : mise a jour d'AZ ecrase le patch -> reclic 'Installer le widget'.
+
+v0.5.3
+- Bloc 'Etat' du widget : clic ouvre desormais les REGLAGES de l'add-on.
+- Bouton 'Retirer le widget' de nouveau visible en permanence (Reglages>Widget).
+- FAVORIS (Reglages > Serveurs) : 'Gerer les favoris' (multi-selection des
+  serveurs). La connexion rapide se connecte a un favori en priorite. Option
+  'Connexion rapide aleatoire (favoris)' : tire un favori au hasard a chaque
+  fois. Sans favori, comportement inchange (1er serveur du backend par defaut).
+  Favoris stockes dans special://profile/ProtonVPN/favorites.json.
+
+v0.5.2
+- Bloc 'Etat' du widget desormais CLIQUABLE : bascule connecter/deconnecter
+  (deconnecte si actif, sinon connexion rapide via le backend par defaut).
+- Blocs ajustes au plus pres de la maquette dans la contrainte du widget
+  selectionnable (rendu en lignes par AZ) : Etat, Serveur, IP, Protocole,
+  Duree, Trafic avec icones + 2e ligne de detail.
+
+v0.5.1
+- Retour au widget SELECTIONNABLE (mecanisme 0.4.1) : entree 'ProtonVPN' dans
+  le selecteur d'AZ (sous Infos systeme), rendu en lignes par le layout natif.
+  Blocs <item> enrichis facon maquette : Etat, Serveur, IP, Protocole, Duree,
+  Trafic -- chacun avec icone, valeur et 2e ligne de detail (Label3).
+- L'install nettoie automatiquement l'overlay 0.5.0 (appel Home.xml + panneau).
+- Reglages > Widget : 'Installer le widget ProtonVPN' (selectionnable) ;
+  'Retirer' visible seulement si installe.
+  Note : layout en lignes impose par AZ ; mise a jour d'AZ -> reclic Installer.
+
+v0.5.0
+- Nouveau panneau d'accueil ProtonVPN en RANGEE DE CARTES (Etat, Serveur, IP,
+  Protocole, Duree, Trafic) facon maquette, dessine par l'add-on (autonome,
+  sans skinshortcuts). 'Installer le widget ProtonVPN' l'injecte dans Home.xml
+  + Includes.xml ; il s'affiche sur l'accueil. 'Retirer' restaure.
+- Abandon de l'approche widget selectionnable (Option A) : l'install nettoie
+  automatiquement les anciens patches overrides.xml / template.xml.
+- Reglages > Widget allege : suppression de Stats/Journaux, des deux
+  generateurs de favoris et de l'aide widget. Bouton 'Retirer' visible
+  uniquement si le widget est installe (suivi via panel_installed).
+  Note : une mise a jour d'Arctic Zephyr ecrase le patch -> reclic 'Installer'.
+
+v0.4.1
+- Correctif Option A : l'injection dans overrides.xml dupliquait '<shortcut '
+  (mauvais calcul d'indentation) -> entree malformee, ignoree par skinshortcuts.
+  Indentation corrigee (espaces seuls). Le reinstall purge le bloc malforme
+  puis reinjecte proprement.
+
+v0.4.0
+- Widget ProtonVPN SELECTIONNABLE dans Arctic Zephyr (Option A). Le bouton
+  'Installer le widget ProtonVPN' enregistre une entree dans le selecteur de
+  widget d'AZ (clone du widget 'Infos systeme') : overrides.xml (shortcut),
+  template.xml (ProtonVPNInfoContent) et Includes.xml (items ProtonVPNInfoItems
+  lisant protonvpn.*). Tu l'assignes ensuite a un menu via Personnaliser >
+  widget > ProtonVPN ; il s'affiche en liste native uniquement sur ce menu.
+  Patches encadres par marqueurs + sauvegardes ; 'Retirer' restaure. Ancien
+  panneau d'accueil 0.3.x nettoye automatiquement.
+  Note : une mise a jour d'AZ ecrase les patches -> reclic 'Installer'.
+
+v0.3.4
+- Widget d'accueil : fond desormais OPAQUE avec chrome natif Arctic Zephyr
+  (ombre common/shadow-5, remplissage sombre, cadre common/box21 colordiffuse
+  BoxWidget). Corrige la lisibilite : les affiches du widget en arriere-plan
+  ne traversent plus. Position inchangee (haut-droite), ajustable.
+
+v0.3.3
+- Widget d'accueil : la definition du panneau est desormais INJECTEE
+  directement dans Includes.xml du theme (Kodi charge toujours ce fichier),
+  au lieu d'etre referencee depuis un fichier separe qui ne se chargeait pas
+  ('invalid include: ProtonVPNHomePanel'). Bloc encadre par des marqueurs
+  ProtonVPN + sauvegardes ; retrait propre. Panneau simplifie (fond + liste
+  de libelles style AZ) pour garantir l'affichage ; on peaufinera ensuite.
+  Nettoyage automatique de l'ancien patch 0.3.1/0.3.2 au reinstall.
+
+v0.3.2
+- Correctif widget d'accueil : l'installeur enregistre desormais le fichier
+  d'include dans Includes.xml du theme (sinon Kodi ne charge pas la definition
+  ProtonVPNHomePanel et rien ne s'affiche). Sauvegarde + restauration de
+  Includes.xml geres au retrait. Recliquer 'Installer le widget d'accueil'.
+
+v0.3.1
+- Widget d'accueil autonome (Arctic Zephyr). Deux boutons dans Reglages >
+  Widget : 'Installer le widget d'accueil' / 'Retirer'. L'installation depose
+  un include dans le dossier 1080i du theme et ajoute une ligne a Home.xml
+  (sauvegarde conservee), affichant un panneau ProtonVPN style natif AZ
+  (police Tiny, couleur Dark2) qui lit les proprietes protonvpn.*. Le retrait
+  restaure Home.xml et supprime l'include. Panneau separe du widget systeme.
+  Position reglable via Skin.String protonvpn.widget.x / .y (defaut 1360/150).
+  Note : une mise a jour d'Arctic Zephyr ecrase le patch -> recliquer Installer.
+
+v0.3.0
+- Le service publie EN CONTINU l'etat VPN dans les proprietes de l'accueil
+  Window(10000).Property(protonvpn.*) : connected, state, backend, server,
+  country, ip, iface, uptime, rx, tx, rate, flag. Cela permet d'afficher un
+  panneau d'etat facon 'Infos systeme' directement dans le theme (qui lit ces
+  proprietes), independamment de la popup. Publie au demarrage et a chaque
+  cycle du moniteur.
+
+v0.2.9
+- Widget Stats : icones d'etat en haute resolution (plus de pixelisation en
+  vue affiche) et plusieurs lignes meme deconnecte (Etat, WireGuard x/10,
+  OpenVPN x/10) pour un rendu 'panneau'. Le STYLE final (liste vs affiche)
+  reste choisi cote theme : changer la vue/disposition du widget dans Arctic
+  Zephyr pour obtenir le look infos systeme en liste.
+
+v0.2.8
+- Widget d'accueil Stats redessine facon 'System Information' de Kodi : lignes
+  Champ : valeur (Etat, Protocole, Serveur, IP publique, Interface, Duree,
+  Recu, Envoye). Valeur aussi en label2 pour les vues deux colonnes. Pastille
+  verte/grise selon l'etat, drapeau du pays sur la ligne Serveur. Mise a jour
+  a chaque rafraichissement du widget par le theme.
+
+v0.2.7
+- Widget : categorie corrigee. Classer un widget VPN en 'Video' n'avait aucun
+  sens. D'apres les sources de skinshortcuts (library.py + overrides.xml), il
+  existe une categorie widget 'Programme' (addons://sources/executable) qui
+  regroupe les add-ons PROGRAMME exposant du contenu plugin. On repasse donc
+  en provides=executable, avec le pluginsource toujours declare AVANT le
+  service (sinon Kodi classe l'add-on en service et l'exclut de la liste).
+  Le widget apparait desormais sous Ajouter un widget > Programmes > ProtonVPN.
+
+v0.2.6
+- Correctif : suppression des controles 'label' invalides (count_wg/count_ovpn)
+  qui spammaient 'error reading <control> tag' dans le journal. Le nombre de
+  serveurs s'affiche desormais DIRECTEMENT sur les boutons : 'Se connecter a
+  un serveur WireGuard   x / 10' et idem OpenVPN (valeur mise a jour a l'import,
+  a la suppression et au demarrage du service).
+- Widget : addon.xml reordonne, le pluginsource (provides=video) est declare
+  AVANT le service. Kodi categorise un add-on par sa premiere extension : avec
+  le service en premier il etait classe 'service' et les themes ne le listaient
+  pas comme source de widget. Comme EmbyCon (plugin video d'abord), il doit
+  maintenant apparaitre sous Extensions VIDEO dans le selecteur de widgets.
+
+v0.2.5
+- Serveurs remodele : compteurs 'WireGuard x / 10' et 'OpenVPN x / 10', deux
+  boutons 'Se connecter a un serveur WireGuard' / 'OpenVPN' (selecteur filtre
+  par backend), 'Importer un ou plusieurs serveurs' (importe tous les .conf
+  et .ovpn d'un dossier), 'Supprimer un serveur'. Supprimer retire de l'Accueil.
+- Widget : l'addon declare desormais provides=video (comme EmbyCon). Il
+  apparait donc comme SOURCE DE WIDGET dans le theme : Ajouter un widget >
+  Extensions video > ProtonVPN > Widget Stats ou Widget Journaux. Avant il
+  etait expose en 'Programme', categorie que les themes ne listent pas pour
+  les widgets : d'ou l'absence constatee.
+
+v0.2.4
+- Serveurs : nouveau bouton 'Ajouter Serveurs au menu (raccourci)'. Il cree
+  un favori qui ouvre la VRAIE liste (drapeaux, clic = connecter, re-clic =
+  deconnecter). A epingler ensuite dans le menu d'accueil du theme.
+  Rappel : une page de reglages Kodi ne peut pas afficher de liste dynamique ;
+  d'ou le raccourci vers la vue plugin plutot qu'une liste integree.
+  Le selecteur reste disponible dans les reglages pour un acces rapide.
+
+v0.2.3
+- Serveurs : retour au selecteur qui fonctionne (DialogSelect avec drapeaux).
+  Clic sur un serveur = se connecter ; re-clic sur le serveur actif = se
+  deconnecter. Pas de Supprimer ici (le bouton est dans l'accueil).
+  L'ouverture d'une vue plugin depuis les reglages est refusee par Kodi
+  (modale active) -> le selecteur est la seule liste possible dans les reglages.
+- Widget : 'Programmes > ProtonVPN' ne liste rien (addon-service non expose).
+  Retour aux boutons Generer le widget Stats / Journaux : ils creent une
+  entree dans les Favoris -> dans le theme, Ajouter un widget > Favoris.
+
+v0.2.2
+- Serveurs : le bouton 'Voir les serveurs' ferme les reglages et ouvre la
+  VRAIE liste (drapeau + nom + bouton Se connecter/Se deconnecter par ligne,
+  backend non actif grise et non selectionnable). Une page de reglages Kodi
+  ne peut pas afficher de liste dynamique, d'ou l'ouverture de la vue plugin.
+- Accueil : 'Se deconnecter' remonte au-dessus de 'Tester', et
+  'Supprimer un serveur' descend tout en bas, separe apres l'indicateur VPN.
+- Widget : on ne passe plus par les favoris. Les dossiers 'Widget Stats' et
+  'Widget Journaux' sont exposes par l'addon -> dans le theme : Ajouter un
+  widget > Extensions > Programmes > ProtonVPN. Bouton d'aide ajoute.
+
+v0.2.1
+- Menu de gauche des Reglages reorganise : nouvelles categories Serveurs
+  et Widget.
+- Serveurs : 'Se connecter a un serveur...' ouvre une liste avec le DRAPEAU
+  du pays et l'etat a droite (Se connecter / Se deconnecter), un appui
+  bascule la connexion. + Se deconnecter, + Supprimer un serveur.
+- Widget : 'Stats en direct', et generation de widgets Stats / Journal
+  ajoutes aux Favoris (utilisables comme widgets d'accueil dans le theme).
+- Suppression du bouton 'Ouvrir le menu' qui buggait (ActivateWindow refuse
+  depuis une fenetre modale).
+
+v0.2.0
+- Tout pilotable depuis les Reglages (onglet Accueil), sans ouvrir de menu :
+  'Se connecter a un serveur...' (liste popup), 'Se deconnecter',
+  'Connexion rapide', 'Tester', 'Stats en direct', 'Supprimer un serveur...'.
+  Import deja present dans les onglets WireGuard et OpenVPN.
+- Le menu complet reste accessible (bouton 'Ouvrir le menu', niveau avance)
+  mais n'est plus necessaire.
+
+v0.1.1
+- Correctif : le bouton 'Ouvrir le menu ProtonVPN' (Reglages > Accueil)
+  ouvre desormais reellement l'interface (ActivateWindow sur le plugin)
+  au lieu de relancer le service. Indispensable car un addon-service
+  n'a pas de bouton 'Lancer' dans sa fiche Information.
+
+v0.1.0
+- Migration auto des configs importees par les anciennes versions
+  (rangees dans addon_data) vers le nouveau magasin userdata/ProtonVPN :
+  les serveurs importes avant reapparaissent dans la liste.
+- Limite portee a 10 configurations par backend (10 WireGuard + 10 OpenVPN).
+- Bouton 'Ouvrir le menu ProtonVPN' fiabilise (RunAddon).
+
+v0.0.9
+- Correctif majeur connexion auto : si l'option est DESACTIVEE, l'addon
+  demarre desormais DECONNECTE (un tunnel WireGuard residuel d'une session
+  precedente est coupe au demarrage). Avant, le tunnel persistant donnait
+  l'impression d'une connexion automatique.
+- Correctif auto_connect (quand active) : ne depend plus du dossier supprime
+  et se connecte au bon type de config (bug qui l'empechait de fonctionner).
+- Reglages > Accueil : bouton 'Ouvrir le menu ProtonVPN' pour lancer
+  l'interface (serveurs, stats...) directement depuis les reglages.
+
+v0.0.8
+- Liste Serveurs : toutes les configs sont affichees ; le backend non
+  actif est GRISE (plus masque) et non connectable d'ici.
+- Chaque ligne : bouton Se connecter, ou Se deconnecter sur le serveur actif.
+- Drapeau pays sur chaque ligne.
+- Accueil : bouton Se deconnecter toujours present (rouge si connecte,
+  gris sinon).
+
+v0.0.7
+- Nouveau widget Stats en direct (fenetre dediee) : etat, serveur, IP,
+  duree, age du handshake, recu/envoye et debit instantane, rafraichi
+  chaque seconde. Accessible via l'entree 'Stats' du menu. Retour pour fermer.
+
+v0.0.6
+- Apres un import, l'addon ouvre directement la liste Serveurs du backend
+  importe (on voit la config tout de suite).
+- Detection des doublons : si la configuration est deja presente, un
+  message le signale et le fichier existant n'est pas ecrase.
+
+v0.0.5
+- Drapeaux pays dans la liste Serveurs (resources/flags/<cc>.png),
+  60 pays couverts. Icone par defaut si un pays manque.
+
+v0.0.4
+- Arret de Kodi : plus aucun appel a l'API addon pendant le teardown
+  (disconnect_on_exit mis en cache) -> journal propre, plus de ligne
+  "Unknown addon id" a l'extinction.
+
+v0.0.3
+- Reglages reorganises : Accueil / WireGuard / OpenVPN / Avance.
+- Protocole par defaut (Accueil) : le backend non choisi est masque
+  (serveurs, connexion rapide, test).
+- Import dedie par backend (WireGuard / OpenVPN), detection auto du type.
+- Dossier de configs cree automatiquement dans userdata/ProtonVPN :
+  plus besoin de parcourir userdata (reglage 'dossier' supprime).
+- Suppression d'une configuration via le menu contextuel (Serveurs).
+- Test de connexion : affiche le pays et l'IP publique si OK.
+- Vue Serveurs filtree sur le protocole actif.
+
+v0.0.2
+- Correctif : le reglage "Dossier de configurations" (config_folder)
+  ne provoque plus l'erreur "error reading the default value" et s'affiche
+  bien dans l'onglet Configuration (ajout de allowempty).
+- get_addon() et la lecture des reglages tolerent l'arret de Kodi
+  (plus d'erreur "Unknown addon id" a l'extinction).
+- WireGuard : l'IPv6 est retire de la config avant wg-quick pour eviter
+  l'echec ip6tables (table 'raw' absente) sur CoreELEC.
+
+v0.0.1
+- Première version publique.
+- Choix explicite WireGuard ou OpenVPN (deux entrées distinctes).
+- Saisie des identifiants OpenVPN/IKEv2 (non requis pour WireGuard).
+- Import de fichiers de configuration (.ovpn et .conf), jusqu'à 10.
+- Connexion à une configuration : test puis connexion, état actif visible.
+- Bouton « Tester la connexion ».
+- Vue Stats / Journaux : état, durée, handshake, IP, débit reçu/envoyé,
+  journal des événements.
+- Indicateur d'état VPN exposé pour le header du skin (propriété de fenêtre).
+- Quelques réglages : protocole par défaut, connexion auto, reconnexion auto,
+  déconnexion à la fermeture, NetShield/NAT (OpenVPN), pays par défaut.
+- Service de fond : surveillance, reconnexion à backoff, machine à états.
