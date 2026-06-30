@@ -57,36 +57,30 @@ def zip_addon(src, addon_id, version):
 
 
 def copy_assets(src, addon_id, root):
-    """Copie l'icône/fanart déclarés dans <assets> vers zips/<id>/ (nom normalisé)."""
+    """Copie icône/fanart/changelog vers zips/<id>/ en PRÉSERVANT le chemin
+    relatif déclaré dans <assets> (Kodi cherche l'icône à ce chemin exact)."""
     out_subdir = os.path.join(OUTPUT_DIR, addon_id)
     meta = root.find("extension[@point='xbmc.addon.metadata']")
     assets = meta.find("assets") if meta is not None else None
-    mapping = {}  # nom destination -> chemin relatif source
+    rels = []
     if assets is not None:
-        icon = assets.find("icon")
-        fan = assets.find("fanart")
-        if icon is not None and icon.text:
-            mapping["icon.png"] = icon.text
-        if fan is not None and fan.text:
-            mapping["fanart.jpg"] = fan.text
-    # fallbacks si <assets> non déclaré
-    if "icon.png" not in mapping:
-        for c in ("icon.png", "resources/icon.png"):
+        for tag in ("icon", "fanart"):
+            el = assets.find(tag)
+            if el is not None and el.text:
+                rels.append(el.text)
+    if not rels:
+        for c in ("icon.png", "resources/icon.png", "fanart.jpg", "resources/fanart.jpg"):
             if os.path.isfile(os.path.join(src, c)):
-                mapping["icon.png"] = c
-                break
-    if "fanart.jpg" not in mapping:
-        for c in ("fanart.jpg", "resources/fanart.jpg"):
-            if os.path.isfile(os.path.join(src, c)):
-                mapping["fanart.jpg"] = c
-                break
+                rels.append(c)
     if os.path.isfile(os.path.join(src, "changelog.txt")):
-        mapping["changelog.txt"] = "changelog.txt"
-    for dest, rel in mapping.items():
+        rels.append("changelog.txt")
+    for rel in rels:
         f = os.path.join(src, rel)
         if os.path.isfile(f):
-            shutil.copy2(f, os.path.join(out_subdir, dest))
-            print(f"     asset {dest} <- {rel}")
+            dest = os.path.join(out_subdir, rel)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            shutil.copy2(f, dest)
+            print(f"     asset {rel}")
 
 
 def main():
