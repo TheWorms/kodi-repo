@@ -14,13 +14,14 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 
 ## Installation via le dépôt TheWorms (recommandé)
 
-Le dépôt gère les mises à jour automatiquement.
+Tous les addons sont distribués et mis à jour via le dépôt — **il n'y a pas de Release** à télécharger ici.
 
-1. Télécharge le zip du dépôt : [https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip](https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip)
-2. Kodi → **Add-ons** → **Installer depuis un fichier zip** → sélectionne ce zip
+Télécharge le dépôt en cliquant **[ICI](https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip)**, puis dans Kodi :
+
+1. **Add-ons** → **Installer depuis un fichier zip** → sélectionne le zip téléchargé
    *(si Kodi bloque, active **Sources inconnues** dans Système → Add-ons)*
-3. **Installer depuis un dépôt** → **TheWorms Repository** → choisis l'addon
-4. Les mises à jour seront ensuite proposées automatiquement
+2. **Installer depuis un dépôt** → **TheWorms Repository** → choisis l'addon
+3. Les mises à jour seront ensuite automatiques
 
 ## Structure
 
