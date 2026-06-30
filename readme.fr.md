@@ -14,9 +14,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 | Radio | `plugin.audio.radio` | Flux radio |
 | Météo Concept | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) |
 
-## Installation (recommandé)
-
-Le dépôt gère les mises à jour automatiquement. **Il n'y a pas de Release** à télécharger — tout passe par le dépôt.
+## Installation
 
 Télécharge le dépôt en cliquant **[ICI](https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip)**, puis dans Kodi :
 
