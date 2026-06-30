@@ -1,44 +1,46 @@
+**English** · [Français](readme.fr.md)
+
 # TheWorms Repository
 
-Dépôt Kodi public regroupant les addons maintenus par **theworms**.
-Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
+Public Kodi repository bundling the add-ons maintained by **theworms**.
+Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 
-## Addons disponibles
+## Available add-ons
 
-| Addon | id | Description |
-|-------|----|-------------|
-| ProtonVPN Manager | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi |
-| SoundCloud | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud |
-| Radio | `plugin.audio.radio` | Flux radio en français |
-| Météo Concept | `weather.meteoconcept` | Prévisions météo France (API Météo Concept) |
+| Add-on | id | Description |
+|--------|----|-------------|
+| ProtonVPN Manager | `service.protonvpn.manager` | ProtonVPN connections (OpenVPN + WireGuard) from Kodi |
+| SoundCloud | `plugin.audio.soundcloud` | SoundCloud music and podcast streaming |
+| Radio | `plugin.audio.radio` | Radio streams |
+| Météo Concept | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) |
 
-## Installation via le dépôt TheWorms (recommandé)
+## Installation (recommended)
 
-Tous les addons sont distribués et mis à jour via le dépôt — **il n'y a pas de Release** à télécharger ici.
+The repository handles updates automatically. **There is no Release to download** — everything goes through the repository.
 
-Télécharge le dépôt en cliquant **[ICI](https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip)**, puis dans Kodi :
+Download the repository by clicking **[HERE](https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip)**, then in Kodi:
 
-1. **Add-ons** → **Installer depuis un fichier zip** → sélectionne le zip téléchargé
-   *(si Kodi bloque, active **Sources inconnues** dans Système → Add-ons)*
-2. **Installer depuis un dépôt** → **TheWorms Repository** → choisis l'addon
-3. Les mises à jour seront ensuite automatiques
+1. **Add-ons** → **Install from zip file** → select the downloaded zip
+   *(if Kodi blocks it, enable **Unknown sources** under Settings → Add-ons)*
+2. **Install from repository** → **TheWorms Repository** → pick an add-on
+3. Updates will then be offered automatically
 
 ## Structure
 
 ```
-zips/                         ← servi par raw.githubusercontent.com
-├── addons.xml                ← index lu par Kodi
+zips/                         ← served by raw.githubusercontent.com
+├── addons.xml                ← index read by Kodi
 ├── addons.xml.md5
-└── <id>/<id>-<version>.zip   ← chaque addon empaqueté (+ icon/fanart)
+└── <id>/<id>-<version>.zip   ← each add-on packaged (+ icon/fanart)
 ```
 
 ## Maintenance
 
-Régénération de l'index après chaque mise à jour d'un addon :
+Regenerate the index after each add-on update:
 
 ```bash
-python3 _repo_generator.py     # rezippe + reconstruit addons.xml + md5
-git add -A && git commit -m "maj" && git push
+python3 _repo_generator.py     # rezips + rebuilds addons.xml + md5
+git add -A && git commit -m "update" && git push
 ```
 
-Kodi ne lit que `zips/addons.xml` : sans régénération, aucune MAJ n'est propagée aux clients.
+Kodi only reads `zips/addons.xml`, never the sources: without regeneration, no update is propagated.
