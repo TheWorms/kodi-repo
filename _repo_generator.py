@@ -3,12 +3,8 @@
 """
 Générateur de repository Kodi.
 
-Lit une liste de dossiers-sources d'addons (chacun contient un addon.xml),
-zippe chaque addon dans  zips/<id>/<id>-<version>.zip  et régénère
-zips/addons.xml + zips/addons.xml.md5.
-
-Usage :
-    python3 _repo_generator.py
+Zippe chaque addon dans  zips/<id>/<id>-<version>.zip, copie son icône/fanart
+à côté du zip, et régénère  zips/addons.xml + zips/addons.xml.md5.
 """
 
 import hashlib
@@ -18,7 +14,7 @@ import zipfile
 import xml.etree.ElementTree as ET
 
 # ---------------------------------------------------------------------------
-# CONFIG — adapte uniquement ces deux listes
+# CONFIG
 # ---------------------------------------------------------------------------
 
 ADDON_SOURCES = [
@@ -27,8 +23,6 @@ ADDON_SOURCES = [
     "/run/media/theworms/Data/Git/kodi-addon-soundcloud",
     "/run/media/theworms/Data/Git/kodi-addon-radio/plugin.audio.radio",
 ]
-
-EXTRA_FILES = ["icon.png", "fanart.jpg", "changelog.txt"]
 
 OUTPUT_DIR = "zips"
 
@@ -58,13 +52,41 @@ def zip_addon(src, addon_id, version):
                 rel = os.path.join(addon_id, os.path.relpath(full, src))
                 zf.write(full, rel)
 
-    for extra in EXTRA_FILES:
-        candidate = os.path.join(src, extra)
-        if os.path.exists(candidate):
-            shutil.copy2(candidate, os.path.join(out_subdir, extra))
-
     print(f"  -> {zip_path}")
     return zip_path
+
+
+def copy_assets(src, addon_id, root):
+    """Copie l'icône/fanart déclarés dans <assets> vers zips/<id>/ (nom normalisé)."""
+    out_subdir = os.path.join(OUTPUT_DIR, addon_id)
+    meta = root.find("extension[@point='xbmc.addon.metadata']")
+    assets = meta.find("assets") if meta is not None else None
+    mapping = {}  # nom destination -> chemin relatif source
+    if assets is not None:
+        icon = assets.find("icon")
+        fan = assets.find("fanart")
+        if icon is not None and icon.text:
+            mapping["icon.png"] = icon.text
+        if fan is not None and fan.text:
+            mapping["fanart.jpg"] = fan.text
+    # fallbacks si <assets> non déclaré
+    if "icon.png" not in mapping:
+        for c in ("icon.png", "resources/icon.png"):
+            if os.path.isfile(os.path.join(src, c)):
+                mapping["icon.png"] = c
+                break
+    if "fanart.jpg" not in mapping:
+        for c in ("fanart.jpg", "resources/fanart.jpg"):
+            if os.path.isfile(os.path.join(src, c)):
+                mapping["fanart.jpg"] = c
+                break
+    if os.path.isfile(os.path.join(src, "changelog.txt")):
+        mapping["changelog.txt"] = "changelog.txt"
+    for dest, rel in mapping.items():
+        f = os.path.join(src, rel)
+        if os.path.isfile(f):
+            shutil.copy2(f, os.path.join(out_subdir, dest))
+            print(f"     asset {dest} <- {rel}")
 
 
 def main():
@@ -78,23 +100,21 @@ def main():
         addon_id, version, root = addon_meta(src)
         print(f"[{addon_id}] v{version}")
         zip_addon(src, addon_id, version)
+        copy_assets(src, addon_id, root)
         addon_nodes.append(root)
 
     lines = ['<?xml version="1.0" encoding="UTF-8" standalone="yes"?>', "<addons>"]
     for node in addon_nodes:
-        xml = ET.tostring(node, encoding="unicode").strip()
-        lines.append(xml)
+        lines.append(ET.tostring(node, encoding="unicode").strip())
     lines.append("</addons>\n")
     addons_xml = "\n".join(lines)
 
     xml_path = os.path.join(OUTPUT_DIR, "addons.xml")
     with open(xml_path, "w", encoding="utf-8") as f:
         f.write(addons_xml)
-
     md5 = hashlib.md5(addons_xml.encode("utf-8")).hexdigest()
     with open(xml_path + ".md5", "w", encoding="utf-8") as f:
         f.write(md5)
-
     print(f"\nOK : {xml_path} + .md5 ({md5})")
 
 
