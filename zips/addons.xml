@@ -589,4 +589,23 @@ Added support for Kodi v19 (Matrix)
     </assets>
   </extension>
 </addon>
+<addon id="weather.meteoconcept" name="Météo Concept" version="1.0.3" provider-name="theworms">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+  </requires>
+  <extension point="xbmc.python.weather" library="default.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">Prévisions météo pour la France (API Météo Concept)</summary>
+    <description lang="fr_FR">Fournisseur météo pour la France basé sur l'API Météo Concept (données Météo-France). Une localisation, libellés en français, et icônes affichées par votre skin (Arctic Zephyr, Estuary…). Nécessite un token gratuit Météo Concept.</description>
+    <summary lang="en_GB">Weather forecasts for France (Météo Concept API)</summary>
+    <description lang="en_GB">Weather provider for France based on the Météo Concept API (Météo-France data). Single location, French labels, skin-rendered icons. Requires a free Météo Concept token.</description>
+    <platform>all</platform>
+    <license>GPL-2.0-only</license>
+    <source>https://api.meteo-concept.com</source>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
 </addons>

@@ -22,6 +22,7 @@ ADDON_SOURCES = [
     "/run/media/theworms/Data/Git/kodi-addon-protonvpn",
     "/run/media/theworms/Data/Git/kodi-addon-soundcloud",
     "/run/media/theworms/Data/Git/kodi-addon-radio/plugin.audio.radio",
+    "/run/media/theworms/Data/Git/kodi-addon-meteo/weather.meteoconcept",
 ]
 
 OUTPUT_DIR = "zips"

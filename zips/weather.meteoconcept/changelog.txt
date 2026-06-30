@@ -1,0 +1,28 @@
+v1.0.3
+- Ajout d'un fanart (1920x1080).
+- provider-name corrigé en "theworms".
+- Le test du token indique le palier d'abonnement : Premium détecté en
+  testant la route exclusive « indice UV » (403 sinon), puis Basique vs
+  Standard d'après le quota d'appels. Replis honnêtes si indéterminable.
+
+v1.0.2
+- Correctif widget d'accueil : publication de la propriété de fenêtre
+  Location1 + compteur Locations (le widget gardait la localisation de
+  l'ancien fournisseur, ex. Gismeteo).
+- Nettoyage complet de toutes les catégories avant écriture.
+- Ajout LongDay/ShortDay/LongDate (résumé journalier), Forecast.City,
+  Forecast.Updated et Today.Sunrise/Sunset.
+
+v1.0.1
+- Nouveau bouton « Enregistrer et tester le token » : saisie au clavier,
+  enregistrement immédiat et validation par un appel réel à l'API.
+- Logs détaillés à chaque étape (token présent/vide, INSEE, ville).
+- Message d'aide explicite si le token est lu vide (réglages non sauvegardés).
+
+v1.0.0
+- Version initiale.
+- Fournisseur météo Kodi (xbmc.python.weather) basé sur l'API Météo Concept.
+- Conditions actuelles, prévisions journalières (7 jours) et horaires (12 h).
+- Recherche de commune par nom ou code postal.
+- Libellés en français, icônes rendues par le skin (codes 0-47).
+- Cache fichier paramétrable pour rester sous le quota gratuit (500 req./jour).
