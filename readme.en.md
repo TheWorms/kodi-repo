@@ -14,6 +14,19 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 | Radio | `plugin.audio.radio` | Radio streams |
 | Météo Concept | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) |
 
+<!-- versions:auto -->
+**Versions actuelles** *(généré)* :
+
+| id | version |
+|----|---------|
+| `plugin.audio.radio` | 1.0.7 |
+| `plugin.audio.soundcloud` | 5.9.6020 |
+| `plugin.video.embycon` | 1.13.24 |
+| `service.keyboardbattery` | 1.4.2 |
+| `service.protonvpn.manager` | 0.5.9 |
+| `weather.meteoconcept` | 1.0.5 |
+<!-- /versions:auto -->
+
 ## Installation
 
 Download the repository by clicking **[HERE](https://raw.githubusercontent.com/TheWorms/kodi-repo/main/zips/repository.theworms/repository.theworms.zip)**, then in Kodi:
