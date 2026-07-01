@@ -611,4 +611,46 @@ Added support for Kodi v19 (Matrix)
     </assets>
   </extension>
 </addon>
+<addon id="plugin.video.embycon" name="EmbyCon" version="1.13.23" provider-name="TheWorms">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.pil" version="1.1.7" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video audio</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login" />
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <menu>
+        <label>EmbyCon Actions</label>
+        <item library="context.py" args="test_01">
+          <label>TEST CONTEXT</label>
+          <visible>[false + String.Contains(ListItem.Path,"plugin://") + !String.IsEmpty(ListItem.Property(id))]</visible>
+        </item>
+        <item library="context.py" args="test_02">
+          <label>TEST 2 CONTEXT</label>
+          <visible>[false + String.Contains(ListItem.Path,"plugin://") + !String.IsEmpty(ListItem.Property(id))]</visible>
+        </item>
+      </menu>
+    </menu>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <license>GPL-2.0-only</license>
+    <forum>https://github.com/TheWorms/kodi-addon-emby/issues</forum>
+    <website>https://github.com/TheWorms/kodi-addon-emby</website>
+    <source>https://github.com/TheWorms/kodi-addon-emby</source>
+    <summary lang="en_GB">Browse and play your Emby server media library.</summary>
+    <summary lang="fr_FR">Parcourez et lisez la médiathèque de votre serveur Emby.</summary>
+    <summary lang="zh_CN">浏览并播放您的 Emby 服务器媒体库。</summary>
+    <description lang="en_GB">An addon to allow you to browse and playback your Emby (www.emby.media) Movie, TV Show and Music collections. French-enhanced fork of EmbyCon by faush01.</description>
+    <description lang="fr_FR">Une extension permettant de parcourir et de lire vos collections de films, séries et musique Emby (www.emby.media). Fork francophone enrichi d'EmbyCon de faush01.</description>
+    <description lang="zh_CN">允许您浏览和播放 Emby (www.emby.media) 电影、电视剧和音乐收藏的插件。基于 faush01 的 EmbyCon 的法语增强分支。</description>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
 </addons>
