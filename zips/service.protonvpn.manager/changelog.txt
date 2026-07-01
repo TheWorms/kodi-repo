@@ -1,3 +1,12 @@
+v0.5.9
+- CORRECTIF deconnexion : se deconnecter manuellement coupe reellement le VPN,
+  meme si 'Reconnexion auto en cas de coupure' est activee. Un drapeau partage
+  'desired' (on/off), pose par connect/disconnect, indique au service si la
+  coupure est volontaire -> plus de reconnexion parasite. La reco sur coupure
+  reelle reste active (y compris apres une connexion manuelle).
+- Doc : section 'Widget d'accueil (Arctic Zephyr)' + avertissement rechargement
+  de l'interface a l'installation/desinstallation du widget.
+
 v0.5.8
 - CORRECTIF trafic a zero (WireGuard) : publish_home_props ecrasait la propriete
   canonique protonvpn.backend avec la valeur d'affichage 'WireGuard', si bien que
