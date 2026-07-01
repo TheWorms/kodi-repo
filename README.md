@@ -7,25 +7,16 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 
 ## Addons disponibles
 
-| Addon | id | Description |
-|-------|----|-------------|
-| ProtonVPN Manager | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi |
-| SoundCloud | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud |
-| Radio | `plugin.audio.radio` | Flux radio |
-| Météo Concept | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) |
-
-<!-- versions:auto -->
-**Versions actuelles** *(généré)* :
-
-| id | version |
-|----|---------|
-| `plugin.audio.radio` | 1.0.7 |
-| `plugin.audio.soundcloud` | 5.9.6020 |
-| `plugin.video.embycon` | 1.13.25 |
-| `service.keyboardbattery` | 1.4.2 |
-| `service.protonvpn.manager` | 0.5.9 |
-| `weather.meteoconcept` | 1.0.5 |
-<!-- /versions:auto -->
+<!-- addons:auto -->
+| Addon | ID | Description | Version |
+|-------|----|-------------|---------|
+| ProtonVPN Manager | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.5.9 |
+| SoundCloud | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 5.9.6020 |
+| Radio | `plugin.audio.radio` | Flux radio | 1.0.7 |
+| Météo Concept | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.5 |
+| EmbyCon | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.13.25 |
+| Keyboard Battery | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.4.2 |
+<!-- /addons:auto -->
 
 ## Installation
 
