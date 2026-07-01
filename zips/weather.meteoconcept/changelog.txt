@@ -1,3 +1,16 @@
+v1.0.5
+- Le bouton « Tester le token enregistré » teste DIRECTEMENT le token
+  saisi dans le champ des réglages, sans rouvrir de clavier. Le clavier
+  n'apparaît plus qu'au tout premier paramétrage (champ encore vide).
+- Champ token redevenu éditable : la saisie se fait là, le bouton ne fait
+  que valider/afficher la formule.
+
+v1.0.4
+- Fin du doublon de saisie du token : le champ des réglages passe en
+  lecture seule (affichage) et le bouton « Saisir / modifier et tester »
+  devient l'unique point de saisie, clavier pré-rempli avec le token
+  enregistré. Plus besoin de retaper le token.
+
 v1.0.3
 - Ajout d'un fanart (1920x1080).
 - provider-name corrigé en "theworms".
