@@ -21,7 +21,7 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 |----|---------|
 | `plugin.audio.radio` | 1.0.7 |
 | `plugin.audio.soundcloud` | 5.9.6020 |
-| `plugin.video.embycon` | 1.13.24 |
+| `plugin.video.embycon` | 1.13.25 |
 | `service.keyboardbattery` | 1.4.2 |
 | `service.protonvpn.manager` | 0.5.9 |
 | `weather.meteoconcept` | 1.0.5 |
