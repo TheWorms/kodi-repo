@@ -1,0 +1,32 @@
+v1.4.2
+- Les reglages (titre, messages, seuils) sont relus sur une instance Kodi fraiche
+  a chaque fois : titre/messages/seuils s'appliquent en direct sans redemarrer le
+  service (correction du cache qui empechait le titre de s'appliquer).
+
+v1.4.1
+- CORRECTIF : le champ "Titre des notifications" avait un defaut vide sans la
+  contrainte allowempty -> Kodi echouait a charger le reglage ("Invalid setting
+  type") et le renommage de la notification etait impossible. allowempty ajoute
+  sur tous les champs texte.
+
+v1.4.0
+- Bouton "Afficher l'etat du clavier" dans l'onglet Accueil des reglages : ouvre
+  une fenetre lisant la batterie en direct, jauge a segments EN COULEUR
+  (vert/ambre/rouge, cyan + eclair en charge). Ecran Accueil (Programmes)
+  colorise aussi. (Remplace la ligne d'etat inline, non fiable dans les reglages.)
+
+v1.3.0
+- Ecran Accueil (jauge de batterie a segments + etat) + detection heuristique de
+  la charge (le pourcentage monte entre deux releves).
+
+v1.2.0
+- Notifications personnalisables : texte avec jeton {pct}, titre, duree, son,
+  et bouton de test.
+
+v1.1.0
+- Vue infos clavier + vue batterie (menu Programmes) ; notifications demarrage /
+  seuil / critique.
+
+v1.0.0
+- Version initiale : surveillance de la batterie via bluetoothctl et notification
+  sous un seuil.

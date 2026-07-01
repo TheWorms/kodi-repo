@@ -653,4 +653,26 @@ Added support for Kodi v19 (Matrix)
     </assets>
   </extension>
 </addon>
+<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.4.2" provider-name="TheWorms">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_fr">Surveille et affiche la batterie d'un clavier Bluetooth</summary>
+    <summary lang="en_gb">Monitor and display a Bluetooth keyboard battery</summary>
+    <description lang="fr_fr">Lit le niveau de batterie et les informations d'un clavier Bluetooth via BlueZ (bluetoothctl). Affiche les infos et la batterie à la demande depuis le menu Programmes, et envoie des notifications au démarrage, à un seuil configurable et juste avant l'épuisement de la batterie. N'agit pas lorsque le clavier est déconnecté (replié/en veille).</description>
+    <description lang="en_gb">Reads the battery level and information of a Bluetooth keyboard through BlueZ (bluetoothctl). Shows info and battery on demand from the Programs menu, and sends notifications at startup, at a configurable threshold, and just before the battery runs out. Does nothing while the keyboard is disconnected (folded/asleep).</description>
+    <platform>linux</platform>
+    <license>MIT</license>
+    <source>https://github.com/TheWorms/kodi-addon-keyboardbattery</source>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
+    <news>v1.4.2 - Les réglages (titre, messages, seuils) sont relus en direct par le service (fini le cache qui empêchait le titre de s'appliquer). v1.4.1 - Correction : le champ « Titre des notifications » (défaut vide) plantait le chargement des réglages (allowempty manquant) ; le renommage de la notification fonctionne enfin. v1.4.0 - Bouton « Afficher l'état du clavier » : fenêtre avec jauge de batterie EN COULEUR (vert/ambre/rouge, cyan en charge), lue en direct. Écran Accueil (Programmes) colorisé aussi. v1.3.2 - Écran Accueil dans les réglages. v1.3.1 - Libellés de réglages corrigés ; addon dans Programmes. v1.3.0 - Écran Accueil (état + jauge de batterie). v1.2.0 - Notifications personnalisables + test. v1.1.0 - Infos + batterie, notifications.</news>
+  </extension>
+</addon>
 </addons>

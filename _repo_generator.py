@@ -24,6 +24,7 @@ ADDON_SOURCES = [
     "/run/media/theworms/Data/Git/kodi-addon-radio/plugin.audio.radio",
     "/run/media/theworms/Data/Git/kodi-addon-meteo/weather.meteoconcept",
     "/run/media/theworms/Data/Git/kodi-addon-emby/plugin.video.embycon",
+    "/run/media/theworms/Data/Git/kodi-addon-keyboardbattery",
 ]
 
 OUTPUT_DIR = "zips"
