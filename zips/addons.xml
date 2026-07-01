@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6020" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6022" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,7 +75,23 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6020 (2026-06-29) - widgets now show real artwork, not generic icons
+        <news>5.9.6022 (2026-07-01) - migrate ListItem.setInfo() → InfoTagMusic
+Kodi 20 (Nexus) deprecated the old setInfo('music', ...) dict API in favour of typed setters on InfoTagMusic. Kodi 21 Omega spammed kodi.log with "Setting most music properties through ListItem.setInfo() is deprecated" on every track, playlist, artist and selection we returned. Kodi 22 may remove the old API entirely.
+
+All four models migrated: Track, Playlist, User (artist), Selection. New calls use list_item.getMusicInfoTag() plus typed setters (setTitle, setArtist, setAlbum, setDuration, setGenres, setComment, setListeners, setYear, setReleaseDate, setMediaType).
+
+Type-strictness fixes that came with the migration:
+  - setDuration wants int (in seconds). We were passing a float from the ms→s division; explicit int() cast added.
+  - setGenres wants a LIST of strings, not a single string. We wrap the API's single-string genre in a one-element list.
+  - setPlayCount used to receive SoundCloud's public playback_count. Semantically wrong: setPlayCount is "times YOU played this track" and marks it as watched in Kodi. Switched to setListeners which is the correct semantic for a public popularity counter.
+  - setReleaseDate wants "YYYY-MM-DD"; SoundCloud gives ISO datetimes like "2024-01-15T00:00:00Z". We truncate to the date part.
+
+Zero functional change on the UI side — same fields are populated, same values shown. Just no more log spam and future-proofed for Kodi 22.
+
+5.9.6021 (2026-06-29) - readme trimmed
+Removed the "What's new in v5.9" section from both readme.md and readme.fr.md — the sub-release notes were too noisy for a user-facing README. Kept two persistent features (token helper page, account tier detection) as bullets under "What's new in v5" where they fit alongside the broader v5 architecture changes. Everything else (splash timings, service internals, keyboard shortcuts, Free-tier fix) is still documented in the individual news entries below and in this addon.xml history.
+
+5.9.6020 (2026-06-29) - widgets now show real artwork, not generic icons
 Two related bugs in the artwork extraction were causing skin widgets (Likes, Playlists, Following, Trending, Discover) to fall back to Kodi's default icons for many items:
 
 BUG 1: dict.get() default ignored on explicit null. SoundCloud commonly returns "artwork_url": null when a track or playlist doesn't have a custom cover. Python's dict.get("artwork_url", fallback) returns the explicit None, NOT the fallback — so the chain to avatar_url was never reached. Switched to "or" chaining which treats nulls and missing keys the same way.
