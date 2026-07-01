@@ -14,7 +14,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 | SoundCloud | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 5.9.6020 |
 | Radio | `plugin.audio.radio` | Flux radio | 1.0.7 |
 | Météo Concept | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.5 |
-| EmbyCon | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.13.25 |
+| EmbyCon | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.13.26 |
 | Keyboard Battery | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.4.2 |
 <!-- /addons:auto -->
 
