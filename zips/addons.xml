@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6021" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6020" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,10 +75,7 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6021 (2026-06-29) - readme trimmed
-Removed the "What's new in v5.9" section from both readme.md and readme.fr.md — the sub-release notes were too noisy for a user-facing README. Kept two persistent features (token helper page, account tier detection) as bullets under "What's new in v5" where they fit alongside the broader v5 architecture changes. Everything else (splash timings, service internals, keyboard shortcuts, Free-tier fix) is still documented in the individual news entries below and in this addon.xml history.
-
-5.9.6020 (2026-06-29) - widgets now show real artwork, not generic icons
+        <news>5.9.6020 (2026-06-29) - widgets now show real artwork, not generic icons
 Two related bugs in the artwork extraction were causing skin widgets (Likes, Playlists, Following, Trending, Discover) to fall back to Kodi's default icons for many items:
 
 BUG 1: dict.get() default ignored on explicit null. SoundCloud commonly returns "artwork_url": null when a track or playlist doesn't have a custom cover. Python's dict.get("artwork_url", fallback) returns the explicit None, NOT the fallback — so the chain to avatar_url was never reached. Switched to "or" chaining which treats nulls and missing keys the same way.
