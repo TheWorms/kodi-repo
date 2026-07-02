@@ -666,7 +666,7 @@ Added support for Kodi v19 (Matrix)
     </assets>
   </extension>
 </addon>
-<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.4.2" provider-name="TheWorms">
+<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.5.0" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>
@@ -685,7 +685,7 @@ Added support for Kodi v19 (Matrix)
     <assets>
       <icon>icon.png</icon>
     </assets>
-    <news>v1.4.2 - Les réglages (titre, messages, seuils) sont relus en direct par le service (fini le cache qui empêchait le titre de s'appliquer). v1.4.1 - Correction : le champ « Titre des notifications » (défaut vide) plantait le chargement des réglages (allowempty manquant) ; le renommage de la notification fonctionne enfin. v1.4.0 - Bouton « Afficher l'état du clavier » : fenêtre avec jauge de batterie EN COULEUR (vert/ambre/rouge, cyan en charge), lue en direct. Écran Accueil (Programmes) colorisé aussi. v1.3.2 - Écran Accueil dans les réglages. v1.3.1 - Libellés de réglages corrigés ; addon dans Programmes. v1.3.0 - Écran Accueil (état + jauge de batterie). v1.2.0 - Notifications personnalisables + test. v1.1.0 - Infos + batterie, notifications.</news>
+    <news>v1.5.0 - Notification à la connexion du clavier (événementiel D-Bus, zéro polling), option et message dédiés dans les réglages. v1.4.2 - Les réglages (titre, messages, seuils) sont relus en direct par le service (fini le cache qui empêchait le titre de s'appliquer). v1.4.1 - Correction : le champ « Titre des notifications » (défaut vide) plantait le chargement des réglages (allowempty manquant) ; le renommage de la notification fonctionne enfin. v1.4.0 - Bouton « Afficher l'état du clavier » : fenêtre avec jauge de batterie EN COULEUR (vert/ambre/rouge, cyan en charge), lue en direct. Écran Accueil (Programmes) colorisé aussi. v1.3.2 - Écran Accueil dans les réglages. v1.3.1 - Libellés de réglages corrigés ; addon dans Programmes. v1.3.0 - Écran Accueil (état + jauge de batterie). v1.2.0 - Notifications personnalisables + test. v1.1.0 - Infos + batterie, notifications.</news>
   </extension>
 </addon>
 </addons>

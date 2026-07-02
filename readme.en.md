@@ -15,7 +15,7 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 | Radio | `plugin.audio.radio` | Radio streams | 1.0.7 |
 | Météo Concept | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) | 1.0.5 |
 | EmbyCon | `plugin.video.embycon` | Emby client for Kodi — French fork | 1.13.26 |
-| Keyboard Battery | `service.keyboardbattery` | Keyboard battery level monitor | 1.4.2 |
+| Keyboard Battery | `service.keyboardbattery` | Keyboard battery level monitor | 1.5.0 |
 <!-- /addons:auto -->
 
 ## Installation
