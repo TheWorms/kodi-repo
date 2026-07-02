@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6022" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6023" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,7 +75,14 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6022 (2026-07-01) - migrate ListItem.setInfo() → InfoTagMusic
+        <news>5.9.6023 (2026-07-02) - widget tracks open the full UI + overlay GUI error fixes
+WIDGET CLICK-THROUGH: clicking a track in a skin home widget (Likes / Trending / Discover) now opens the full SoundCloud interface with that track playing — home window, mini-player and now-playing overlay included — instead of handing the stream to Kodi's bare native player. Implementation: widget track items now point at the plugin root with a play_track=&lt;id&gt; parameter; the root handler launches the UI via RunScript passing the track id through to the home window, which resolves the track (api resolve_id) and starts playback right after its initial population. Playlist and artist widget items are unchanged (they navigate as folders).
+
+OVERLAY GUI FIXES (probable freeze/crash factors): all four now-playing overlays (cinema, editorial, vinyl, waveform) had two latent GUI bugs visible as repeated errors in kodi.log:
+  1. Seven "Conditional" animations were missing their condition attribute — Kodi logs "Control has invalid animation type (no condition or no type)" and DISCARDS the animation. Added condition="true" everywhere (matching the splash spinner, which was already correct). Side effect: the cinema Ken Burns zoom and vinyl rotation now actually animate on setups where they silently didn't.
+  2. defaultcontrol pointed at control 9001, which is a label — labels can't take focus, so Kodi retried forever, spamming "Control 9001 ... has been asked to focus, but it can't" every few seconds for the whole playback. Each overlay now contains an invisible 1x1 off-screen button (id 9099) as the focus sink; key presses still reach onAction as before.
+
+5.9.6022 (2026-07-01) - migrate ListItem.setInfo() → InfoTagMusic
 Kodi 20 (Nexus) deprecated the old setInfo('music', ...) dict API in favour of typed setters on InfoTagMusic. Kodi 21 Omega spammed kodi.log with "Setting most music properties through ListItem.setInfo() is deprecated" on every track, playlist, artist and selection we returned. Kodi 22 may remove the old API entirely.
 
 All four models migrated: Track, Playlist, User (artist), Selection. New calls use list_item.getMusicInfoTag() plus typed setters (setTitle, setArtist, setAlbum, setDuration, setGenres, setComment, setListeners, setYear, setReleaseDate, setMediaType).
