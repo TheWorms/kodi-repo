@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6023" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6024" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,7 +75,14 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6023 (2026-07-02) - widget tracks open the full UI + overlay GUI error fixes
+        <news>5.9.6024 (2026-07-02) - widget playback continues with the category
+When a track launched from a skin home widget ends, playback now continues with the other tracks from the same widget category (Likes / Trending / Discover) instead of stopping on a silent black screen.
+
+How it works: the widget click now carries its category (source=likes|trending|discover) through the whole chain (widget item URL → plugin root → RunScript → home window). On startup, the home window fetches the category's track list, finds the clicked track in it, and queues the WHOLE list into Kodi's music playlist with the clicked track first — same mechanism as clicking a track on the home rows, shuffle setting honoured. If the clicked track has dropped off the category's first page since the widget rendered, it is fetched individually and prepended.
+
+New setting: Playback &gt; "Continue with widget category after track ends" (default ON). Turn it off to get the previous single-track behaviour. Internal refactor: the playlist-queueing block moved from _play_with_queue into a shared _queue_and_play used by both the home-row click path and the widget startup path.
+
+5.9.6023 (2026-07-02) - widget tracks open the full UI + overlay GUI error fixes
 WIDGET CLICK-THROUGH: clicking a track in a skin home widget (Likes / Trending / Discover) now opens the full SoundCloud interface with that track playing — home window, mini-player and now-playing overlay included — instead of handing the stream to Kodi's bare native player. Implementation: widget track items now point at the plugin root with a play_track=&lt;id&gt; parameter; the root handler launches the UI via RunScript passing the track id through to the home window, which resolves the track (api resolve_id) and starts playback right after its initial population. Playlist and artist widget items are unchanged (they navigate as folders).
 
 OVERLAY GUI FIXES (probable freeze/crash factors): all four now-playing overlays (cinema, editorial, vinyl, waveform) had two latent GUI bugs visible as repeated errors in kodi.log:
