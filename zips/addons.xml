@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6024" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6025" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,7 +75,12 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6024 (2026-07-02) - widget playback continues with the category
+        <news>5.9.6025 (2026-07-02) - auto-resume interrupted streams + clean shutdown
+STREAM AUTO-RESUME: SoundCloud's progressive stream URLs are signed CloudFront links with an expiry. On very long tracks (hour-plus mixes), the signature can expire mid-play: Kodi's file cache then reads 0 bytes, retries the same dead URL for minutes ("source read returned 0! Will retry" spam), and finally gives up — ending the track prematurely (a real-world log showed a 67-minute mix dying at 71%). The player observer now detects "ended" events that occur more than 60 seconds before the track's real duration, restarts the same playlist position (which re-resolves a FRESH stream URL with a new track_authorization JWT and CloudFront signature through our /play/ handler), and seeks back to ~5 seconds before the interruption. Max 2 attempts per track to avoid loops; a "Stream interrupted — resuming…" notification is shown. The rest of the queue is preserved.
+
+CLEAN SHUTDOWN: quitting Kodi while the SoundCloud UI was open logged "script didn't stop in 5 seconds - let's kill it" followed by a Python SystemExit traceback — the modal home window kept the script alive until Kodi force-killed it. A tiny daemon thread now watches for Kodi shutdown (Monitor.waitForAbort) and closes the window, letting the script exit cleanly within the grace period.
+
+5.9.6024 (2026-07-02) - widget playback continues with the category
 When a track launched from a skin home widget ends, playback now continues with the other tracks from the same widget category (Likes / Trending / Discover) instead of stopping on a silent black screen.
 
 How it works: the widget click now carries its category (source=likes|trending|discover) through the whole chain (widget item URL → plugin root → RunScript → home window). On startup, the home window fetches the category's track list, finds the clicked track in it, and queues the WHOLE list into Kodi's music playlist with the clicked track first — same mechanism as clicking a track on the home rows, shuffle setting honoured. If the clicked track has dropped off the category's first page since the widget rendered, it is fetched individually and prepended.
