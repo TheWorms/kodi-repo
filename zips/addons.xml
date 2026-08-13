@@ -692,7 +692,7 @@ Added support for Kodi v19 (Matrix)
     </assets>
   </extension>
 </addon>
-<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.5.0" provider-name="TheWorms">
+<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.5.1" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>

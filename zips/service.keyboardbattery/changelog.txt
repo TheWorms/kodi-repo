@@ -1,3 +1,15 @@
+v1.5.1
+- VIE PRIVEE : l'adresse MAC par defaut (celle du clavier du developpeur)
+  est retiree de settings.xml -> defaut vide, a renseigner a l'installation.
+- CORRECTIF : ecriture atomique de state.json (le service et l'interface
+  peuvent ecrire en meme temps ; un fichier tronque reinitialisait
+  l'heuristique de charge).
+- CORRECTIF : l'heuristique "en charge" ignore un releve plus vieux que
+  2x l'intervalle (plancher 15 min) -> plus de faux "en charge" a la
+  reconnexion apres une recharge clavier replie.
+- PROPRETE : les retries de lecture a la connexion utilisent une attente
+  abortable -> l'extinction de Kodi n'est plus retardee (jusqu'a 10 s).
+
 v1.5.0
 - Notification a la (re)connexion du clavier : le service ecoute les evenements
   D-Bus de BlueZ (dbus-monitor bloquant) -> zero polling, zero CPU au repos,
