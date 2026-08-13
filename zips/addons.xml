@@ -631,7 +631,7 @@ Added support for Kodi v19 (Matrix)
     </assets>
   </extension>
 </addon>
-<addon id="weather.meteoconcept" name="Météo Concept" version="1.0.5" provider-name="theworms">
+<addon id="weather.meteoconcept" name="Météo Concept" version="1.0.6" provider-name="theworms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>

@@ -1,3 +1,12 @@
+v1.0.6
+- ROBUSTESSE hors ligne : si l'API est injoignable (reseau pas encore pret
+  au demarrage de la box, panne, quota depasse), l'addon ressert le cache
+  meme perime plutot que de ne rien afficher. Les erreurs de configuration
+  (token invalide 401, abonnement 403) continuent de remonter normalement.
+- CORRECTIF notifications : une panne reseau ou un token manquant
+  n'affiche plus un toast a CHAQUE rafraichissement meteo -- une seule
+  notification par erreur, rearmee au premier rafraichissement reussi.
+
 v1.0.5
 - Le bouton « Tester le token enregistré » teste DIRECTEMENT le token
   saisi dans le champ des réglages, sans rouvrir de clavier. Le clavier

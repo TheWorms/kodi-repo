@@ -13,7 +13,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 | ProtonVPN Manager | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.5.10 |
 | SoundCloud | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 5.9.6026 |
 | Radio | `plugin.audio.radio` | Flux radio | 1.0.7 |
-| Météo Concept | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.5 |
+| Météo Concept | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.6 |
 | EmbyCon | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.13.28 |
 | Keyboard Battery | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.1 |
 <!-- /addons:auto -->
