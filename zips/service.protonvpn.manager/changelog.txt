@@ -1,3 +1,14 @@
+v0.5.10
+- CORRECTIF service : la resolution de l'IP externe (2 requetes HTTPS,
+  timeout 5 s chacune) pouvait bloquer la boucle d'etat a CHAQUE tick des
+  que la resolution echouait -- precisement quand le tunnel est monte mais
+  Internet coupe (chute en cours), retardant la detection et la reconnexion.
+  Desormais : cache negatif (45 s entre deux tentatives apres echec) et
+  resolution uniquement a la cadence monitor, jamais dans les ticks a 1 Hz.
+- OPTIMISATION WireGuard : cache 5 s sur 'wg show latest-handshakes' ;
+  la boucle a 1 Hz ne lance plus 2-3 sous-processus par seconde en continu.
+  La detection de connexion (attente du 1er handshake) reste a la seconde.
+
 v0.5.9
 - CORRECTIF deconnexion : se deconnecter manuellement coupe reellement le VPN,
   meme si 'Reconnexion auto en cas de coupure' est activee. Un drapeau partage
