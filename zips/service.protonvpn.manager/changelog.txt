@@ -1,3 +1,12 @@
+v0.5.12
+- CORRECTIF v0.5.11 : le type de setting 'password' n'existe pas dans le
+  format de parametres des ADDONS Kodi (reserv aux settings internes de
+  Kodi) -- 'unknown setting type "password"' en boucle dans kodi.log et champ
+  mot de passe inutilisable, OpenVPN ne pouvait plus se connecter. Retour au
+  champ texte masque d'origine (control edit + hidden). Le mot de passe
+  stocke avant la mise a jour est conserve ; si la connexion OpenVPN echoue,
+  le re-saisir dans les parametres.
+
 v0.5.11
 - CORRECTIF securite (audit) : l'option 'Lancer avec sudo' echouait en silence
   quand sudo sans mot de passe (NOPASSWD) n'est pas configure -- les backends
@@ -5,12 +14,10 @@ v0.5.11
   passe et l'utilisateur croyait le VPN monte. Desormais 'sudo -n true' est
   verifie avant toute connexion (OpenVPN et WireGuard, resultat mis en cache
   60 s), avec un message d'erreur explicite et une entree dans les journaux.
-- SECURITE identifiants : le mot de passe ProtonVPN passe en setting Kodi de
-  type 'password' (stockage chiffre par Kodi) au lieu d'un champ texte en
-  clair dans les parametres. Le fichier runtime 'protonvpn.auth' (chmod 600,
-  impose par openvpn --auth-user-pass) reste inevitable, mais il n'est plus
-  double d'un stockage permanent en clair. /!\ Re-saisir le mot de passe une
-  fois dans les parametres apres la mise a jour.
+- SECURITE identifiants : le mot de passe ProtonVPN reste en champ masque
+  dans les parametres ; le fichier runtime 'protonvpn.auth' (chmod 600,
+  impose par openvpn --auth-user-pass) reste inevitable. (Le passage en
+  setting chiffre tente en 0.5.11 n'etait pas support par Kodi : cf. 0.5.12.)
 - SECURITE logs : la ligne de commande OpenVPN complete (qui incluait le
   chemin du fichier d'identifiants) passait au niveau INFO dans kodi.log ;
   desormais en debug, avec le chemin d'auth masque.

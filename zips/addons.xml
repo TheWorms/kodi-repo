@@ -17,7 +17,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.5.11" provider-name="TheWorms">
+<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.5.12" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>
