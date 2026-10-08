@@ -14,7 +14,7 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 | **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | SoundCloud music and podcast streaming | 5.9.6026 |
 | **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | Radio streams | 1.2.7 |
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | Weather forecasts for France (Météo Concept API) | 1.0.7 |
-| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | Emby client for Kodi — French fork | 1.13.28 |
+| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | Emby client for Kodi — French fork | 1.13.29 |
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | Keyboard battery level monitor | 1.5.2 |
 <!-- /addons:auto -->
 
