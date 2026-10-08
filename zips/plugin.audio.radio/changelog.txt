@@ -1,3 +1,168 @@
+v1.2.3
+- CORRECTIF lecture des reglages : le mode d'ecoute et la pulsation
+  etaient parfois lus a leur valeur par defaut (le plein ecran se
+  lancait en mode barre, la pulsation restait inactive). Les reglages
+  sont desormais lus en texte brut avec repli sur le defaut -- le
+  pattern deja eprouve par le menu classique.
+- Le FOND du menu classique suit l'image choisie dans Configuration
+  (remplace le fanart historique radio.de) ; nouveau fanart neutre
+  fourni pour la fiche de l'addon.
+
+v1.2.2
+- Exclusivite barre/plein ecran appliquee IMMEDIATEMENT, meme en cours de
+  lecture : passer en mode barre ferme la vue plein ecran si elle est
+  ouverte ; passer en mode logo pendant l'ecoute l'ouvre sur-le-champ.
+  (Avant, le mode n'etait relu qu'a la lecture suivante : changer le
+  reglage pendant l'ecoute semblait sans effet.)
+- Si la vue plein ecran ne peut pas s'ouvrir, l'erreur est notifiee a
+  l'ecran et journalisee au lieu d'echouer en silence.
+- Menu du haut harmonise avec les stations : libelles grises au repos,
+  vert vif a la selection, fond adouci.
+
+v1.2.1
+- Identite : plus aucune mention de radio.de dans les descriptions de
+  l'addon ("Radio" partout, trois langues). Le credit GPL v2 au module
+  original de Publish3r est conserve.
+
+v1.2.0
+- GRISAGE complet : l'element courant de chaque rangee inactive (rendu
+  avec le layout de selection meme sans focus) est desormais grise comme
+  les autres ; logo et libelle ne passent en pleine lumiere que sur la
+  rangee reellement selectionnee.
+- Menu du haut : boutons elargis (texte entier, ni tronque ni defilant),
+  libelle gras passant au vert vif au survol sur fond neutre.
+- VUE PLEIN ECRAN (screensaver) : le voile de fond et les 24 barres
+  animees dependaient d'un white.png du dossier media ; ils utilisent
+  desormais une texture generee et garantie -> les animations
+  reapparaissent et la vue est reellement opaque (on ne voit plus la
+  barre du bas de l'accueil a travers).
+- Reglage « pulsation sous le logo » : ne depend plus de la vue cinema du
+  menu classique ; il s'applique aussi au mode plein ecran de la
+  nouvelle interface.
+
+v1.1.9
+- Les reglages s'appliquent immediatement au retour de la Configuration
+  (fond, mode d'ecoute, rangee de genre) : plus besoin de ressortir de
+  l'addon pour voir le changement.
+- Menu du haut : libelle en gras, passant au vert au survol.
+- Le cadre vert n'apparait plus que sur la rangee reellement selectionnee
+  (la premiere station de chaque rangee restait encadree). Le titre de la
+  station reste blanc : seul le cadre marque la selection.
+- Reglage « Pendant l'ecoute » : au choix la barre en bas de l'ecran OU le
+  logo de la station en plein ecran, les deux modes etant exclusifs.
+- Quitter la vue plein ecran ne coupe plus la radio : retour a la liste
+  des stations, la lecture continue.
+
+v1.1.8
+- Barre de lecture toujours affichee (avec l'egaliseur) ; « Aucune station
+  en lecture » quand rien ne joue, « EN DIRECT » et Stop pendant l'ecoute.
+- Menu reduit a deux boutons alignes a droite : Rechercher et
+  Configuration (le genre de la rangee se choisit dans les reglages).
+- Accent vert : survol des boutons et cadre des stations selectionnees.
+- Reglages : le genre de la rangee d'accueil se choisit dans une LISTE
+  (plus de saisie a la main) ; le reglage « stations par rangee » est
+  supprime (16 stations chargees par rangee).
+- La vue « logo plein ecran » et la « pulsation » fonctionnent desormais
+  aussi depuis la nouvelle interface (la vue cinema a ete extraite dans un
+  module partage par les deux interfaces).
+- Une notification signale une image de fond manquante au lieu de
+  retomber silencieusement sur le fond uni.
+
+v1.1.7
+- « Mes stations » reste affichee lors d'une recherche ou du choix d'un
+  genre : les favoris ne disparaissent plus, les resultats occupent les
+  deux rangees suivantes.
+- Stations non selectionnees nettement grisees : l'assombrissement est
+  applique directement au logo (colordiffuse) et non plus par un voile
+  superpose qui dependait d'une texture.
+- Selection en ambre : cadre orange autour de la tuile, logo en pleine
+  lumiere et libelle ambre.
+- Bouton « Fermer » retire : le retour de la telecommande suffit.
+
+v1.1.6
+- A la fermeture de l'interface, retour a l'accueil Kodi au lieu de la
+  page (vide) du plugin dans la fenetre Musique d'ou l'addon a ete
+  invoque. Le changement n'est declenche que si l'on se retrouve
+  effectivement dans Musique, et la garde anti-boucle est posee avant :
+  une relance par un widget d'accueil reste sans effet.
+
+v1.1.5
+- CORRECTIF boucle ouverture/retour : le changement de fenetre declenche
+  avant l'ouverture (herite de l'ancienne version dialogue) arrivait de
+  facon asynchrone PENDANT l'affichage et refermait l'interface aussitot,
+  qui se relancait, etc. Il est supprime : la fenetre se substitue
+  elle-meme au skin et rend la main proprement a la fermeture.
+- Garde anti-boucle : toute relance de l'interface dans les 3 secondes
+  suivant une fermeture est ignoree (widget d'accueil, container).
+
+v1.1.4
+- CORRECTIF DE FOND (cause racine) : l'interface est desormais une vraie
+  FENETRE (WindowXML) et non un dialogue. Un dialogue est dessine par
+  dessus la fenetre du skin : il n'a pas de fond propre, le fanart de
+  l'addon et les widgets du skin restaient visibles derriere, et la pile
+  de fenetres empechait la fermeture. La fenetre remplace le skin, avec
+  un fond opaque natif -> plus de transparence, sortie fiable.
+- Sortie : le bouton Fermer et le retour passent par une routine unique
+  qui arrete proprement l'animation avant de fermer ; retour a l'accueil
+  Kodi apres fermeture.
+- Journal : la version de l'addon est tracee a l'ouverture de l'interface
+  (permet de verifier quelle version tourne reellement sur la box).
+
+v1.1.3
+- CORRECTIF FOND : toutes les textures d'aplat sont desormais generees par
+  l'addon dans son profil au lieu de dependre d'un fichier media embarque
+  (qui manquait) -- le fond est TOUJOURS opaque, uni ou photo, et le choix
+  du fond dans les reglages prend effet.
+- SORTIE : bouton "Fermer" visible en haut a droite (sortie garantie quelle
+  que soit la telecommande) et liste elargie de codes de retour acceptes.
+- AFFICHES plus grandes : 8 stations par rangee, 3 rangees ; chaque tuile
+  porte un voile sombre qui s'efface sur la tuile survolee.
+- Top stations n'occupe plus de rangee quand une rangee de genre est
+  configuree (l'endpoint n'existe pas sur cette API).
+
+v1.1.2
+- FOND : 4 fonds photo fournis (lettres RADIO, micro de studio, enseigne
+  ON AIR, console de mixage) au choix dans Reglages > Interface, ou fond
+  uni sombre. Le fond est desormais TOUJOURS opaque : white.png est
+  embarque dans resources/skins/Default/media/ (il manquait -> l'interface
+  etait transparente et le skin transparaissait derriere).
+- Top stations : l'endpoint varie selon l'API ; plusieurs candidats sont
+  essayes et la rangee est masquee proprement si aucun ne repond
+  (au lieu d'une rangee vide).
+- Diagnostic : journalisation DEBUG des actions recues par la fenetre
+  (investigation du bouton Retour).
+
+v1.1.1
+- CORRECTIF : fond opaque plein ecran -- la fenetre Musique du skin ne
+  transparait plus derriere l'interface (chevauchement visuel).
+- CORRECTIF : sortie de l'interface -- ReplaceWindow(home) avant
+  l'ouverture (le container Musique relancait l'addon en boucle a la
+  fermeture) + garde de reentrance sur la fenetre.
+
+v1.1.0
+- NOUVELLE INTERFACE plein ecran facon radio.fr (activee par defaut,
+  desactivable dans Reglages > Interface pour retrouver le menu classique) :
+  rangees Mes stations / Stations de votre region / Top stations / rangee de
+  genre configurable ; boutons Recherche, Genres, Reglages en haut a droite ;
+  barre de lecture avec logo, EN DIRECT et egaliseur anime (visuel, graine
+  par station -- Kodi n'expose pas l'audio aux addons).
+- Touche contextuelle (menu) sur une tuile : ajoute/retire des favoris.
+- Favoris migres automatiquement de sender.txt vers favorites.json
+  (ancien fichier conserve en .bak) ; partages entre les deux interfaces.
+- Retour depuis une vue recherche/genre -> accueil ; retour depuis
+  l'accueil -> ferme l'interface (la lecture continue, Stop pour arreter).
+
+v1.0.8
+- CORRECTIF recherche : les requetes avec accents ou caracteres speciaux
+  ("cherie fm"...) sont correctement encodees (quote_plus).
+- ROBUSTESSE : une station malformee dans la reponse API (sans flux, champ
+  absent) est ignoree au lieu de faire echouer la page entiere.
+- Les favoris sans logo utilisent l'icone locale de l'addon (plus de
+  dependance a un hebergeur d'images externe).
+- Migration setInfo(Video) -> InfoTagMusic (type correct pour la radio,
+  API Kodi 20+, plus de warnings de depreciation).
+- print() remplaces par xbmc.log ; genres joints proprement.
+
 1.0.7
 - Identite du module : « Radio ». Nettoyage et installation propre.
 
