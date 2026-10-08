@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6026" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6027" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,7 +75,16 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6026 (2026-08-13) - network timeouts + cache housekeeping
+        <news>5.9.6027 (2026-10-08) - robustness fixes (audit)
+CHARTS: /charts returns an empty listing on an unexpected API response (error page, rate limit) instead of crashing with KeyError.
+
+API PUBLIC: ApiPublic requests are wrapped in try/except (network error, non-JSON response) - no more crashes on transport failures, consistent with ApiV2.
+
+SEARCH HISTORY: a corrupted search_history.json (interrupted write) no longer crashes the plugin at startup; the default value is used instead.
+
+LOGS: timing lines (T+Xms) and HTTP body previews move from LOGINFO to LOGDEBUG to keep kodi.log clean for users.
+
+5.9.6026 (2026-08-13) - network timeouts + cache housekeeping
 NETWORK TIMEOUTS: every API request now has a bounded timeout (5s connect, 15s response). Previously a silent/unreachable SoundCloud endpoint could freeze the full-screen UI for minutes (OS-level TCP timeout) with no visual feedback, since API calls run on the GUI thread. On timeout or network error the addon now logs a warning and returns an empty collection instead of hanging.
 
 SERVICE PRELOAD FIX: the background service warmed a stale file list referencing modules that no longer exist (listItems.py, objects.py) — silently skipped, so two of the heaviest modules were never pre-cached. The list now matches the real tree (kodi/items.py, plugin.py included).
