@@ -1,3 +1,13 @@
+v1.2.6
+- Après validation d'un réglage dans la configuration, l'interface rouvrait
+  de force la vue plein écran dès qu'une lecture était en cours ; avec un
+  logo vide, elle affichait l'image « no image » en plein écran, qu'on ne
+  pouvait faire disparaître qu'en revenant en arrière. La vue ne s'ouvre
+  désormais qu'au vrai basculement barre → logo plein écran pendant
+  l'écoute, et seulement si c'est l'addon qui joue sa station.
+- Menu haut : le vert est remplacé par du noir (boutons Recherche et
+  Réglages au focus, point du logo « RADIO. »).
+
 v1.2.5
 - Correctifs de l'audit v1.2.4 :
 - Quitter l'interface ne dépend plus du focus : getFocusId() était appelé
