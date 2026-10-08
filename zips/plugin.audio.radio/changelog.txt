@@ -1,3 +1,8 @@
+v1.2.7
+- Menu haut : les boutons Recherche et Réglages adoptent les couleurs des
+  tuiles de stations de l'accueil — gris en non sélectionné, blanc au
+  survol (focus).
+
 v1.2.6
 - Après validation d'un réglage dans la configuration, l'interface rouvrait
   de force la vue plein écran dès qu'une lecture était en cours ; avec un
