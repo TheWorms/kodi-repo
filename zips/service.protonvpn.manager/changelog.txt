@@ -1,3 +1,27 @@
+v0.5.11
+- CORRECTIF securite (audit) : l'option 'Lancer avec sudo' echouait en silence
+  quand sudo sans mot de passe (NOPASSWD) n'est pas configure -- les backends
+  tournent sans TTY, donc le sudo mourait sans jamais demander le mot de
+  passe et l'utilisateur croyait le VPN monte. Desormais 'sudo -n true' est
+  verifie avant toute connexion (OpenVPN et WireGuard, resultat mis en cache
+  60 s), avec un message d'erreur explicite et une entree dans les journaux.
+- SECURITE identifiants : le mot de passe ProtonVPN passe en setting Kodi de
+  type 'password' (stockage chiffre par Kodi) au lieu d'un champ texte en
+  clair dans les parametres. Le fichier runtime 'protonvpn.auth' (chmod 600,
+  impose par openvpn --auth-user-pass) reste inevitable, mais il n'est plus
+  double d'un stockage permanent en clair. /!\ Re-saisir le mot de passe une
+  fois dans les parametres apres la mise a jour.
+- SECURITE logs : la ligne de commande OpenVPN complete (qui incluait le
+  chemin du fichier d'identifiants) passait au niveau INFO dans kodi.log ;
+  desormais en debug, avec le chemin d'auth masque.
+- WireGuard : quand l'adaptation de la config retire IPv6 (kernel embarque
+  sans ip6tables) ou la ligne DNS (pas de resolvconf), une entree explicite
+  est ajoutee au journal d'evenements (vue Journaux) au lieu d'une
+  suppression silencieuse.
+- Anti-course : un drapeau 'connexion en cours' partage via les proprietes
+  de fenetre empeche le service et le plugin de lancer deux montages
+  simultanes (wg-quick up concurrents sur la meme interface).
+
 v0.5.10
 - CORRECTIF service : la resolution de l'IP externe (2 requetes HTTPS,
   timeout 5 s chacune) pouvait bloquer la boucle d'etat a CHAQUE tick des
