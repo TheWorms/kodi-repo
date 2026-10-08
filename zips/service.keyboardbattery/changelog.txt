@@ -1,3 +1,16 @@
+v1.5.2
+- VIE PRIVEE : la MAC affichée comme exemple dans l'aide du champ adresse
+  (en_gb + fr_fr) était celle du clavier du développeur -> remplacée par
+  une MAC d'exemple neutre (00:11:22:33:44:55).
+- CORRECTIF : le tmp d'écriture de state.json est désormais unique par
+  processus (suffixe pid) -> le service et l'UI ne se marchent plus
+  dessus (course possible sur le tmp partagé).
+- CORRECTIF : dbus-monitor ne peut plus rester orphelin à l'arrêt de Kodi
+  (Popen lancé après un cleanup déjà passé, ou thread bloqué sur stdout) :
+  le thread le termine désormais lui-même en sortant, et le flag 'stopped'
+  couvre le lancement du Popen pendant les 45 premières secondes.
+- PROPRETE : entrée news v1.5.1 (manquante) ajoutée dans addon.xml.
+
 v1.5.1
 - VIE PRIVEE : l'adresse MAC par defaut (celle du clavier du developpeur)
   est retiree de settings.xml -> defaut vide, a renseigner a l'installation.

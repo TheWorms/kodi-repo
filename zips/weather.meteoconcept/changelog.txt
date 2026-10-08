@@ -1,3 +1,11 @@
+v1.0.7
+- CORRECTIF detection d'abonnement : le parsing des en-tetes de quota ne
+  concatene plus tous les chiffres (ex. "500;window=86400" etait lu
+  "50086400") ; seul le premier nombre est desormais retenu.
+- CORRECTIF metadonnees : <source> pointe vers le depot GitHub de
+  l'addon au lieu de l'URL de l'API.
+- Documentation : procedure de release ajoutee au README.
+
 v1.0.6
 - ROBUSTESSE hors ligne : si l'API est injoignable (reseau pas encore pret
   au demarrage de la box, panne, quota depasse), l'addon ressert le cache
