@@ -1,3 +1,19 @@
+v1.2.4
+- Check-up du code (solde de l'audit v1.0.7 sur le menu classique) :
+- Pagination de la recherche : l'offset est extrait puis reconstruit via
+  urllib.parse, au lieu de la regex fragile sur l'URL de l'API.
+- LOCAL() et SEARCH() fusionnees en une seule STATIONS() (le rendu etait
+  deja partage via render_stations).
+- except: nus remplaces par des exceptions journalisees (xbmc.log) --
+  alignement sur radio_ui.py et cinema.py.
+- get_params() renvoie toujours un dictionnaire (plus jamais une liste).
+- Imports nettoyes (html, urllib.request/error, threading, time, re
+  retires), code mort supprime (setView/auto-view, no-ops, constantes
+  inutilisees).
+- Confirme par l'audit : les autres points etaient deja corriges dans
+  les versions precedentes (recherche encodee, stations sans flux
+  ignorees, favoris JSON a suppression exacte, image de repli locale).
+
 v1.2.3
 - CORRECTIF lecture des reglages : le mode d'ecoute et la pulsation
   etaient parfois lus a leur valeur par defaut (le plein ecran se
