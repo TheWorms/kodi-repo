@@ -1,3 +1,17 @@
+v1.2.5
+- Correctifs de l'audit v1.2.4 :
+- Quitter l'interface ne dépend plus du focus : getFocusId() était appelé
+  sans garde à chaque action et pouvait faire échouer la touche retour
+  quand aucun contrôle n'avait le focus.
+- Favoris corrompus (favorites.json illisible ou format inattendu) : le
+  fichier est mis de côté en .corrupt au lieu d'être silencieusement
+  écrasé au prochain ajout.
+- La barre de lecture repasse à l'état repos si le flux ne démarre jamais
+  (plus de « EN DIRECT » fantôme).
+- Micro-nettoyage : import xbmcvfs inutilisé retiré, s_str() morte
+  supprimée, fichier temporaire des favoris unique par processus, logs
+  par défaut en LOGDEBUG (kodi.log plus sobre).
+
 v1.2.4
 - Check-up du code (solde de l'audit v1.0.7 sur le menu classique) :
 - Pagination de la recherche : l'offset est extrait puis reconstruit via

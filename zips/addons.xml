@@ -607,7 +607,7 @@ Added support for Kodi v19 (Matrix)
         </assets>
     </extension>
 </addon>
-<addon id="plugin.audio.radio" name="Radio" provider-name="Publish3r" version="1.2.4">
+<addon id="plugin.audio.radio" name="Radio" provider-name="Publish3r" version="1.2.5">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" />
@@ -624,7 +624,7 @@ Added support for Kodi v19 (Matrix)
     <description lang="de_DE">Radio: Streaming-Radiosender hören, mit französischer Oberfläche. Abgeleitet vom ursprünglichen Addon von Publish3r, unter GPL v2.</description>
     <language>fr de</language>
     <platform>all</platform>
-    <news>v1.2.4 - Check-up : pagination de la recherche reconstruite via urllib.parse (fin de la regex), LOCAL/SEARCH fusionnees en STATIONS(), except journalises, get_params renvoie toujours un dict, imports et code mort nettoyes (setView, no-ops). v1.1.0 - Interface plein ecran facon radio.fr : rangees Mes stations / region / top / genre, boutons Recherche-Genres-Reglages, barre de lecture avec egaliseur anime, favoris migres en JSON. Menu classique conserve (reglage). v1.0.8 - correctifs recherche accentuee, robustesse stations, InfoTagMusic. v1.0.7 - Identite « Radio », nettoyage. v1.0.6 - Vue cinema (logo plein ecran + barre animee). v1.0.5 - Suppression des couleurs. v1.0.2 - Interface francaise (gettext .po).</news>
+    <news>v1.2.5 - Correctifs d'audit : sortie de l'interface garantie même sans focus, favoris corrompus mis de côté au lieu d'être écrasés, barre de lecture reposée si le flux ne démarre pas, nettoyage (import xbmcvfs, s_str, tmp par pid, logs en LOGDEBUG). v1.2.4 - Check-up : pagination de la recherche reconstruite via urllib.parse (fin de la regex), LOCAL/SEARCH fusionnees en STATIONS(), except journalises, get_params renvoie toujours un dict, imports et code mort nettoyes (setView, no-ops). v1.1.0 - Interface plein ecran facon radio.fr : rangees Mes stations / region / top / genre, boutons Recherche-Genres-Reglages, barre de lecture avec egaliseur anime, favoris migres en JSON. Menu classique conserve (reglage). v1.0.8 - correctifs recherche accentuee, robustesse stations, InfoTagMusic. v1.0.7 - Identite « Radio », nettoyage. v1.0.6 - Vue cinema (logo plein ecran + barre animee). v1.0.5 - Suppression des couleurs. v1.0.2 - Interface francaise (gettext .po).</news>
     <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
