@@ -1,3 +1,19 @@
+v1.2.14
+- Check-up de sécurité et de stabilité : le bouton « Retour au menu » du
+  menu classique ne plante plus (il pointe sur le menu classique réel) ;
+  les requêtes n'acceptent plus que l'API officielle (prod.radio-api.net,
+  https) et la lecture ne prend plus que des flux http/https (fini
+  file://) ; les notifications passent par l'API Kodi (plus de builtin
+  cassé par un nom de station avec virgules ou parenthèses) ; deux
+  chargements simultanés ne se mélangent plus ; les threads s'arrêtent
+  à la fermeture des fenêtres ; white.png est validé aussi dans la vue
+  cinéma ; les favoris malformés sont écartés ; les erreurs HTTP sont
+  signalées ; la touche Stop coupe toujours la radio, y compris depuis
+  l'accueil plein écran.
+- Nettoyage : chaînes de traduction orphelines retirées (59 -> 49 par
+  langue), « N stations » traduit (nouvelle chaîne 30160), code mort
+  supprimé, attribution GPL mise à jour (Publish3r, TheWorms).
+
 v1.2.13
 - Écoute simplifiée : la barre de lecture (bande du bas), sa ligne de
   contour et l'égaliseur de 40 barres sont retirés de l'interface.
