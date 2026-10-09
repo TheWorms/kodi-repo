@@ -75,11 +75,13 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>7.0.0 (2026-10-09) - quick settings, endless playback, sleep timer, likes from the addon
+        <news>7.0.0 (2026-10-09) - quick settings, endless playback, sleep timer, likes from the addon, list layout
 
 SETTINGS: new Playback options - configurable seek interval (5/10/15/30 s) for the arrow keys in the fullscreen player, option to skip 30-second Go+ excerpts, endless playback, and a sleep timer (15/30/60/120 min) that counts EFFECTIVE listening time (pause suspends the countdown).
 
 DISPLAY: the Trending row and the trending widget now follow a configurable genre (All genres, Techno, House, Deep House, Electronic, Hip-hop, Ambient, Jazz).
+
+INTERFACE: new third home layout option "List" (sidebar + a vertical list of trending tracks, one track per line with cover, artist and duration), and the "Rows only" layout now actually spans the full width - the skin's inline conditional include was silently ignored by Kodi, leaving an empty gap where the sidebar used to be. Layout and mini-player changes now apply immediately when leaving the addon settings, without closing and reopening the interface.
 
 EXPERT: cache duration (7/30/90 days, old entries purged once per session) and network timeout (5/10/15/30 s) are now settings instead of hardcoded values.
 
@@ -628,7 +630,7 @@ Added support for Kodi v19 (Matrix)
         </assets>
     </extension>
 </addon>
-<addon id="plugin.audio.radio" name="Radio" provider-name="Publish3r" version="1.2.7">
+<addon id="plugin.audio.radio" name="Radio" provider-name="Publish3r" version="1.2.13">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" />
@@ -636,6 +638,7 @@ Added support for Kodi v19 (Matrix)
   <extension point="xbmc.python.pluginsource" library="addon.py">
     <provides>audio</provides>
   </extension>
+  <extension point="xbmc.python.script" library="script.py" />
   <extension point="xbmc.addon.metadata">
     <summary lang="fr_FR">Radio – écoute de flux radio en français</summary>
     <summary lang="en_GB">Radio – listen to radio streams</summary>
@@ -645,7 +648,7 @@ Added support for Kodi v19 (Matrix)
     <description lang="de_DE">Radio: Streaming-Radiosender hören, mit französischer Oberfläche. Abgeleitet vom ursprünglichen Addon von Publish3r, unter GPL v2.</description>
     <language>fr de</language>
     <platform>all</platform>
-    <news>v1.2.7 - Menu haut : gris non selectionne, blanc au survol, comme les tuiles de l'accueil. v1.2.6 - Reglages : enregistrer une option ne rouvre plus la vue plein ecran (placeholder no image) ; la vue ne s'ouvre qu'au vrai basclement barre -&gt; logo pendant l'ecoute de l'addon. Menu haut : vert remplace par noir (boutons Recherche/Reglages, point du logo). v1.2.5 - Correctifs d'audit : sortie de l'interface garantie même sans focus, favoris corrompus mis de côté au lieu d'être écrasés, barre de lecture reposée si le flux ne démarre pas, nettoyage (import xbmcvfs, s_str, tmp par pid, logs en LOGDEBUG). v1.2.4 - Check-up : pagination de la recherche reconstruite via urllib.parse (fin de la regex), LOCAL/SEARCH fusionnees en STATIONS(), except journalises, get_params renvoie toujours un dict, imports et code mort nettoyes (setView, no-ops). v1.1.0 - Interface plein ecran facon radio.fr : rangees Mes stations / region / top / genre, boutons Recherche-Genres-Reglages, barre de lecture avec egaliseur anime, favoris migres en JSON. Menu classique conserve (reglage). v1.0.8 - correctifs recherche accentuee, robustesse stations, InfoTagMusic. v1.0.7 - Identite « Radio », nettoyage. v1.0.6 - Vue cinema (logo plein ecran + barre animee). v1.0.5 - Suppression des couleurs. v1.0.2 - Interface francaise (gettext .po).</news>
+    <news>v1.2.13 - Écoute simplifiée : la barre de lecture, la ligne et l'égaliseur sont retirés ; pendant l'écoute, le logo de la station s'affiche en plein écran par défaut, la lecture s'arrête avec la touche Stop de Kodi (les options « mode d'écoute » et « égaliseur » disparaissent des réglages). v1.2.12 - Égaliseur réparé : les barres ne s'affichaient jamais (Kodi 21 n'affiche pas les images posées dynamiquement par l'addon) ; elles sont désormais déclarées dans l'interface et visibles pendant la lecture. v1.2.11 - Lecteur bas répare : white.png corrompu (coupure de courant) était régénéré jamais — tous les aplats, dont la barre de lecture, ne rendaient rien ; le fichier est désormais validé et réécrit atomiquement. La lecture ne bascule plus Kodi en visualisation plein écran (« screensaver ») au démarrage du son. Le menu classique respecte le mode d'écoute. Interface débloquée automatiquement si la garde de lancement reste pendante après un crash. La barre reflète la lecture en cours à la réouverture de l'addon. v1.2.10 - Lancement direct : nouvelle entree Programme ; via RunScript (favori ou menu du skin) ou depuis Programmes, l'accueil s'ouvre directement, sans le passage par l'explorateur de fichiers qu'impose l'entree plugin. v1.2.9 - Egaliseur : les barres ne restent plus figees ni ne plantent l'egaliseur apres un arret/reactivation (mode d'ecoute ou reglage egaliseur) ; reconstruction systematique a partir de zero. v1.2.8 - Barre de lecture : la barre est le mode par defaut, l'ecran plein ne s'ouvre que si le mode logo est choisi explicitement ; le mode actif s'affiche quand on le change dans les reglages. v1.2.7 - Menu haut : gris non selectionne, blanc au survol, comme les tuiles de l'accueil. v1.2.6 - Reglages : enregistrer une option ne rouvre plus la vue plein ecran (placeholder no image) ; la vue ne s'ouvre qu'au vrai basclement barre -&gt; logo pendant l'ecoute de l'addon. Menu haut : vert remplace par noir (boutons Recherche/Reglages, point du logo). v1.2.5 - Correctifs d'audit : sortie de l'interface garantie même sans focus, favoris corrompus mis de côté au lieu d'être écrasés, barre de lecture reposée si le flux ne démarre pas, nettoyage (import xbmcvfs, s_str, tmp par pid, logs en LOGDEBUG). v1.2.4 - Check-up : pagination de la recherche reconstruite via urllib.parse (fin de la regex), LOCAL/SEARCH fusionnees en STATIONS(), except journalises, get_params renvoie toujours un dict, imports et code mort nettoyes (setView, no-ops). v1.1.0 - Interface plein ecran facon radio.fr : rangees Mes stations / region / top / genre, boutons Recherche-Genres-Reglages, barre de lecture avec egaliseur anime, favoris migres en JSON. Menu classique conserve (reglage). v1.0.8 - correctifs recherche accentuee, robustesse stations, InfoTagMusic. v1.0.7 - Identite « Radio », nettoyage. v1.0.6 - Vue cinema (logo plein ecran + barre animee). v1.0.5 - Suppression des couleurs. v1.0.2 - Interface francaise (gettext .po).</news>
     <assets>
         <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>

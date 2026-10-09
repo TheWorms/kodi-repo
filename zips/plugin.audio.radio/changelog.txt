@@ -1,3 +1,71 @@
+v1.2.13
+- Écoute simplifiée : la barre de lecture (bande du bas), sa ligne de
+  contour et l'égaliseur de 40 barres sont retirés de l'interface.
+  Pendant l'écoute, la vue logo plein écran de la station devient
+  l'affichage par défaut ; quitter la vue ramène à l'accueil sans
+  couper la radio, et la lecture s'arrête avec la touche Stop de Kodi.
+- Réglages allégés : les options « mode d'écoute » (barre / logo) et
+  « égaliseur » disparaissent de la configuration, ainsi que le bouton
+  Stop de la barre et le code d'animation associé.
+- Contexte : sur Kodi 21 (CoreELEC), les textures d'aplat posées
+  dynamiquement (addControls) ne s'affichaient pas ; la v1.2.12 les
+  avait déclarées dans le XML du skin, mais la bande témoin diagnostique
+  a montré que même ces contrôles ne rendaient pas sur cette box —
+  la barre étant transparente, la suppression est le correctif retenu.
+
+v1.2.12
+- Égaliseur réparé : les barres, posées dynamiquement par l'addon via
+  addControls, ne s'affichaient jamais sur Kodi 21 (constaté sur box
+  CoreELEC : aucune barre, malgré une pose sans erreur). Elles sont
+  désormais déclarées dans le fichier d'interface du skin (même chemin
+  de rendu que la barre de lecture, qui fonctionnait) et animées par
+  l'addon : elles apparaissent pendant la lecture et s'effacent à
+  l'arrêt ou au repos.
+
+v1.2.11
+- Barre de lecture réparée : le white.png du profil pouvait être corrompu
+  (écriture interrompue par une coupure de courant) et ne se réparait
+  jamais — tous les aplats, dont la barre, ne rendaient alors rien et
+  Kodi logguait « Load ... failed » en boucle. Le fichier est désormais
+  contrôlé (signature PNG + taille) et réécrit de façon atomique.
+- Fini l'écran de visualisation plein écran au démarrage du son
+  (réglage Kodi « musicfiles.selectaction ») : la lecture est lancée en
+  mode fenêtré, l'interface et sa barre restent au premier plan.
+- Le menu classique respecte le mode d'écoute : la vue logo plein écran
+  ne s'ouvre plus depuis l'explorateur quand la barre est choisie.
+- Lancement débloqué automatiquement : si l'interface meurt sans nettoyer
+  sa garde (crash de Kodi), la garde périmée est détectée et retirée,
+  alors qu'auparavant l'addon restait impossible à lancer jusqu'au
+  redémarrage de Kodi.
+- La barre affiche l'état réel de lecture quand on rouvre l'addon pendant
+  une écoute (nom, logo, « EN DIRECT », égaliseur), au lieu de l'état
+  repos alors que le son tournait.
+
+v1.2.10
+- Lancement direct de l'interface : l'addon expose désormais une entrée
+  « Programme » (script.py), en plus de son entrée plugin. Lancé via
+  RunScript(plugin.audio.radio) — favori ou élément de menu du skin — ou
+  depuis la section Programmes, l'accueil s'ouvre directement, sans le
+  passage par l'explorateur de fichiers que Kodi active systématiquement
+  pour un plugin (clic dans Extensions ou RunAddon).
+
+v1.2.9
+- Égaliseur réparé : arrêter l'égaliseur (passage en mode logo, ou
+  désactivation dans les réglages) laissait les barres figées à l'écran
+  et, à la réactivation, le code ré-ajoutait des barres déjà ajoutées —
+  Kodi refuse, et l'égaliseur restait mort jusqu'au redémarrage de
+  l'interface. La reconstruction se fait désormais toujours à partir de
+  zéro : arrêt propre, retrait des barres, puis reconstruction fraîche.
+
+v1.2.8
+- Barre de lecture : la « Barre en bas » est désormais le mode par défaut.
+  Toute lecture inattendue du réglage « Pendant l'écoute » (jamais écrit,
+  mal relayé par Kodi) retombe sur la barre — l'écran plein ne peut plus se
+  lancer à la place de la barre par accident.
+- Quand on change le mode d'écoute dans les réglages, le libellé du mode
+  actif s'affiche (« Barre en bas de l'écran » / « Logo de la station en
+  plein écran ») : plus de doute sur le mode en cours.
+
 v1.2.7
 - Menu haut : les boutons Recherche et Réglages adoptent les couleurs des
   tuiles de stations de l'accueil — gris en non sélectionné, blanc au
