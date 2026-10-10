@@ -40,7 +40,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="5.9.6027" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="6.0.2" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -75,7 +75,98 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/jaylinski/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>5.9.6027 (2026-10-08) - robustness fixes (audit)
+        <news>6.0.2 (2026-10-10) - tiles layout: "See more" at the end of the rows, full-height playing wave, rows follow the queue, playing wave no longer shown on a whole row while the settings are open
+
+TILES LAYOUT: the home rows now end with a "See more" card (orange arrow) when they are full or SoundCloud has more, like the sections of the list layout; it opens the row's own page (grid with Next page), and Back returns to the row. The playing wave on the tiles now dims the cover and bounces five orange bars over almost its whole height instead of a small chip at the bottom. The rows (and the page grid) follow the queue: when the next track starts, its tile is brought into view and marked. The old follow logic compared the plugin URL with the resolved stream URL Kodi reports, so it never matched; tracks are now matched by their SoundCloud id in every list, and a list you are browsing is not yanked back to the playing track.
+
+SETTINGS OPEN: with the settings (or any dialog) open over the interface, a whole row - typically Playlists or Following - showed the playing wave. Kodi reads a plain Window.Property inside a list from the topmost dialog, where the playing marker is empty, which matched every item that has no marker. The marker now lives on the Home window and the skin reads it from there, so the right tile keeps its wave whatever dialog is open.
+
+6.0.1 (2026-10-10) - "OAuth token" window with Save and instant check, token entry moved from the side menu to Settings, browser extension 1.2.0, "Mixed for you" fixed (play history endpoint), playing marker reset after a single play
+
+OAUTH TOKEN WINDOW: Settings &gt; Account &gt; "Manage the OAuth token..." opens a dedicated window showing the saved token (masked) and whether SoundCloud accepts it, with your username and plan. "Enter token" opens the keyboard: type or paste the token by hand, or let the "SoundCloud token for Kodi" browser extension type it for you. "Save" checks the token against SoundCloud first and keeps it only when it is valid - the result (valid / refused / check impossible) shows at once. When SoundCloud cannot be reached you choose whether to save it unchecked. "Delete" forgets the saved token. The raw token field is no longer shown in the settings; a read-only "Token status" line sums up the last check. Pasted tokens are cleaned (quotes, "OAuth " prefix, spaces). The full-screen interface reloads its home rows by itself when the token changes, and forgets that the previous token had expired - no restart needed. A single 401 is retried once before the token is called refused; a 403 (SoundCloud anti-bot or region filter) counts as "could not check", so you can still save the token. Opened from Add-ons &gt; SoundCloud &gt; Configure, the window closes the add-on information screen so it cannot write the old token back. The "OAuth token" button of the side menu is gone - the token is managed from Settings only.
+
+BROWSER EXTENSION 1.2.0 (Firefox 128+, Chrome 121+): picks up the token while you use soundcloud.com, checks it, and sends it to Kodi over JSON-RPC - it presses "Enter token" in the open window and types into the keyboard only after checking its title. The help page (theworms.github.io/kodi-addon-soundcloud/get-token.html) was rewritten around the extension; the console snippet is gone, the Network tab, cookie and Python-script methods remain as fallbacks.
+
+MIXED FOR YOU: the play history was read from /me/play-history, an endpoint that only records and clears plays, so it came back empty: "Recently played" and "Mixed for you" both fell back to the same trending list. It is now read from /me/play-history/tracks; "Mixed for you" is built from it (related tracks of your recent plays), then from SoundCloud's personalized shelf, and falls back to trending only when you are signed out or have no history yet. Unexpected answers are logged at WARNING level. Cached personalized answers are now tied to the token, so another account never gets the previous one's shelves.
+
+PLAYING MARKERS: the orange marker is no longer left on a track after a single play ends or fails; the marker hint is honoured only while something plays or for 15 seconds after a play starts, and the watchdog clears it when that time runs out.
+
+6.0.0 (2026-10-10) - quick settings, endless playback, sleep timer, likes from the addon, list layout, stations and personalized home rows, simplified mini-player and configurable screensaver, read-only client ID display, playback freeze fix, see more per home row, header band removed, one-press menu-to-content focus, orange playing duration and category titles, playing-cover wave, mini-player clear of the side menu, playing markers in sync, stations right under "Likes" in the side menu, mixed-for-you row rebuilt from play history, token button, reliable playing markers, stability and security fixes
+
+STABILITY AND SECURITY (audit fixes): the fullscreen "now playing" overlay is now built on Kodi's application thread and only shown by the delay timer, so its keys work again (Back closes it, arrows seek, the progress bar runs) and it can no longer open on top of the settings screen or the virtual keyboard, stay open after the queue ends, or pop up on the Kodi home screen after the interface was closed. All background threads (progress updater, sleep timer, screensaver timer, marker watchdog) now stop when the interface closes or Kodi shuts down - no more leaked threads, no more "script didn't stop in 5 seconds" kill at shutdown. API request paths are validated before the OAuth token is attached, so the token can no longer be sent to a forged host through a crafted plugin URL. API and plugin error responses (network down, expired URLs, malformed payloads, missing track) no longer crash - they return empty results or a failed resolution instead. The client ID resolution for the read-only display now runs once per interface open in the background, with a one-hour failure cache, instead of before every plugin call. The orphaned api_public test was removed and the settings mock fixed, so the test suite runs green again.
+
+INTERFACE FIX: the "Stations" entry now sits directly under "Likes" in the side menu (it was below "Following"), and the "Mixed for you" home row is rebuilt locally from your play history - each recently played track seeds a related-tracks request, deduplicated against the history itself - so it no longer shows the same content as "Recently played". Root cause: SoundCloud localizes the /mixed-selections shelf titles and names the personalized shelves with underscores, which the keyword match missed, so both rows silently fell back to the same trending list; section matching now ignores dashes and underscores, which also repairs the "Based on what you like" row.
+
+TOKEN: new "OAuth token" button in the side menu, right above Settings - guided token renewal without leaving the interface: it shows the helper-page instructions (theworms.github.io copy-paste snippet), lets you paste the fresh token with the on-screen keyboard, verifies it against SoundCloud right away and reloads the home content. A dead token makes every personal row (likes, recently played, mixed for you, based on...) silently fall back to trending, which looks like duplicated rows - renew the token and they come apart. The invalid-token latch and the cached profile are cleared automatically, no Kodi restart needed.
+
+PLAYING MARKERS: the in-progress indicators (orange title/duration, cover wave) no longer rely on ListItem.IsPlaying, which never fires for plugin-resolved playback - the skin now matches a per-item playing_marker property against the window's playing-marker id, synced from the Kodi music playlist (the source of truth for queue, autoplay and remote Next/Previous changes), with a watchdog thread as backstop when the Player callbacks are lost. Marker refresh failures now log at WARNING level.
+
+STATIONS: new "Stations" entry in the side menu, under "Following" - lists the genre stations served by SoundCloud's discover feed (All genres, Techno, House, Hip-hop, Pop, Electronic, R&amp;B, Ambient, ...) and, with an OAuth token, the stations you liked. Selecting a station opens its track list.
+
+HOME ROWS: five new configurable home rows - "Recently played" (your SoundCloud play history, OAuth), "Mixed for you", "Based on what you like", "Created by SoundCloud" (curated selections) and "Buzzing artists" (playlists from the artists-to-watch selection). The personal selections are looked up at runtime in the discover feed and gracefully fall back to trending when SoundCloud does not serve them (e.g. anonymous use).
+
+INTERFACE: activating a selection or station card/row now opens it - stations resolve through /system-playlists/&lt;urn&gt; and other selections through the discover endpoint; selection items previously did nothing when clicked.
+
+INTERFACE: the playing-track equalizer is wider - eleven accent-orange bars spanning the row up to the duration column, bouncing in sequence.
+
+MINI-PLAYER: the setting now offers only two choices - "Hidden" (the content lists stretch to the full screen height, no black strip at the bottom) or "Compact bar" (cover + title + progress bar). The old "Display + controls" mode was removed; a stored value falls back to the compact bar. The home rows scroll under the bar when it is shown.
+
+SCREENSAVER: the fullscreen "Now Playing" overlay is now a real screensaver: a new on/off toggle hides the style and delay settings when disabled, and a configurable delay (immediate, 5, 10, 30 seconds, 1 or 2 minutes) postpones the overlay after playback starts instead of taking over the screen the moment a track begins. Default: 30 seconds.
+
+INTERFACE: the interface loses its top band - the page header sits higher and the home rows and page lists start higher and reach further down (both layouts, with or without the mini-player), and the tile rows are taller with more air between the cards.
+
+INTERFACE: the genre chips were removed from the home page - they duplicated the "Trending genre" addon setting, which stays the single place to pick the genre (still applied live when leaving the settings: rows and lists refresh immediately).
+
+INTERFACE: the title and artist of the track currently playing are now accent orange in every list and card row - skins mark the playing item as "selected" and some skins (Arctic Zephyr mods in particular) paint that text pink; the addon now forces its own orange.
+
+SETTINGS: the Account section now shows the API client ID actually in use, as a read-only row placed above the OAuth token field. The value is resolved automatically at every add-on start (custom override, 24-hour cache, or live extraction from soundcloud.com) and displays whether you browse anonymously or with a token; it cannot be edited there. The editable expert-level override stays in the Advanced group.
+
+SETTINGS: the mini-player option is now simply "Show" or "Hide" - the compact bar with cover, title and progress bar, or the content using the full screen height.
+
+PLAYBACK FIX: the addon could freeze Kodi completely during playback (frozen UI, no sound, only a restart recovers) - the track-end handler (premature-stream auto-resume, endless-queue extension) ran network requests and player.play() inside Kodi's own player callback, which can deadlock the application thread. The work now runs on a background thread and the callback returns immediately; the fullscreen overlay with a zero delay also opens via the timer thread instead of the callback.
+
+INTERFACE: the page header band at the top of the content area (page title, subtitle and the orange accent line) has been removed - the content now starts near the top of the screen and gains about 140 pixels of height on every page; the side menu already shows where you are.
+
+INTERFACE: each home section (list layout) now ends with a "See more" row when the section filled its limit - it opens the row's dedicated page with the full list and the standard "Next page" pagination (Likes, Trending, Recently played, Mixed for you, Based on what you like, Curated, Buzzing, Playlists, Following).
+
+API FIX: an OAuth token pasted by mistake into the expert "Client ID" override field is now detected and ignored (client IDs are short alphanumeric keys, tokens contain dashes) - the read-only client ID row shows the real ID again and anonymous fallback requests work again in that situation.
+
+INTERFACE FIX: entering the content from the side menu now takes a single Right press in every situation - the menu buttons now target the first visible home row (tiles layout) or the page content instead of a possibly hidden row, and in list layout the home list no longer lands the focus invisibly on a section header (it skips straight to the first playable row).
+
+INTERFACE: visual polish - the tiles home row titles are now orange like the other accents; in the list layouts the title and the duration of the track currently playing are now orange in every state (not only while its row is selected), and the cover of the playing track carries a small animated wave; the Settings entry sits at the very bottom of the side menu.
+
+INTERFACE FIX: the Settings entry at the very bottom of the side menu was covered by the mini-player bar, which spanned the whole width of the screen bottom - the bar (cover, title, progress) now starts right of the side menu, so the menu column and its Settings entry stay visible and usable whenever the bar is shown.
+
+INTERFACE FIX: the playing indicators (orange title and duration, cover wave) were frozen on the previous track when playback changed via the remote, the mini-player or autoplay, and did not appear at all in a layout that was hidden while playback started - every list is now re-rendered when the playing track changes, when playback stops, and right after a tiles/list layout switch, so the indicators always match what is actually playing.
+
+SETTINGS: new Playback options - configurable seek interval (5/10/15/30 s) for the arrow keys in the fullscreen player, option to skip 30-second Go+ excerpts, endless playback, and a sleep timer (15/30/60/120 min) that counts EFFECTIVE listening time (pause suspends the countdown).
+
+DISPLAY: the Trending row and the trending widget now follow a configurable genre (All genres, Techno, House, Deep House, Electronic, Hip-hop, Ambient, Jazz).
+
+INTERFACE: new home layout option "List" (side menu + a vertical list of trending tracks, one track per line with cover, artist and duration, and clickable genre chips above the list). The old "Rows only" layout was REMOVED - it hid the side menu, which also hid the only in-addon access to the settings, trapping the user; the side menu is now always visible and a stale "rows" setting value falls back to the cards layout. Layout and mini-player changes apply immediately when leaving the addon settings, without closing and reopening the interface.
+INTERFACE FIX: the "List" home layout did not show its genre chips and trending list when the addon was OPENED directly in list mode (fresh open). The group's skin visibility condition used parentheses, which Kodi's boolean expression parser rejects (two "unmatched parentheses" errors at every window load, leaving the whole group unrendered). Rewrote the condition flat ("A + B | A + C", AND binds tighter than OR - no parentheses). Opening the addon directly in list mode now shows the chips and the list.
+INTERFACE: the vertical list mode now applies to EVERY page - likes, playlists, subscriptions, search results and playlist contents - not just the home screen. Both the card panel and the vertical list are always filled with the same content, so switching layouts from the settings refocuses the matching list live, without re-fetching or reopening.
+INTERFACE: the home list rows now follow the design demo - one compact card per track (dark #252525 background, focused row #2E2E2E) with a 56x56 cover, white title, grey artist and right-aligned grey duration; the focused track title turns accent orange.
+INTERFACE: the "List" home page now shows one section per configured home row (Likes / Trending / Playlists / Subscriptions, same row settings as the tiles layout; rows set to "off" are skipped) under orange localized headers - previously it only listed trending tracks and the row settings had no effect in list mode.
+INTERFACE: list rows on every page are taller and less compact - 110px rows with an 84x84 cover and larger fonts (title, artist, duration), same demo styling (dark card, focused row highlighted in #2E2E2E, orange focused title).
+INTERFACE: the home genre chips are now shown in BOTH layouts - the tiles home previously had no way to pick the trending genre from the home page. The chips sit above the content; the tiles rows moved down to make room.
+INTERFACE: selecting a side-menu entry no longer auto-jumps the focus into the content - it stays on the menu and you move to the content yourself (right / down). A fresh open focuses the Home button of the side menu.
+INTERFACE: the track currently playing shows a pulsing orange equalizer on its row in the list layouts.
+INTERFACE: the home genre chips bar now sits right under the page title and is only shown when a Trending row is configured (the genre only affects trending content) - no trending row, no chips bar.
+INTERFACE: changing the home row order/types in the settings now applies immediately when leaving the settings, like the layout and genre - no window reopen needed.
+INTERFACE: the playing-track equalizer is larger (six bars spanning up to the duration) and stays full-strength accent orange at all times - it now bounces instead of fading, which washed the colour out and read as pink on some displays.
+INTERFACE FIX: the mini-player is now reachable with the remote - down from the last item of any content list / the last home row reaches the play/pause button, up from the buttons returns to the content - and its play/pause button showed an empty block instead of an icon: the icon is now kept in sync by the addon (play when paused, pause bars when playing).
+SETTINGS: the layout options are renamed to "Tiles" and "List" (a stale stored value still falls back to tiles).
+
+EXPERT: cache duration (7/30/90 days, old entries purged once per session) and network timeout (5/10/15/30 s) are now settings instead of hardcoded values.
+
+LIKES: long-press (context menu) on any track now offers "Add to likes" / "Remove from likes" - no need to open soundcloud.com anymore. Requires an OAuth token.
+
+ENDLESS PLAYBACK: when the queue reaches its last track, related tracks are fetched from SoundCloud and appended automatically, so the music never stops. The extension is defensive: if the related-tracks endpoint ever changes, the option silently becomes a no-op (watch kodi.log).
+
+WIDGET MODE REMOVED: the "Home screen widget" setting has been deleted. When it was set to a category (Likes / Playlists / Following / Trending / Discover), EVERY open of the addon was hijacked into that flat widget listing instead of the interface — with no way back to it, and the stored value survives reinstalls in the addon data. The plugin root now always behaves the same: a user open launches the full interface, a skin home widget gets the widget shortcut list. Skin widgets that need a track list should point at the direct /widget/&lt;category&gt;/ paths instead of the addon root.
+
+5.9.6027 (2026-10-08) - robustness fixes (audit)
 CHARTS: /charts returns an empty listing on an unexpected API response (error page, rate limit) instead of crashing with KeyError.
 
 API PUBLIC: ApiPublic requests are wrapped in try/except (network error, non-JSON response) - no more crashes on transport failures, consistent with ApiV2.
