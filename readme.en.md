@@ -11,7 +11,7 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 | Add-on | Description | Version |
 |-------|-------------|---------|
 | **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | ProtonVPN connections (OpenVPN + WireGuard) from Kodi | 0.5.12 |
-| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | SoundCloud music and podcast streaming | 5.9.6027 |
+| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | SoundCloud music and podcast streaming | 6.0.2 |
 | **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | Radio streams | 1.2.14 |
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | Weather forecasts for France (Météo Concept API) | 1.0.7 |
 | **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | Emby client for Kodi — French fork | 1.14.1 |
