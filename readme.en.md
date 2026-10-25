@@ -8,14 +8,14 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 ## Available add-ons
 
 <!-- addons:auto -->
-| Add-on | Description | Version |
-|-------|-------------|---------|
-| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | ProtonVPN connections (OpenVPN + WireGuard) from Kodi | 0.5.12 |
-| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | SoundCloud music and podcast streaming | 6.0.2 |
-| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | Radio streams | 1.2.14 |
-| **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | Weather forecasts for France (Météo Concept API) | 1.0.7 |
-| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | Emby client for Kodi — French fork | 1.14.1 |
-| **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | Keyboard battery level monitor | 1.5.2 |
+| Add-on | ID | Description | Version |
+|-------|----|-------------|---------|
+| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | ProtonVPN connections (OpenVPN + WireGuard) from Kodi | 0.5.12 |
+| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | SoundCloud music and podcast streaming | 6.0.2 |
+| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Radio streams | 1.2.14 |
+| **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) | 1.0.7 |
+| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Emby client for Kodi — French fork | 1.20.2 |
+| **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Keyboard battery level monitor | 1.5.2 |
 <!-- /addons:auto -->
 
 ## Installation
