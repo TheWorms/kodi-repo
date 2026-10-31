@@ -815,4 +815,53 @@ Added support for Kodi v19 (Matrix)
     <news>v1.5.2 - Vie privée : MAC d'exemple neutre dans l'aide des réglages (l'originale restait visible). Correctifs concurrence : tmp de state.json unique par processus (service + UI) ; dbus-monitor jamais laissé orphelin à l'arrêt de Kodi. v1.5.1 - MAC personnelle retirée du défaut public, écriture atomique de state.json, TTL sur l'heuristique de charge, extinction non retardée. v1.5.0 - Notification à la connexion du clavier (événementiel D-Bus, zéro polling), option et message dédiés dans les réglages. v1.4.2 - Les réglages (titre, messages, seuils) sont relus en direct par le service (fini le cache qui empêchait le titre de s'appliquer). v1.4.1 - Correction : le champ « Titre des notifications » (défaut vide) plantait le chargement des réglages (allowempty manquant) ; le renommage de la notification fonctionne enfin. v1.4.0 - Bouton « Afficher l'état du clavier » : fenêtre avec jauge de batterie EN COULEUR (vert/ambre/rouge, cyan en charge), lue en direct. Écran Accueil (Programmes) colorisé aussi. v1.3.2 - Écran Accueil dans les réglages. v1.3.1 - Libellés de réglages corrigés ; addon dans Programmes. v1.3.0 - Écran Accueil (état + jauge de batterie). v1.2.0 - Notifications personnalisables + test. v1.1.0 - Infos + batterie, notifications.</news>
   </extension>
 </addon>
+<addon id="script.module.jsruntime" name="Moteur JavaScript" version="1.0.2" provider-name="Thib">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.22.0" />
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">Moteur JavaScript (Deno ou Node.js) pour les addons qui en ont besoin</summary>
+    <summary lang="en_GB">JavaScript engine (Deno or Node.js) for add-ons that need one</summary>
+    <description lang="fr_FR">Télécharge le moteur adapté à la machine : Deno sur les systèmes 64 bits, Node.js sur ARM 32 bits. Utilisé par l'addon YouTube pour résoudre les défis JavaScript de YouTube (yt-dlp). Lance l'addon pour installer ou mettre à jour le moteur.</description>
+    <description lang="en_GB">Downloads the engine suited to the device: Deno on 64-bit systems, Node.js on 32-bit ARM. Used by the YouTube add-on to solve YouTube's JavaScript challenges (yt-dlp). Run the add-on to install or update the engine.</description>
+    <platform>all</platform>
+    <license>GPL-3.0-or-later</license>
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.jpg</fanart>
+    </assets>
+    <news>1.0.2 : icône, fanart, licence, README. 1.0.1 : erreurs affichées et journalisées ; compatible toutes plateformes Kodi (détection à l'exécution). 1.0.0 : première version</news>
+  </extension>
+</addon>
+<addon id="plugin.video.wtube" name="Wtube" version="0.5.1" provider-name="Thib">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.22.0" />
+    <import addon="inputstream.adaptive" version="19.0.0" optional="true" />
+    <import addon="script.module.jsruntime" version="1.0.1" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" />
+  <extension point="xbmc.python.script" library="script.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">YouTube sans compte ni API Google (extraction locale via yt-dlp)</summary>
+    <summary lang="en_GB">YouTube without an account or Google API (local extraction via yt-dlp)</summary>
+    <description lang="fr_FR">Recherche, chaînes, playlists, abonnements locaux, flux de nouveautés (RSS), historique et SponsorBlock. Aucune clé API, aucun compte Google : tout est stocké localement, à la manière de NewPipe / PipePipe.</description>
+    <description lang="en_GB">Search, channels, playlists, local subscriptions, new-videos feed (RSS), history and SponsorBlock. No API key, no Google account: everything is stored locally, NewPipe / PipePipe style.</description>
+    <platform>all</platform>
+    <license>GPL-3.0-or-later</license>
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.jpg</fanart>
+    </assets>
+    <news>0.5.1 : identité de lecteur « mweb » par défaut (seule à passer le contrôle anti-robot avec moteur JavaScript), réglable. 0.5.0 : nouvel identifiant plugin.video.wtube (données de plugin.video.ytlocal reprises automatiquement), moteur JavaScript requis (script.module.jsruntime), icône et fanart. 0.4.0 : widgets pour l'accueil du skin (nouveautés, une vidéo par chaîne, à reprendre, récemment regardées, favoris, mes chaînes, par chaîne, par recherche), masquage des Shorts, flux rafraîchi en arrière-plan, roue de chargement rouge, moteur JavaScript via l'addon séparé script.module.jsruntime. 0.3.2 : moteur JavaScript (Deno ou Node) pour passer les blocages YouTube, menu contextuel (lire ensuite, file d'attente, favoris, marquer comme vue, lire toute la playlist), écran Favoris, plus de notification SponsorBlock. 0.3.1 : thème rouge, reprise de lecture (choix au lancement), barres de progression, relance du son au démarrage des flux HLS. 0.3.0 : interface plein écran (accueil, recherche, abonnements, historique, chaînes, playlists). 0.2.0 : SponsorBlock sans coupure (relais HLS local), repli HLS, yt-dlp embarqué</news>
+  </extension>
+</addon>
 </addons>
