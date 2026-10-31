@@ -5,13 +5,20 @@ Générateur de repository Kodi.
 
 Zippe chaque addon dans  zips/<id>/<id>-<version>.zip, copie son icône/fanart
 à côté du zip, et régénère  zips/addons.xml + zips/addons.xml.md5.
+
+Paquets Python embarqués : si un addon contient un fichier vendor.txt (une
+dépendance pip par ligne), ces paquets sont installés à neuf dans un dossier
+temporaire et ajoutés au zip sous resources/lib/vendor/ — le dossier vendor/
+local (hors git) n'est jamais repris tel quel.
 """
 
 import hashlib
 import json
 import os
 import shutil
+import subprocess
 import sys
+import tempfile
 import zipfile
 import xml.etree.ElementTree as ET
 
@@ -24,7 +31,11 @@ EXCLUDED_FILES = {
     "CLAUDE.md", "AGENTS.md", "CONTEXT.md",
     "README.md", "readme.md", "readme.en.md",
     "release.sh",
+    "vendor.txt",
 }
+
+VENDOR_FILE = "vendor.txt"
+VENDOR_DEST = os.path.join("resources", "lib", "vendor")
 
 
 def load_sources():
@@ -48,20 +59,50 @@ def addon_meta(src):
     return root.get("id"), root.get("version"), root
 
 
-def zip_addon(src, addon_id, version):
+def build_vendor(src):
+    """Installe les paquets de vendor.txt dans un dossier temporaire (ou None)."""
+    req = os.path.join(src, VENDOR_FILE)
+    if not os.path.isfile(req):
+        return None
+    work = tempfile.mkdtemp(prefix="kodi-vendor-")
+    target = os.path.join(work, "vendor")
+    # venv jetable : pip refuse d'écrire avec le Python système (PEP 668, Arch)
+    subprocess.run([sys.executable, "-m", "venv", os.path.join(work, "venv")], check=True)
+    pip = os.path.join(work, "venv", "bin", "pip")
+    subprocess.run([pip, "install", "--quiet", "--no-deps", "--target", target, "-r", req], check=True)
+    for junk in ("bin", "share"):
+        shutil.rmtree(os.path.join(target, junk), ignore_errors=True)
+    out = subprocess.run([pip, "list", "--path", target, "--format", "freeze"],
+                         capture_output=True, text=True).stdout.split()
+    print("     vendor : " + ", ".join(out))
+    return work
+
+
+def zip_addon(src, addon_id, version, vendor_dir=None):
     out_subdir = os.path.join(OUTPUT_DIR, addon_id)
     os.makedirs(out_subdir, exist_ok=True)
     zip_path = os.path.join(out_subdir, f"{addon_id}-{version}.zip")
 
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        local_vendor = os.path.join(src, VENDOR_DEST)
         for base, dirs, files in os.walk(src):
-            dirs[:] = [d for d in dirs if d not in EXCLUDED_DIRS]
+            dirs[:] = [d for d in dirs if d not in EXCLUDED_DIRS
+                       and not (vendor_dir and os.path.join(base, d) == local_vendor)]
             for f in files:
                 if f.endswith((".pyc", ".pyo")) or f in EXCLUDED_FILES:
                     continue
                 full = os.path.join(base, f)
                 rel = os.path.join(addon_id, os.path.relpath(full, src))
                 zf.write(full, rel)
+        if vendor_dir:
+            vroot = os.path.join(vendor_dir, "vendor")
+            for base, dirs, files in os.walk(vroot):
+                dirs[:] = [d for d in dirs if d not in EXCLUDED_DIRS]
+                for f in files:
+                    if f.endswith((".pyc", ".pyo")):
+                        continue
+                    full = os.path.join(base, f)
+                    zf.write(full, os.path.join(addon_id, VENDOR_DEST, os.path.relpath(full, vroot)))
 
     print(f"  -> {zip_path}")
     return zip_path
@@ -102,7 +143,12 @@ def main():
             continue
         addon_id, version, root = addon_meta(src)
         print(f"[{addon_id}] v{version}")
-        zpath = zip_addon(src, addon_id, version)
+        vendor_dir = build_vendor(src)
+        try:
+            zpath = zip_addon(src, addon_id, version, vendor_dir)
+        finally:
+            if vendor_dir:
+                shutil.rmtree(vendor_dir, ignore_errors=True)
         if addon_id == "repository.theworms":
             stable = os.path.join(OUTPUT_DIR, addon_id, addon_id + ".zip")
             shutil.copy2(zpath, stable)
