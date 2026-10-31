@@ -16,6 +16,8 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) | 1.0.7 |
 | **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Emby client for Kodi — French fork | 1.21.6 |
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Keyboard battery level monitor | 1.5.2 |
+| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube without an account: full-screen interface, SponsorBlock, widgets | 0.5.1 |
+| **[JavaScript engine](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js for add-ons that need one (required by Wtube) | 1.0.2 |
 <!-- /addons:auto -->
 
 ## Installation
@@ -46,3 +48,8 @@ git add -A && git commit -m "update" && git push
 ```
 
 Kodi only reads `zips/addons.xml`, never the sources: without regeneration, no update is propagated.
+
+**Bundled Python packages:** if an add-on contains a `vendor.txt` file (one pip dependency per
+line, e.g. Wtube: `yt-dlp`, `yt-dlp-ejs`), the generator installs those packages fresh in a
+throwaway venv and adds them to the zip under `resources/lib/vendor/`. The local `vendor/` folder
+is never copied as is.
