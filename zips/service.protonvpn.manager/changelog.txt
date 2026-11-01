@@ -1,3 +1,6 @@
+v0.5.14
+- ICONE : nouvelle icone (mascotte Ver), logo ajoute en tete des README.
+
 v0.5.13
 - NOUVEAU : option « YouTube hors du VPN (route directe) » (Accueil). Le
   trafic vers les plages d'adresses de Google / YouTube sort par la

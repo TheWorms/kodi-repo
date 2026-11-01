@@ -1,3 +1,6 @@
+v1.2.15
+- Nouvelle icône (mascotte Ver), logo ajouté en tête des README.
+
 v1.2.14
 - Check-up de sécurité et de stabilité : le bouton « Retour au menu » du
   menu classique ne plante plus (il pointe sur le menu classique réel) ;

@@ -1,3 +1,8 @@
+v1.0.8
+- TRADUCTION : ajout de la langue anglaise (resource.language.en_gb) ;
+  hors francais, les reglages n'affichaient aucun libelle.
+- ICONE : nouvelle icone (mascotte Ver), logo ajoute en tete des README.
+
 v1.0.7
 - CORRECTIF detection d'abonnement : le parsing des en-tetes de quota ne
   concatene plus tous les chiffres (ex. "500;window=86400" etait lu

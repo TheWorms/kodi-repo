@@ -1,3 +1,8 @@
+v1.5.3
+- ICONE : nouvelle icône (mascotte Ver), logo ajouté en tête des README.
+- PROPRETE : codes de langue de addon.xml normalisés (fr_fr -> fr_FR,
+  en_gb -> en_GB), comme le veut la convention Kodi.
+
 v1.5.2
 - VIE PRIVEE : la MAC affichée comme exemple dans l'aide du champ adresse
   (en_gb + fr_fr) était celle du clavier du développeur -> remplacée par
