@@ -1,3 +1,11 @@
+v0.5.15
+- CORRECTIF : option « YouTube hors du VPN » inoperante apres un redemarrage
+  de Kodi ou une reconnexion. wg-quick pose ses regles sans priorite et le
+  noyau les placait juste avant celles de l'option (1049/1048) : tout le
+  trafic YouTube repartait dans le tunnel (HTTP 429, videos coupees). Les
+  regles du tunnel sont maintenant remises a leur place habituelle
+  (32764/32765) apres chaque connexion et a chaque passage du service.
+
 v0.5.14
 - ICONE : nouvelle icone (mascotte Ver), logo ajoute en tete des README.
 
