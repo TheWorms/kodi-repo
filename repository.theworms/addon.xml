@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="repository.theworms"
        name="TheWorms Repository"
-       version="1.0.3"
+       version="1.0.4"
        provider-name="theworms">
   <extension point="xbmc.addon.repository" name="TheWorms Repo">
     <dir>
@@ -15,7 +15,7 @@
     <description lang="fr_FR">Dépôt regroupant les addons maintenus par theworms : ProtonVPN Manager, SoundCloud, Radio.</description>
     <platform>all</platform>
     <assets>
-      <icon>icon.png</icon>
+      <icon>icon-mascotte.png</icon>
     </assets>
   </extension>
 </addon>
