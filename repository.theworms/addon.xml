@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="repository.theworms"
        name="TheWorms Repository"
-       version="1.0.4"
+       version="1.0.5"
        provider-name="theworms">
   <extension point="xbmc.addon.repository" name="TheWorms Repo">
     <dir>
@@ -11,9 +11,12 @@
     </dir>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="fr_FR">Dépôt personnel d'addons Kodi</summary>
-    <description lang="fr_FR">Dépôt regroupant les addons maintenus par theworms : ProtonVPN Manager, SoundCloud, Radio.</description>
+    <summary lang="fr_FR">Dépôt des addons Kodi maintenus par theworms</summary>
+    <summary lang="en_GB">Repository of Kodi add-ons maintained by theworms</summary>
+    <description lang="fr_FR">Addons pensés en priorité pour un usage en français : VPN (ProtonVPN), musique (SoundCloud), radio, météo pour la France (Météo Concept), vidéo (client Emby, YouTube sans compte) et utilitaires. Les addons installés depuis ce dépôt sont mis à jour automatiquement.</description>
+    <description lang="en_GB">Add-ons designed primarily for French-speaking users: VPN (ProtonVPN), music (SoundCloud), radio, weather for France (Météo Concept), video (Emby client, account-free YouTube) and utilities. Add-ons installed from this repository are updated automatically.</description>
     <platform>all</platform>
+    <source>https://github.com/TheWorms/kodi-repo</source>
     <assets>
       <icon>icon-mascotte.png</icon>
     </assets>
