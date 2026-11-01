@@ -1,3 +1,12 @@
+v0.5.13
+- NOUVEAU : option « YouTube hors du VPN (route directe) » (Accueil). Le
+  trafic vers les plages d'adresses de Google / YouTube sort par la
+  connexion normale (table de routage 1050, regles ip rule de priorite
+  1050), le reste reste dans le tunnel. YouTube freinait l'adresse du VPN
+  (HTTP 429). Fonctionne avec WireGuard et OpenVPN ; Wtube ajoute lui-meme
+  les serveurs video hors de ces plages (caches du fournisseur d'acces).
+  Tout est retire quand l'option est desactivee.
+
 v0.5.12
 - CORRECTIF v0.5.11 : le type de setting 'password' n'existe pas dans le
   format de parametres des ADDONS Kodi (reserv aux settings internes de
