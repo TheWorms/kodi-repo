@@ -10,13 +10,13 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 <!-- addons:auto -->
 | Addon | ID | Description | Version |
 |-------|----|-------------|---------|
-| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.5.16 |
-| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.4 |
-| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.16 |
-| **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.9 |
-| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.21.8 |
-| **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.4 |
-| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.25 |
+| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.5.17 |
+| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.5 |
+| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.17 |
+| **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.10 |
+| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.21.9 |
+| **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.5 |
+| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.26 |
 | **[Moteur JavaScript](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js pour les addons qui en ont besoin (requis par Wtube) | 1.0.2 |
 <!-- /addons:auto -->
 
