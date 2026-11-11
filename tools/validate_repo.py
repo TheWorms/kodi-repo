@@ -14,6 +14,10 @@ DEV_FILES = {
     "release.sh", ".gitignore",
 }
 DEV_PARTS = (".claude/", "__pycache__/", ".git/", ".github/")
+# Dossiers de développement à la racine de l'addon, et fichiers de travail
+DEV_ROOT_DIRS = ("docs", "tests", "tools", "scripts")
+DEV_SUFFIXES = (".patch", ".orig", ".rej", ".bak", ".pyc", ".pyo")
+DEV_ROOT_FILES = {"Pipfile", "Pipfile.lock", "vendor.txt", "requirements.txt"}
 
 failed = False
 
@@ -69,6 +73,7 @@ for aid, ver in declared.items():
         fail(f"{aid} déclaré v{ver} mais zip absent de zips/{aid}/")
     print(f"OK: {aid} v{ver} présent")
 
+warned = set()
 for z in glob.glob(os.path.join(ZIPS_DIR, "*", "*.zip")):
     addon = os.path.basename(os.path.dirname(z))
     try:
@@ -83,6 +88,22 @@ for z in glob.glob(os.path.join(ZIPS_DIR, "*", "*.zip")):
                     fail(f"chemin suspect dans {z}: {n}")
                 if os.path.basename(n) in DEV_FILES or any(p in n for p in DEV_PARTS):
                     fail(f"fichier de dev dans {z}: {n}")
+                    continue
+                # Contrôles ajoutés en 11/2026 : bloquants pour la version
+                # publiée, simple avertissement pour les anciens zips gardés.
+                parts = n.split("/")
+                dev = (
+                    (len(parts) > 2 and parts[1] in DEV_ROOT_DIRS)
+                    or (len(parts) == 2 and parts[1] in DEV_ROOT_FILES)
+                    or n.endswith(DEV_SUFFIXES)
+                )
+                if dev:
+                    current = os.path.basename(z) == f"{addon}-{declared.get(addon)}.zip"
+                    if current:
+                        fail(f"fichier de dev dans {z}: {n}")
+                    elif z not in warned:
+                        warned.add(z)
+                        print(f"AVERTISSEMENT: fichiers de dev dans l'ancien zip {z}")
     except zipfile.BadZipFile as e:
         fail(f"zip illisible: {z}: {e}")
 

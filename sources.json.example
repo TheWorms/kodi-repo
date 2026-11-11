@@ -5,5 +5,7 @@
   "/chemin/vers/kodi-addon-radio/plugin.audio.radio",
   "/chemin/vers/kodi-addon-meteo/weather.meteoconcept",
   "/chemin/vers/kodi-addon-emby/plugin.video.embycon",
-  "/chemin/vers/kodi-addon-keyboardbattery"
+  "/chemin/vers/kodi-addon-keyboardbattery",
+  "/chemin/vers/kodi-addon-jsruntime",
+  "/chemin/vers/kodi-addon-youtube"
 ]
