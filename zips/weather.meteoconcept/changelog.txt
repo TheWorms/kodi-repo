@@ -1,3 +1,17 @@
+v1.0.11
+- CORRECTIF reseau : un delai depasse ou une connexion coupee PENDANT la
+  lecture de la reponse de l'API faisait planter le rafraichissement
+  (erreur brute dans le journal, meteo jamais marquee comme chargee). Ces
+  erreurs passent maintenant par le cache de secours, comme une panne
+  reseau ; une reponse illisible aussi.
+- Metadonnees : nom d'editeur harmonise (TheWorms).
+
+v1.0.10
+- ICONE : nouvelle icone de l'addon (icon-addon.png).
+
+v1.0.9
+- ICONE : nouvelle icone.
+
 v1.0.8
 - TRADUCTION : ajout de la langue anglaise (resource.language.en_gb) ;
   hors francais, les reglages n'affichaient aucun libelle.

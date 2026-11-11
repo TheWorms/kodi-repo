@@ -10,14 +10,14 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 <!-- addons:auto -->
 | Add-on | ID | Description | Version |
 |-------|----|-------------|---------|
-| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | ProtonVPN connections (OpenVPN + WireGuard) from Kodi | 0.6.4 |
-| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | SoundCloud music and podcast streaming | 6.0.5 |
-| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Radio streams | 1.2.17 |
-| **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) | 1.0.10 |
-| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Emby client for Kodi — French fork | 1.21.9 |
-| **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Keyboard battery level monitor | 1.5.5 |
-| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube without an account: full-screen interface, SponsorBlock, widgets | 0.6.27 |
-| **[JavaScript engine](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js for add-ons that need one (required by Wtube) | 1.0.2 |
+| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | ProtonVPN connections (OpenVPN + WireGuard) from Kodi | 0.6.5 |
+| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | SoundCloud music and podcast streaming | 6.0.6 |
+| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Radio streams | 1.2.18 |
+| **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Weather forecasts for France (Météo Concept API) | 1.0.11 |
+| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Emby client for Kodi — French fork | 1.21.10 |
+| **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Keyboard battery level monitor | 1.5.6 |
+| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube without an account: full-screen interface, SponsorBlock, widgets | 0.6.28 |
+| **[JavaScript engine](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js for add-ons that need one (required by Wtube) | 1.0.3 |
 <!-- /addons:auto -->
 
 ## Installation

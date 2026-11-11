@@ -1,3 +1,16 @@
+v0.6.5
+- OpenVPN avec « utiliser sudo » sur un Kodi non root (Linux de bureau) :
+  le processus lance par sudo appartient a root et etait pris pour mort.
+  La connexion etait annoncee en echec apres 4 s et la deconnexion ne
+  l'arretait pas. Il est maintenant reconnu et arrete par sudo.
+- WireGuard : les lignes PreUp, PostUp, PreDown, PostDown et SaveConfig
+  d'un fichier importe sont retirees avant le lancement (wg-quick les
+  executait en root). Les fichiers ProtonVPN n'en contiennent pas.
+- Fichier d'identifiants OpenVPN et configurations de lancement crees
+  directement lisibles par leur seul proprietaire.
+- Menus et notifications : nouvelle icone de l'addon (icon-addon.png) au
+  lieu de l'ancien logo.
+
 v0.6.4
 - Exceptions : seule la pause du VPN est gardee. La route directe (et
   l'apprentissage des serveurs) est retiree : elle ne fonctionnait pas de

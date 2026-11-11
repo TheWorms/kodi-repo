@@ -1,3 +1,18 @@
+v1.5.6
+- TRADUCTION : les textes de l'écran d'accueil, de la fiche du clavier et
+  des notifications fixes passent par les fichiers de langue (anglais et
+  français) au lieu d'être écrits en français dans le code.
+- ROBUSTESSE : si dbus-monitor s'arrête (redémarrage de BlueZ ou du bus
+  système), l'écoute des connexions Bluetooth est relancée après 30 s.
+  Avant, les notifications de connexion étaient perdues jusqu'au
+  redémarrage de Kodi.
+
+v1.5.5
+- ICONE : nouvelle icône de l'addon (icon-addon.png).
+
+v1.5.4
+- ICONE : nouvelle icône.
+
 v1.5.3
 - ICONE : nouvelle icône (mascotte Ver), logo ajouté en tête des README.
 - PROPRETE : codes de langue de addon.xml normalisés (fr_fr -> fr_FR,

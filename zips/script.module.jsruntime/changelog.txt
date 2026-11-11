@@ -1,0 +1,19 @@
+v1.0.3
+- Le moteur telecharge est controle par sa somme SHA-256 publiee par Deno
+  (.sha256sum) ou Node.js (SHASUMS256.txt). Une somme differente arrete
+  l'installation. Si la liste des sommes est injoignable, l'installation
+  continue et le journal le signale.
+- L'archive (40 a 100 Mo) est ecrite sur le disque au fil du
+  telechargement au lieu de passer par la memoire.
+- Archive Node.js corrompue ou disque plein : message clair au lieu d'une
+  erreur brute.
+
+v1.0.2
+- Icone, fanart, licence, README.
+
+v1.0.1
+- Erreurs affichees et journalisees ; compatible toutes plateformes Kodi
+  (detection a l'execution).
+
+v1.0.0
+- Premiere version.

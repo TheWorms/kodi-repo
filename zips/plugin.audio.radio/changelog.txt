@@ -1,3 +1,14 @@
+v1.2.18
+- Métadonnées : licence (GPL v2) et adresse du dépôt déclarées dans la
+  fiche de l'addon ; la note de version ne reprend plus tout l'historique
+  (il reste dans ce fichier).
+
+v1.2.17
+- Nouvelle icône de l'addon (icon-addon.png).
+
+v1.2.16
+- Nouvelle icône.
+
 v1.2.15
 - Nouvelle icône (mascotte Ver), logo ajouté en tête des README.
 
