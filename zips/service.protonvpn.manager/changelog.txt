@@ -1,3 +1,60 @@
+v0.6.4
+- Exceptions : seule la pause du VPN est gardee. La route directe (et
+  l'apprentissage des serveurs) est retiree : elle ne fonctionnait pas de
+  facon fiable avec les sites qui changent de serveur en cours de video.
+  Le VPN s'arrete quand tu ouvres un addon de la liste ou lis une de ses
+  videos, et revient apres le delai regle.
+- Parametres > Exceptions : « Mettre le VPN en pause pour certains
+  addons », « Ajouter ou retirer des addons… », delai avant de reconnecter.
+- Au demarrage, les regles de route directe laissees par les versions
+  0.5.13 a 0.6.3 sont effacees.
+- Mise a jour depuis 0.5.x : si « YouTube hors du VPN » etait coche, Wtube
+  est ajoute aux exceptions (il met donc le VPN en pause).
+
+v0.6.3
+- Retour aux fenetres standard de Kodi pour les exceptions (la fenetre
+  dediee de la 0.6.2 est retiree) ; ligne « Valider » en bas de la liste
+  des exceptions et du menu d'un addon.
+- Route directe : les connexions de la lecture sont relevees toutes les
+  20 s (et non plus une seule fois), pour apprendre les serveurs video qui
+  changent en cours de lecture.
+
+v0.6.2
+- Liste des exceptions dans une fenetre dediee : icone de l'addon a gauche,
+  petite icone de la methode a droite, boutons « Ajouter ou retirer des
+  addons » et « Valider ». Le menu d'un addon a aussi son bouton Valider.
+
+v0.6.1
+- CORRECTIF route directe : rien n'etait jamais appris pour les addons sans
+  profil. Kodi donne l'adresse plugin:// de l'addon et non celle du flux :
+  ProtonVPN releve maintenant les connexions ouvertes depuis le debut de la
+  lecture (/proc/net/tcp) et les passe en direct des la lecture suivante.
+  L'adresse de chaque lecture est notee dans kodi.log pour le diagnostic.
+- Liste des exceptions : icone de la methode (fleche = route directe,
+  pause = pause du VPN), ligne « Ajouter ou retirer des addons » en tete.
+- Choix de la methode : deux boutons explicites (Route directe / Pause du
+  VPN) et Annuler, avec la description de chacune et la methode actuelle.
+
+v0.6.0
+- NOUVEAU : exceptions par addon (Parametres > Exceptions). Tu choisis les
+  addons installes qui sortent par ta connexion normale, et pour chacun la
+  methode :
+  * Route directe : seuls les serveurs de l'addon sortent sans VPN, le reste
+    de Kodi reste dans le tunnel. Serveurs connus par un profil integre
+    (plages Google pour Wtube et YouTube), annonces par l'addon (Wtube),
+    appris pendant la lecture (en direct des la lecture suivante, pour ne
+    pas couper la video en cours) ou ajoutes a la main (nom, IP ou plage).
+  * Pause du VPN : le tunnel s'arrete quand tu ouvres l'addon ou lis une de
+    ses videos, et revient apres un delai reglable (5 s par defaut). Marche
+    avec n'importe quel addon ; toute la box est sans VPN pendant ce temps.
+  Le widget affiche « En pause » pendant une pause.
+- L'option « YouTube hors du VPN » de l'Accueil disparait : si elle etait
+  cochee, Wtube (ou l'addon YouTube) est ajoute tout seul aux exceptions en
+  route directe. Wtube 0.6.27 retire son propre reglage qui cochait cette
+  option a ta place.
+- Les serveurs appris ou ajoutes sont resolus de nouveau toutes les 15 min
+  (les CDN changent d'adresse).
+
 v0.5.15
 - CORRECTIF : option « YouTube hors du VPN » inoperante apres un redemarrage
   de Kodi ou une reconnexion. wg-quick pose ses regles sans priorite et le
