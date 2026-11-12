@@ -18,7 +18,7 @@ Compatible with Kodi 19+ (Matrix / Nexus / Omega), tested on CoreELEC.
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Keyboard battery level monitor | 1.5.7 |
 | **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube without an account: full-screen interface, SponsorBlock, widgets | 0.6.29 |
 | **[JavaScript engine](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js for add-ons that need one (required by Wtube) | 1.0.4 |
-| **[Disk Info](https://github.com/TheWorms/kodi-addon-diskinfo)** | `service.worms.diskinfo` | Data partition disk usage for the skin | 1.0.0 |
+| **[Disk Info](https://github.com/TheWorms/kodi-addon-diskinfo)** | `service.worms.diskinfo` | Data partition disk usage for the skin | 1.0.1 |
 | **[Arctic: Worms](https://github.com/TheWorms/skin.arctic.worms)** | `skin.arctic.worms` | Arctic: Zephyr - Reloaded skin tuned for the repository add-ons | 1.0.0 |
 <!-- /addons:auto -->
 
