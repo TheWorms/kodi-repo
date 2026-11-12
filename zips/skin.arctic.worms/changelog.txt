@@ -1,3 +1,6 @@
+1.0.3 (Arctic: Worms)
+- Actor info (Embuary Info, from the cast lists and the global search): the actor name is passed escaped, a name containing a double quote cut the call
+
 1.0.2 (Arctic: Worms)
 - New skin icon (Ver, the worm mascot), also shown at the top of the README
 

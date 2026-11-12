@@ -10,16 +10,16 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 <!-- addons:auto -->
 | Addon | ID | Description | Version |
 |-------|----|-------------|---------|
-| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.6.6 |
-| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.7 |
+| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.6.7 |
+| **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.8 |
 | **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.19 |
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.11 |
-| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.22.4 |
+| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.22.5 |
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.7 |
-| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.29 |
+| **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.30 |
 | **[Moteur JavaScript](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js pour les addons qui en ont besoin (requis par Wtube) | 1.0.4 |
 | **[Disk Info](https://github.com/TheWorms/kodi-addon-diskinfo)** | `service.worms.diskinfo` | Espace disque de la partition de données pour le skin | 1.0.2 |
-| **[Arctic: Worms](https://github.com/TheWorms/skin.arctic.worms)** | `skin.arctic.worms` | Skin Arctic: Zephyr - Reloaded adapté aux addons du dépôt | 1.0.2 |
+| **[Arctic: Worms](https://github.com/TheWorms/skin.arctic.worms)** | `skin.arctic.worms` | Skin Arctic: Zephyr - Reloaded adapté aux addons du dépôt | 1.0.3 |
 <!-- /addons:auto -->
 
 ## Installation

@@ -1,3 +1,7 @@
+6.0.8 (2026-11-12) - splash watcher stops with the script
+
+When the UI failed to open (error), the thread waiting for it to cover the splash kept waiting 60 seconds: Kodi kept the script alive meanwhile, and its late "hide" signal could close the splash of a new opening. It now stops as soon as the script closes the splash itself. Found by the audit of 12/11/2026.
+
 6.0.7 (2026-11-12) - opening and closing without the file browser
 
 Opened from Add-ons (or from a plugin:// menu shortcut), the add-on is hosted by Kodi's file browser: the UI opened on top of it, so closing the UI showed the file browser for a moment, and the home screen could flash between the splash and the UI. The file browser is now replaced by the home screen as soon as the add-on is opened, before the plugin modules load; the UI opens on top of the splash, which closes only once the UI covers the screen; closing the UI goes straight back to the home screen. To never see the file browser on opening either, the home menu shortcut should be RunScript(plugin.audio.soundcloud). The client ID shown in the settings is now refreshed by the UI itself.

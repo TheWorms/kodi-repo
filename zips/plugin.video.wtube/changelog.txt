@@ -1,3 +1,8 @@
+v0.6.30
+- Les recherches lancées depuis les fiches du skin (acteurs, films) créent
+  chacune un fichier de cache ; aucun n'était jamais effacé. Le service
+  efface au démarrage ceux de plus de 7 jours.
+
 v0.6.29
 - Écran de chargement (nom, roue rouge, « Chargement… ») affiché au
   lancement, le temps que l'interface se charge ; l'interface le remplace

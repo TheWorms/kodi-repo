@@ -20,7 +20,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.6.6" provider-name="TheWorms">
+<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.6.7" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>
@@ -43,7 +43,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="6.0.7" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="6.0.8" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -78,7 +78,7 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/TheWorms/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>6.0.7 (2026-11-12) - the full-screen UI opens on top of the splash, with nothing showing in between, and closing it goes straight back to the home screen without passing through the file browser. Full history in changelog.txt.</news>
+        <news>6.0.8 (2026-11-12) - if the UI fails to open, the splash watcher stops at once instead of keeping the script alive for 60 seconds. Full history in changelog.txt.</news>
         <assets>
             <icon>resources/icon-addon.png</icon>
             <fanart>resources/fanart.jpg</fanart>
@@ -131,7 +131,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.video.embycon" name="EmbyCon" version="1.22.4" provider-name="TheWorms">
+<addon id="plugin.video.embycon" name="EmbyCon" version="1.22.5" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.pil" version="1.1.7" />
@@ -167,7 +167,7 @@
     <description lang="en_GB">An addon to allow you to browse and playback your Emby (www.emby.media) Movie, TV Show and Music collections. French-enhanced fork of EmbyCon by faush01.</description>
     <description lang="fr_FR">Une extension permettant de parcourir et de lire vos collections de films, séries et musique Emby (www.emby.media). Fork francophone enrichi d'EmbyCon de faush01.</description>
     <description lang="zh_CN">允许您浏览和播放 Emby (www.emby.media) 电影、电视剧和音乐收藏的插件。基于 faush01 的 EmbyCon 的法语增强分支。</description>
-    <news>1.22.4 : reprise d'une lecture réduite fiabilisée (une seule demande de position au serveur au lieu de deux par seconde, attente jusqu'à 30 s du démarrage) ; le point de reprise n'est plus effacé si la lecture échoue ou n'a pas encore repris ; l'alerte « serveur trop lent » ne se déclenche plus pendant le démarrage. 1.22.3 : en revenant d'un film lancé depuis une recherche, la liste de résultats revient sans rouvrir le clavier, et Retour ne mène plus à l'explorateur. 1.22.2 : choix des pistes dans un menu au style du clic droit (choix automatique pré-sélectionné, marqué AUTO) ; plus de gel de Kodi en revenant d'une lecture lancée depuis une recherche. 1.22.1 : réglage « Masquer les collections déjà vues dans les widgets » (Listes et tri › Contenu) — une collection dont tous les films sont vus disparaît des widgets Collections de l'accueil. 1.22.0 : lecture réduite pour la connexion (transcodage) — les pistes audio et sous-titres sont choisies automatiquement d'après tes langues (réglage « Pistes d'une lecture réduite » : Automatique ou Me demander, listes lisibles avec le bon choix pré-sélectionné), plus de question pendant « Tout lire » ; le journal indique pour chaque lecture la vidéo, la limite et la décision, et une notification prévient si le serveur transcode trop lentement.</news>
+    <news>1.22.5 : la reprise d'un film démarre directement au point d'arrêt (le début du film ne s'affiche plus avant le saut) ; les bandes-annonces YouTube passent par Wtube ; le bouton « Passer » disparaît dès l'arrêt du film ; la connexion temps réel suit le réglage de vérification du certificat. 1.22.4 : reprise d'une lecture réduite fiabilisée (une seule demande de position au serveur au lieu de deux par seconde, attente jusqu'à 30 s du démarrage) ; le point de reprise n'est plus effacé si la lecture échoue ou n'a pas encore repris ; l'alerte « serveur trop lent » ne se déclenche plus pendant le démarrage. 1.22.3 : en revenant d'un film lancé depuis une recherche, la liste de résultats revient sans rouvrir le clavier, et Retour ne mène plus à l'explorateur. 1.22.2 : choix des pistes dans un menu au style du clic droit (choix automatique pré-sélectionné, marqué AUTO) ; plus de gel de Kodi en revenant d'une lecture lancée depuis une recherche. 1.22.1 : réglage « Masquer les collections déjà vues dans les widgets » (Listes et tri › Contenu) — une collection dont tous les films sont vus disparaît des widgets Collections de l'accueil. 1.22.0 : lecture réduite pour la connexion (transcodage) — les pistes audio et sous-titres sont choisies automatiquement d'après tes langues (réglage « Pistes d'une lecture réduite » : Automatique ou Me demander, listes lisibles avec le bon choix pré-sélectionné), plus de question pendant « Tout lire » ; le journal indique pour chaque lecture la vidéo, la limite et la décision, et une notification prévient si le serveur transcode trop lentement.</news>
     <assets>
         <icon>icon-addon.png</icon>
         <fanart>fanart.jpg</fanart>
@@ -220,7 +220,7 @@
     <news>1.0.4 : une mise à jour du moteur qui échoue (binaire incompatible avec la machine, disque plein, coupure) laisse le moteur précédent en place — le nouveau est essayé avant de le remplacer ; extraction sans passer par la mémoire ; fichiers temporaires d'une installation interrompue nettoyés.</news>
   </extension>
 </addon>
-<addon id="plugin.video.wtube" name="Wtube" version="0.6.29" provider-name="TheWorms">
+<addon id="plugin.video.wtube" name="Wtube" version="0.6.30" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.1" />
     <import addon="script.module.requests" version="2.22.0" />
@@ -244,7 +244,7 @@
       <icon>resources/icon-addon.png</icon>
       <fanart>resources/fanart.jpg</fanart>
     </assets>
-    <news>0.6.29 : écran de chargement rouge dès le clic, le temps que l'interface se charge ; à la fermeture, retour direct à l'accueil de Kodi sans passer par l'explorateur de fichiers. Historique complet : changelog.txt.</news>
+    <news>0.6.30 : les recherches mises en cache par les widgets du skin sont effacées après 7 jours (le dossier ne faisait que grossir). 0.6.29 : écran de chargement rouge dès le clic, le temps que l'interface se charge ; à la fermeture, retour direct à l'accueil de Kodi sans passer par l'explorateur de fichiers. Historique complet : changelog.txt.</news>
   </extension>
 </addon>
 <addon id="service.worms.diskinfo" name="Disk Info" version="1.0.2" provider-name="TheWorms">
@@ -266,7 +266,7 @@
     <news>v1.0.2 - icône de l'addon (mascotte Ver).</news>
   </extension>
 </addon>
-<addon id="skin.arctic.worms" version="1.0.2" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
+<addon id="skin.arctic.worms" version="1.0.3" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
     <requires>
         <import addon="xbmc.gui" version="5.17.0" />
         <import addon="script.skinshortcuts" version="0.4.0" />
@@ -298,7 +298,7 @@
             <screenshot>resources/screenshot-09.jpg</screenshot>
             <screenshot>resources/screenshot-10.jpg</screenshot>
         </assets>
-        <news>1.0.2[CR]- New skin icon (Ver, the worm mascot)[CR]Full history: changelog.txt</news>
+        <news>1.0.3[CR]- Actor info (Embuary Info) also opens for names containing a double quote[CR]Full history: changelog.txt</news>
         <summary lang="de">Klar, minimalistisch, elegant, einfach, leicht. Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey.</summary>
         <summary lang="en">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
         <summary lang="en_AU">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>

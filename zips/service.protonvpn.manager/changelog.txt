@@ -1,3 +1,16 @@
+v0.6.7
+- OpenVPN : un fichier .ovpn peut faire executer des commandes a OpenVPN
+  (up, down, route-up, plugin...), en root si sudo est actif. La copie
+  lancee par l'addon ne garde plus que le script DNS de ProtonVPN
+  (update-resolv-conf ou update-systemd-resolved, dans un dossier systeme)
+  et retire les autres directives, en le notant dans le journal
+  d'evenements. script-security est ramene a 2 au plus, a 1 s'il ne reste
+  aucun script. Les fichiers ProtonVPN fonctionnent comme avant. Meme
+  principe que PreUp/PostUp, deja retires des fichiers WireGuard.
+- Widget de l'accueil : Arctic: Worms (fork d'Arctic Zephyr Reloaded) est
+  reconnu. Quand le skin livre deja le widget, « Installer » et « Retirer »
+  le disent au lieu de modifier les fichiers du skin.
+
 v0.6.6
 - IPv6 : le tunnel ne transporte que l'IPv4. Sur une machine qui a aussi
   de l'IPv6 (la plupart des box operateur en fournissent), ce trafic
