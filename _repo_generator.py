@@ -48,7 +48,7 @@ OUTPUT_DIR = "zips"
 
 EXCLUDED_DIRS = (".git", ".github", ".claude", "__pycache__", ".idea", ".vscode")
 EXCLUDED_FILES = {
-    ".gitignore", ".gitmodules",
+    ".gitignore", ".gitmodules", ".gitattributes",
     "CLAUDE.md", "AGENTS.md", "CONTEXT.md",
     "README.md", "readme.md", "readme.en.md",
     "release.sh",
