@@ -19,7 +19,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 | **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.29 |
 | **[Moteur JavaScript](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js pour les addons qui en ont besoin (requis par Wtube) | 1.0.4 |
 | **[Disk Info](https://github.com/TheWorms/kodi-addon-diskinfo)** | `service.worms.diskinfo` | Espace disque de la partition de données pour le skin | 1.0.1 |
-| **[Arctic: Worms](https://github.com/TheWorms/skin.arctic.worms)** | `skin.arctic.worms` | Skin Arctic: Zephyr - Reloaded adapté aux addons du dépôt | 1.0.0 |
+| **[Arctic: Worms](https://github.com/TheWorms/skin.arctic.worms)** | `skin.arctic.worms` | Skin Arctic: Zephyr - Reloaded adapté aux addons du dépôt | 1.0.1 |
 <!-- /addons:auto -->
 
 ## Installation

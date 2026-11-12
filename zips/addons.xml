@@ -263,7 +263,7 @@
     <news>v1.0.1 - nom affiché : Disk Info.</news>
   </extension>
 </addon>
-<addon id="skin.arctic.worms" version="1.0.0" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
+<addon id="skin.arctic.worms" version="1.0.1" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
     <requires>
         <import addon="xbmc.gui" version="5.17.0" />
         <import addon="script.skinshortcuts" version="0.4.0" />
@@ -295,7 +295,7 @@
             <screenshot>resources/screenshot-09.jpg</screenshot>
             <screenshot>resources/screenshot-10.jpg</screenshot>
         </assets>
-        <news>1.0.0[CR]- Fork of Arctic: Zephyr - Reloaded 3.0.3 (beatmasterRS), renamed skin.arctic.worms[CR]- Storage info shows the data partition when service.worms.diskinfo is installed (CoreELEC/LibreELEC: /storage instead of the read-only system image)[CR]- Add-on windows: default skin font and colour names, plain colour textures[CR]- Built-in ProtonVPN home widget (service.protonvpn.manager)[CR]- Wtube (plugin.video.wtube) supported next to YouTube[CR]- Bug fixes from the 3.0.4 audit (dialogs, textures, fonts, escaping)[CR]Full history: changelog.txt</news>
+        <news>1.0.1[CR]- EmbyCon: opening a list from the home screen no longer shows the empty video browser while it loads, the skin background covers it until the list arrives[CR]Full history: changelog.txt</news>
         <summary lang="de">Klar, minimalistisch, elegant, einfach, leicht. Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey.</summary>
         <summary lang="en">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
         <summary lang="en_AU">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
