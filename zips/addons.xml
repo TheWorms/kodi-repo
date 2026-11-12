@@ -20,7 +20,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.6.5" provider-name="TheWorms">
+<addon id="service.protonvpn.manager" name="ProtonVPN" version="0.6.6" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>

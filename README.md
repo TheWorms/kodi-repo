@@ -10,7 +10,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 <!-- addons:auto -->
 | Addon | ID | Description | Version |
 |-------|----|-------------|---------|
-| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.6.5 |
+| **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.6.6 |
 | **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.6 |
 | **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.18 |
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.11 |

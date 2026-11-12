@@ -1,3 +1,19 @@
+v0.6.6
+- IPv6 : le tunnel ne transporte que l'IPv4. Sur une machine qui a aussi
+  de l'IPv6 (la plupart des box operateur en fournissent), ce trafic
+  partait en direct, hors du VPN, avec l'adresse reelle, alors que l'addon
+  affichait « connecte ». Pendant la connexion, l'IPv6 publique est
+  maintenant rendue injoignable (route « unreachable 2000::/3 ») : les
+  applications repassent en IPv4, par le tunnel. Retiree a la deconnexion
+  et pendant une pause du VPN ; reseau local non touche ; aucun effet sur
+  une machine sans IPv6. Reglage : Avance > « Bloquer l'IPv6 pendant la
+  connexion VPN » (actif par defaut).
+- Si le blocage est impossible (commande ip absente, droits), une
+  notification et le journal d'evenements le disent au lieu de laisser
+  croire que tout passe par le VPN.
+- Traductions : guillemets de la question « Supprimer la configuration »
+  echappes (le fichier etait refuse par les outils stricts).
+
 v0.6.5
 - OpenVPN avec « utiliser sudo » sur un Kodi non root (Linux de bureau) :
   le processus lance par sudo appartient a root et etait pris pour mort.
