@@ -1,3 +1,6 @@
+1.0.2 (Arctic: Worms)
+- New skin icon (Ver, the worm mascot), also shown at the top of the README
+
 1.0.1 (Arctic: Worms)
 - EmbyCon (plugin.video.embycon): opening a list from the home screen no longer shows the empty video browser for about a second while it loads; the skin background covers it until the list arrives
 

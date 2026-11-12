@@ -266,7 +266,7 @@
     <news>v1.0.2 - icône de l'addon (mascotte Ver).</news>
   </extension>
 </addon>
-<addon id="skin.arctic.worms" version="1.0.1" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
+<addon id="skin.arctic.worms" version="1.0.2" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
     <requires>
         <import addon="xbmc.gui" version="5.17.0" />
         <import addon="script.skinshortcuts" version="0.4.0" />
@@ -298,7 +298,7 @@
             <screenshot>resources/screenshot-09.jpg</screenshot>
             <screenshot>resources/screenshot-10.jpg</screenshot>
         </assets>
-        <news>1.0.1[CR]- EmbyCon: opening a list from the home screen no longer shows the empty video browser while it loads, the skin background covers it until the list arrives[CR]Full history: changelog.txt</news>
+        <news>1.0.2[CR]- New skin icon (Ver, the worm mascot)[CR]Full history: changelog.txt</news>
         <summary lang="de">Klar, minimalistisch, elegant, einfach, leicht. Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey.</summary>
         <summary lang="en">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
         <summary lang="en_AU">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
