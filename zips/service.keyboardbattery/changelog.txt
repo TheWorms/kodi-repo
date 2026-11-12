@@ -1,3 +1,11 @@
+v1.5.7
+- NOTIFICATIONS : au démarrage de Kodi, quand la batterie était sous le
+  seuil (80 % par défaut), deux notifications se suivaient avec la même
+  information (démarrage puis seuil). Il n'y en a plus qu'une : le message
+  de démarrage, ou l'alerte critique si la batterie est presque vide.
+- ROBUSTESSE : un relevé de batterie qui échoue est noté dans le journal
+  et n'arrête plus le service jusqu'au redémarrage de Kodi.
+
 v1.5.6
 - TRADUCTION : les textes de l'écran d'accueil, de la fiche du clavier et
   des notifications fixes passent par les fichiers de langue (anglais et

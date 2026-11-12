@@ -174,7 +174,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.5.6" provider-name="TheWorms">
+<addon id="service.keyboardbattery" name="Keyboard Battery Monitor" version="1.5.7" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>
@@ -193,7 +193,7 @@
     <assets>
       <icon>icon-addon.png</icon>
     </assets>
-    <news>v1.5.6 - textes de l'interface et des notifications traduits (anglais / français) ; l'écoute des connexions Bluetooth est relancée si dbus-monitor s'arrête (redémarrage de BlueZ). Historique complet : changelog.txt.</news>
+    <news>v1.5.7 - plus de notification en double au démarrage de Kodi quand la batterie est sous le seuil (une seule, l'alerte critique si elle s'applique) ; un relevé en erreur n'arrête plus le service. Historique complet : changelog.txt.</news>
   </extension>
 </addon>
 <addon id="script.module.jsruntime" name="Moteur JavaScript" version="1.0.4" provider-name="TheWorms">
