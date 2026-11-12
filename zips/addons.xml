@@ -220,7 +220,7 @@
     <news>1.0.4 : une mise à jour du moteur qui échoue (binaire incompatible avec la machine, disque plein, coupure) laisse le moteur précédent en place — le nouveau est essayé avant de le remplacer ; extraction sans passer par la mémoire ; fichiers temporaires d'une installation interrompue nettoyés.</news>
   </extension>
 </addon>
-<addon id="plugin.video.wtube" name="Wtube" version="0.6.28" provider-name="TheWorms">
+<addon id="plugin.video.wtube" name="Wtube" version="0.6.29" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.1" />
     <import addon="script.module.requests" version="2.22.0" />
@@ -244,7 +244,7 @@
       <icon>resources/icon-addon.png</icon>
       <fanart>resources/fanart.jpg</fanart>
     </assets>
-    <news>0.6.28 : sur un Kodi trop ancien (Python antérieur à 3.11, donc avant Kodi 21) l'addon l'annonce clairement au lieu de « yt-dlp introuvable » ; le code de l'ancienne route directe de ProtonVPN (retirée dans ProtonVPN 0.6.4) est supprimé ; l'historique des versions passe dans changelog.txt ; les versions de yt-dlp embarquées sont notées dans resources/lib/vendor/VERSIONS.txt. Historique complet : changelog.txt.</news>
+    <news>0.6.29 : écran de chargement rouge dès le clic, le temps que l'interface se charge ; à la fermeture, retour direct à l'accueil de Kodi sans passer par l'explorateur de fichiers. Historique complet : changelog.txt.</news>
   </extension>
 </addon>
 </addons>
