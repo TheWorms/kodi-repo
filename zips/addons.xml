@@ -43,7 +43,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="6.0.6" provider-name="TheWorms">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="6.0.7" provider-name="TheWorms">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" version="2.29.0" />
@@ -78,7 +78,7 @@
         <website>https://soundcloud.com</website>
         <source>https://github.com/TheWorms/kodi-addon-soundcloud</source>
         <credits>jaylinski (original add-on), bromix, SLiX</credits>
-        <news>6.0.6 (2026-11-11) - release note shortened (full history in changelog.txt), source link now points to this fork, favourite uses the new add-on icon, published zip no longer ships the docs/tests/tools folders.</news>
+        <news>6.0.7 (2026-11-12) - the full-screen UI opens on top of the splash, with nothing showing in between, and closing it goes straight back to the home screen without passing through the file browser. Full history in changelog.txt.</news>
         <assets>
             <icon>resources/icon-addon.png</icon>
             <fanart>resources/fanart.jpg</fanart>

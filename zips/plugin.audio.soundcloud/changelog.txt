@@ -1,3 +1,7 @@
+6.0.7 (2026-11-12) - opening and closing without the file browser
+
+Opened from Add-ons (or from a plugin:// menu shortcut), the add-on is hosted by Kodi's file browser: the UI opened on top of it, so closing the UI showed the file browser for a moment, and the home screen could flash between the splash and the UI. The file browser is now replaced by the home screen as soon as the add-on is opened, before the plugin modules load; the UI opens on top of the splash, which closes only once the UI covers the screen; closing the UI goes straight back to the home screen. To never see the file browser on opening either, the home menu shortcut should be RunScript(plugin.audio.soundcloud). The client ID shown in the settings is now refreshed by the UI itself.
+
 6.0.6 (2026-11-11) - metadata and packaging
 
 The release note shown by Kodi now only covers the latest version; the full history lives in this file (changelog.txt). The add-on source link points to this fork (TheWorms/kodi-addon-soundcloud); the original author stays credited. The favourite created from the settings uses the new add-on icon. The published zip no longer ships the docs, tests and tools folders.
