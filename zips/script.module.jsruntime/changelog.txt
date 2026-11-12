@@ -1,3 +1,12 @@
+v1.0.4
+- Mise a jour sure : le nouveau moteur est ecrit a cote de l'ancien, lance
+  une fois, et ne le remplace que s'il demarre. Avant, un moteur
+  incompatible avec la machine ecrasait celui qui marchait.
+- Le moteur (une centaine de Mo) est extrait de l'archive au fil de l'eau,
+  sans passer par la memoire.
+- Les fichiers temporaires laisses par une installation interrompue (Kodi
+  arrete en plein telechargement) sont supprimes a l'installation suivante.
+
 v1.0.3
 - Le moteur telecharge est controle par sa somme SHA-256 publiee par Deno
   (.sha256sum) ou Node.js (SHASUMS256.txt). Une somme differente arrete

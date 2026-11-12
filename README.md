@@ -17,7 +17,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 | **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.21.10 |
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.6 |
 | **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.28 |
-| **[Moteur JavaScript](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js pour les addons qui en ont besoin (requis par Wtube) | 1.0.3 |
+| **[Moteur JavaScript](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js pour les addons qui en ont besoin (requis par Wtube) | 1.0.4 |
 <!-- /addons:auto -->
 
 ## Installation
