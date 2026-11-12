@@ -131,7 +131,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.video.embycon" name="EmbyCon" version="1.22.3" provider-name="TheWorms">
+<addon id="plugin.video.embycon" name="EmbyCon" version="1.22.4" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.pil" version="1.1.7" />
@@ -167,7 +167,7 @@
     <description lang="en_GB">An addon to allow you to browse and playback your Emby (www.emby.media) Movie, TV Show and Music collections. French-enhanced fork of EmbyCon by faush01.</description>
     <description lang="fr_FR">Une extension permettant de parcourir et de lire vos collections de films, séries et musique Emby (www.emby.media). Fork francophone enrichi d'EmbyCon de faush01.</description>
     <description lang="zh_CN">允许您浏览和播放 Emby (www.emby.media) 电影、电视剧和音乐收藏的插件。基于 faush01 的 EmbyCon 的法语增强分支。</description>
-    <news>1.22.3 : en revenant d'un film lancé depuis une recherche, la liste de résultats revient sans rouvrir le clavier, et Retour ne mène plus à l'explorateur. 1.22.2 : choix des pistes dans un menu au style du clic droit (choix automatique pré-sélectionné, marqué AUTO) ; plus de gel de Kodi en revenant d'une lecture lancée depuis une recherche. 1.22.1 : réglage « Masquer les collections déjà vues dans les widgets » (Listes et tri › Contenu) — une collection dont tous les films sont vus disparaît des widgets Collections de l'accueil. 1.22.0 : lecture réduite pour la connexion (transcodage) — les pistes audio et sous-titres sont choisies automatiquement d'après tes langues (réglage « Pistes d'une lecture réduite » : Automatique ou Me demander, listes lisibles avec le bon choix pré-sélectionné), plus de question pendant « Tout lire » ; le journal indique pour chaque lecture la vidéo, la limite et la décision, et une notification prévient si le serveur transcode trop lentement.</news>
+    <news>1.22.4 : reprise d'une lecture réduite fiabilisée (une seule demande de position au serveur au lieu de deux par seconde, attente jusqu'à 30 s du démarrage) ; le point de reprise n'est plus effacé si la lecture échoue ou n'a pas encore repris ; l'alerte « serveur trop lent » ne se déclenche plus pendant le démarrage. 1.22.3 : en revenant d'un film lancé depuis une recherche, la liste de résultats revient sans rouvrir le clavier, et Retour ne mène plus à l'explorateur. 1.22.2 : choix des pistes dans un menu au style du clic droit (choix automatique pré-sélectionné, marqué AUTO) ; plus de gel de Kodi en revenant d'une lecture lancée depuis une recherche. 1.22.1 : réglage « Masquer les collections déjà vues dans les widgets » (Listes et tri › Contenu) — une collection dont tous les films sont vus disparaît des widgets Collections de l'accueil. 1.22.0 : lecture réduite pour la connexion (transcodage) — les pistes audio et sous-titres sont choisies automatiquement d'après tes langues (réglage « Pistes d'une lecture réduite » : Automatique ou Me demander, listes lisibles avec le bon choix pré-sélectionné), plus de question pendant « Tout lire » ; le journal indique pour chaque lecture la vidéo, la limite et la décision, et une notification prévient si le serveur transcode trop lentement.</news>
     <assets>
         <icon>icon-addon.png</icon>
         <fanart>fanart.jpg</fanart>
