@@ -131,7 +131,7 @@
     </assets>
   </extension>
 </addon>
-<addon id="plugin.video.embycon" name="EmbyCon" version="1.21.10" provider-name="TheWorms">
+<addon id="plugin.video.embycon" name="EmbyCon" version="1.21.11" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.pil" version="1.1.7" />
@@ -167,7 +167,7 @@
     <description lang="en_GB">An addon to allow you to browse and playback your Emby (www.emby.media) Movie, TV Show and Music collections. French-enhanced fork of EmbyCon by faush01.</description>
     <description lang="fr_FR">Une extension permettant de parcourir et de lire vos collections de films, séries et musique Emby (www.emby.media). Fork francophone enrichi d'EmbyCon de faush01.</description>
     <description lang="zh_CN">允许您浏览和播放 Emby (www.emby.media) 电影、电视剧和音乐收藏的插件。基于 faush01 的 EmbyCon 的法语增强分支。</description>
-    <news>1.21.10 : les notifications et les fenêtres de l'addon affichent la nouvelle icône (icon-addon.png) au lieu de l'ancien logo.</news>
+    <news>1.21.11 : au retour d'un film, la liste EmbyCon réapparaît aussitôt au lieu d'une fenêtre Vidéos vide pendant sa reconstruction (Kodi la garde en cache le temps de la navigation, effacée une fois revenu à l'accueil) ; Retour vers une liste parente est instantané ; la boîte de progression ne s'affiche plus par-dessus l'accueil pour les widgets, ni pendant le rafraichissement d'une liste déjà affichée ; une liste vide déclare toujours un type de contenu (fond de chargement du skin Arctic: Worms 1.0.1).</news>
     <assets>
         <icon>icon-addon.png</icon>
         <fanart>fanart.jpg</fanart>
