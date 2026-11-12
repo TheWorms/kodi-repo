@@ -1,3 +1,17 @@
+v1.2.19
+- Écran de chargement (nom, roue turquoise, « Chargement... ») affiché au
+  lancement, le temps que l'interface se charge ; l'interface le remplace
+  directement, sans laisser voir l'accueil entre les deux.
+- Retour à l'accueil sans passer par l'explorateur : ouverte depuis
+  Extensions, l'interface s'ouvrait par-dessus l'explorateur de fichiers,
+  qu'on revoyait un instant à la fermeture. L'explorateur est maintenant
+  remplacé par l'accueil dès l'ouverture ; à la fermeture, Kodi revient
+  droit à l'accueil. Pour ne jamais voir l'explorateur à l'ouverture non
+  plus, le raccourci du menu d'accueil doit être
+  RunScript(plugin.audio.radio).
+- addon.py devient un lanceur léger ; l'ancien addon.py (lecture, menu
+  classique) est renommé plugin_main.py, sans changement.
+
 v1.2.18
 - Métadonnées : licence (GPL v2) et adresse du dépôt déclarées dans la
   fiche de l'addon ; la note de version ne reprend plus tout l'historique

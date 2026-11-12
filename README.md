@@ -12,7 +12,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 |-------|----|-------------|---------|
 | **[ProtonVPN Manager](https://github.com/TheWorms/kodi-addon-protonvpn)** | `service.protonvpn.manager` | Connexions ProtonVPN (OpenVPN + WireGuard) depuis Kodi | 0.6.6 |
 | **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.6 |
-| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.18 |
+| **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.19 |
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.11 |
 | **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.21.10 |
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.7 |
