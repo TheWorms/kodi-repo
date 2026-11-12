@@ -1,0 +1,2 @@
+1.0.0
+- Première version : espace disque de la partition de données publié en propriétés de la fenêtre d'accueil (DiskInfo.*)

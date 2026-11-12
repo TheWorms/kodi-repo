@@ -247,4 +247,72 @@
     <news>0.6.29 : écran de chargement rouge dès le clic, le temps que l'interface se charge ; à la fermeture, retour direct à l'accueil de Kodi sans passer par l'explorateur de fichiers. Historique complet : changelog.txt.</news>
   </extension>
 </addon>
+<addon id="service.worms.diskinfo" name="Worms Disk Info" version="1.0.0" provider-name="TheWorms">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+  </requires>
+  <extension point="xbmc.service" library="service.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="fr_FR">Publie l'espace disque de la partition de données pour les skins</summary>
+    <summary lang="en_GB">Publishes the data partition disk usage for skins</summary>
+    <description lang="fr_FR">Kodi ne connaît que l'espace disque de « / ». Sur CoreELEC et LibreELEC c'est l'image système en lecture seule, toujours pleine à 100 %. Ce service lit l'espace de la partition de données (par défaut celle du dossier de Kodi, /storage sur CoreELEC) et le publie en propriétés de la fenêtre d'accueil (DiskInfo.UsedPercent, DiskInfo.Total, DiskInfo.Used, DiskInfo.Free, DiskInfo.Path) pour que le skin Arctic: Worms l'affiche.</description>
+    <description lang="en_GB">Kodi only knows the disk usage of "/". On CoreELEC and LibreELEC that is the read-only system image, always 100 % full. This service reads the usage of the data partition (by default the one holding the Kodi folder, /storage on CoreELEC) and publishes it as home window properties (DiskInfo.UsedPercent, DiskInfo.Total, DiskInfo.Used, DiskInfo.Free, DiskInfo.Path) so the Arctic: Worms skin can show it.</description>
+    <platform>all</platform>
+    <license>MIT</license>
+    <source>https://github.com/TheWorms/kodi-addon-diskinfo</source>
+    <news>v1.0.0 - première version.</news>
+  </extension>
+</addon>
+<addon id="skin.arctic.worms" version="1.0.0" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">
+    <requires>
+        <import addon="xbmc.gui" version="5.17.0" />
+        <import addon="script.skinshortcuts" version="0.4.0" />
+        <import addon="script.globalsearch" version="5.0.0" />
+        <import addon="script.image.resource.select" version="0.0.5" />
+        <import addon="resource.images.weathericons.white" version="0.0.6" />
+        <import addon="script.embuary.info" version="0.0.1" />
+        <import addon="script.embuary.helper" version="1.2.14" />
+        <import addon="plugin.video.themoviedb.helper" version="0.0.1" />
+    </requires>
+    <extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
+        <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <license>Creative Commons Non Commercial 3.0 License</license>
+        <source>https://github.com/TheWorms/skin.arctic.worms</source>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+            <screenshot>resources/screenshot-01.jpg</screenshot>
+            <screenshot>resources/screenshot-02.jpg</screenshot>
+            <screenshot>resources/screenshot-03.jpg</screenshot>
+            <screenshot>resources/screenshot-04.jpg</screenshot>
+            <screenshot>resources/screenshot-05.jpg</screenshot>
+            <screenshot>resources/screenshot-06.jpg</screenshot>
+            <screenshot>resources/screenshot-07.jpg</screenshot>
+            <screenshot>resources/screenshot-08.jpg</screenshot>
+            <screenshot>resources/screenshot-09.jpg</screenshot>
+            <screenshot>resources/screenshot-10.jpg</screenshot>
+        </assets>
+        <news>1.0.0[CR]- Fork of Arctic: Zephyr - Reloaded 3.0.3 (beatmasterRS), renamed skin.arctic.worms[CR]- Storage info shows the data partition when service.worms.diskinfo is installed (CoreELEC/LibreELEC: /storage instead of the read-only system image)[CR]- Add-on windows: default skin font and colour names, plain colour textures[CR]- Built-in ProtonVPN home widget (service.protonvpn.manager)[CR]- Wtube (plugin.video.wtube) supported next to YouTube[CR]- Bug fixes from the 3.0.4 audit (dialogs, textures, fonts, escaping)[CR]Full history: changelog.txt</news>
+        <summary lang="de">Klar, minimalistisch, elegant, einfach, leicht. Basiert auf dem original Arctic: Zephyr Skin von jurialmunkey.</summary>
+        <summary lang="en">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
+        <summary lang="en_AU">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
+        <summary lang="en_US">Clean, minimal, elegant, simple, light. Based on the original Arctic: Zephyr skin by jurialmunkey.</summary>
+        <summary lang="es">Limpio, minimalista, elegante, simple, ligero. Basado en el original Arctic: Zephyr skin por jurialmunkey.</summary>
+        <summary lang="fr">Clair, minimaliste, élégant, simple et léger. Basé sur le skin original Arctic: Zephyr par jurialmunkey.</summary>
+        <summary lang="fr_CA">Net, minimal, élégant, simple, léger. Basé sur le skin original Arctic: Zephyr par jurialmunkey.</summary>
+        <summary lang="lt">Švari, minimali, elegantiška, paprasta, lengva. Basato sull'originale Arctic: Zephyr skin di jurialmunkey.</summary>
+        <summary lang="nl">Schoon, minimaal, elegant, simpel, licht. Gebaseerd op de originele Arctic: Zephyr skin door jurialmunkey.</summary>
+        <summary lang="pl">Prosta, minimalista, elegancka i lekka. Na podstawie oryginalnego skinu Arctic: Zephyr autorstwa jurialmunkey.</summary>
+        <summary lang="ro">Curat, minimalist, elegant, simplu, ușor. Bazat pe pielea originală Arctic: Zephyr de jurialmunkey.</summary>
+        <summary lang="ru">Опрятный, минималистичный, элегантный, простой, светлый. Основано на оригинальном скине Arctic: Zephyr от jurialmunkey.</summary>
+        <description lang="de">Arctic: Zephyr - Reloaded basiert auf dem original Arctic: Zephyr Skin von jurialmunkey und ist ein minimalistisches, klares und simples Interface für deine Medien mit dem gewissen Etwas.</description>
+        <description lang="en">Arctic: Zephyr - Reloaded is based on original Arctic: Zephyr skin, created by jurialmunkey. Arctic focuses on being simple, clean and minimalistic with a light spin.</description>
+        <description lang="en_AU">Arctic: Zephyr - Reloaded is based on original Arctic: Zephyr skin, created by jurialmunkey. Arctic focuses on being simple, clean and minimalistic with a light spin.</description>
+        <description lang="en_US">Arctic: Zephyr - Reloaded is based on original Arctic: Zephyr skin, created by jurialmunkey. Arctic focuses on being simple, clean and minimalistic with a light spin.</description>
+        <description lang="fr">Arctic: Zephyr - Reloaded est basé sur le skin original Arctic: Zephyr, créé par jurialmunkey. Arctic se focalise sur le fait d'être simple, claire et minimaliste.</description>
+    </extension>
+</addon>
 </addons>
