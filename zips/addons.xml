@@ -247,7 +247,7 @@
     <news>0.6.29 : écran de chargement rouge dès le clic, le temps que l'interface se charge ; à la fermeture, retour direct à l'accueil de Kodi sans passer par l'explorateur de fichiers. Historique complet : changelog.txt.</news>
   </extension>
 </addon>
-<addon id="service.worms.diskinfo" name="Disk Info" version="1.0.1" provider-name="TheWorms">
+<addon id="service.worms.diskinfo" name="Disk Info" version="1.0.2" provider-name="TheWorms">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
   </requires>
@@ -260,7 +260,10 @@
     <platform>all</platform>
     <license>MIT</license>
     <source>https://github.com/TheWorms/kodi-addon-diskinfo</source>
-    <news>v1.0.1 - nom affiché : Disk Info.</news>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
+    <news>v1.0.2 - icône de l'addon (mascotte Ver).</news>
   </extension>
 </addon>
 <addon id="skin.arctic.worms" version="1.0.1" name="Arctic: Worms" provider-name="jurialmunkey, beatmasterrs, TheWorms">

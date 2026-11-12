@@ -1,3 +1,6 @@
+1.0.2
+- Icône de l'addon (mascotte Ver), aussi en tête du README
+
 1.0.1
 - Nom affiché : Disk Info
 
