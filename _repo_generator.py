@@ -19,6 +19,16 @@ toujours écartés.
 
 Anciennes versions : seules les KEEP_VERSIONS dernières de chaque addon sont
 gardées dans zips/<id>/.
+
+Versions figées : un zip déjà publié (suivi par git dans ce dépôt et inchangé)
+n'est jamais refait. Sans cela chaque génération réécrivait tous les zips, et
+celui d'un addon à paquets embarqués (yt-dlp) changeait de contenu à chaque
+sortie d'un autre addon. Pour publier un changement, monter la version.
+KODI_REPO_REBUILD=all (ou une liste d'identifiants séparés par des virgules)
+force la reconstruction.
+
+Les avertissements (fichier non suivi laissé hors du zip, modifications non
+commitées, version sans tag) sortent sur la sortie d'erreur.
 """
 
 import hashlib
@@ -31,6 +41,7 @@ import sys
 import tempfile
 import zipfile
 import xml.etree.ElementTree as ET
+import zlib
 
 SOURCES_FILE = os.environ.get("KODI_REPO_SOURCES", "sources.json")
 OUTPUT_DIR = "zips"
@@ -53,6 +64,9 @@ KEEP_VERSIONS = 3
 # Écarter du zip le icon.png (logo du README) que l'addon ne cite plus.
 # Mettre False si un favori ou un raccourci de skin pointe encore dessus.
 DROP_UNUSED_ICON = True
+
+# Addons dont le zip est refait même s'il est déjà publié ("all" = tous)
+REBUILD = {x.strip() for x in os.environ.get("KODI_REPO_REBUILD", "").split(",") if x.strip()}
 
 VENDOR_FILE = "vendor.txt"
 VENDOR_DEST = os.path.join("resources", "lib", "vendor")
@@ -99,6 +113,103 @@ def build_vendor(src):
     with open(os.path.join(work, "VERSIONS.txt"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(out) + "\n")
     return work
+
+
+def warn(msg):
+    """Avertissement visible même quand la sortie standard est masquée."""
+    print("!! " + msg, file=sys.stderr)
+
+
+def _git(args, cwd=None):
+    """Sortie d'une commande git, ou None si elle échoue (pas un dépôt, git absent)."""
+    try:
+        proc = subprocess.run(["git"] + args, cwd=cwd, capture_output=True)
+    except OSError:
+        return None
+    if proc.returncode != 0:
+        return None
+    return proc.stdout.decode("utf-8", "surrogateescape")
+
+
+def published_zip(addon_id, version):
+    """Chemin du zip de cette version s'il est déjà publié : suivi par git dans
+    ce dépôt et identique à ce qui est commité. Sinon None (zip à construire,
+    ou construit par une génération précédente pas encore commitée)."""
+    if "all" in REBUILD or addon_id in REBUILD:
+        return None
+    path = os.path.join(OUTPUT_DIR, addon_id, f"{addon_id}-{version}.zip")
+    if not os.path.isfile(path):
+        return None
+    if _git(["ls-files", "--error-unmatch", "--", path]) is None:
+        return None
+    status = _git(["status", "--porcelain", "--", path])
+    if status is None or status.strip():
+        return None
+    return path
+
+
+def zip_addon_xml(zip_path, addon_id):
+    """addon.xml contenu dans un zip publié (None s'il est illisible)."""
+    try:
+        with zipfile.ZipFile(zip_path) as zf:
+            root = ET.fromstring(zf.read(f"{addon_id}/addon.xml"))
+    except (OSError, KeyError, zipfile.BadZipFile, ET.ParseError):
+        return None
+    return root if root.get("id") == addon_id else None
+
+
+def sources_differ(src, root, zip_path, addon_id):
+    """Les sources ont-elles changé depuis le zip publié de la même version ?
+    (comparaison par CRC, hors paquets embarqués)."""
+    vendor_prefix = VENDOR_DEST + os.sep
+    try:
+        with zipfile.ZipFile(zip_path) as zf:
+            published = {i.filename[len(addon_id) + 1:]: i.CRC for i in zf.infolist()
+                         if not i.is_dir() and not i.filename[len(addon_id) + 1:].startswith(vendor_prefix)}
+        local = {}
+        for rel in addon_files(src, root, skip_local_vendor=True, quiet=True):
+            with open(os.path.join(src, rel), "rb") as fh:
+                local[rel] = zlib.crc32(fh.read()) & 0xFFFFFFFF
+    except (OSError, zipfile.BadZipFile):
+        return []
+    return sorted(k for k in set(local) | set(published) if local.get(k) != published.get(k))
+
+
+def check_new_version(src, addon_id, version):
+    """Avertit quand une nouvelle version part d'un dépôt qui n'est pas prêt."""
+    top = _git(["rev-parse", "--show-toplevel"], cwd=src)
+    if top is None:
+        return  # pas un dépôt git : rien à vérifier
+    status = _git(["status", "--porcelain", "-z", "--", "."], cwd=src) or ""
+    entries = [e for e in status.split("\0") if e]
+    modified = [e[3:] for e in entries if not e.startswith("??")]
+    if modified:
+        warn(f"{addon_id} {version} : modifications non commitées incluses dans le zip "
+             f"({', '.join(modified[:5])}{'…' if len(modified) > 5 else ''})")
+    untracked = _git(["ls-files", "--others", "--exclude-standard", "-z", "--", "."], cwd=src) or ""
+    left_out = [f for f in untracked.split("\0") if f and not _excluded(os.path.normpath(f))]
+    if left_out:
+        warn(f"{addon_id} {version} : fichier(s) non suivi(s) par git laissé(s) HORS du zip "
+             f"({', '.join(left_out[:8])}{'…' if len(left_out) > 8 else ''}) — "
+             "« git add » puis relancer si l'addon en a besoin")
+    here = _git(["rev-parse", "--show-toplevel"])
+    if here is not None and os.path.realpath(top.strip()) == os.path.realpath(here.strip()):
+        return  # addon rangé dans ce dépôt (repository.theworms) : pas de tag par version
+    tags = (_git(["tag", "--points-at", "HEAD"], cwd=src) or "").split()
+    if f"v{version}" not in tags:
+        warn(f"{addon_id} {version} : le dernier commit du dépôt source ne porte pas le tag "
+             f"v{version} — cette version est publiée ici avant sa propre sortie")
+
+
+def _excluded(rel):
+    """Chemin (relatif à l'addon) écarté du zip par les règles d'exclusion."""
+    parts = rel.split(os.sep)
+    name = parts[-1]
+    if any(p in EXCLUDED_DIRS for p in parts[:-1]):
+        return True
+    if len(parts) > 1 and parts[0] in EXCLUDED_ROOT_DIRS:
+        return True
+    return name in EXCLUDED_FILES or name.endswith(EXCLUDED_SUFFIXES)
 
 
 def tracked_files(src):
@@ -149,23 +260,18 @@ def unused_icon(src, root, files):
     return candidates
 
 
-def addon_files(src, root, skip_local_vendor):
+def addon_files(src, root, skip_local_vendor, quiet=False):
     """Chemins (relatifs à src) des fichiers à mettre dans le zip."""
     files = tracked_files(src)
     if files is None:
-        print("     (pas un dépôt git : tout le dossier est parcouru)")
+        if not quiet:
+            print("     (pas un dépôt git : tout le dossier est parcouru)")
         files = walked_files(src)
     vendor_prefix = VENDOR_DEST + os.sep
     keep = []
     for rel in files:
         rel = os.path.normpath(rel)
-        parts = rel.split(os.sep)
-        name = parts[-1]
-        if any(p in EXCLUDED_DIRS for p in parts[:-1]):
-            continue
-        if len(parts) > 1 and parts[0] in EXCLUDED_ROOT_DIRS:
-            continue
-        if name in EXCLUDED_FILES or name.endswith(EXCLUDED_SUFFIXES):
+        if _excluded(rel):
             continue
         if skip_local_vendor and rel.startswith(vendor_prefix):
             continue
@@ -173,8 +279,9 @@ def addon_files(src, root, skip_local_vendor):
             continue  # suivi par git mais supprimé du dossier de travail
         keep.append(rel)
     dropped = unused_icon(src, root, keep) if DROP_UNUSED_ICON else set()
-    for rel in sorted(dropped):
-        print(f"     {rel} écarté (logo du README, plus cité par l'addon)")
+    if not quiet:
+        for rel in sorted(dropped):
+            print(f"     {rel} écarté (logo du README, plus cité par l'addon)")
     return sorted(f for f in keep if f not in dropped)
 
 
@@ -267,6 +374,22 @@ def main():
             continue
         addon_id, version, root = addon_meta(src)
         print(f"[{addon_id}] v{version}")
+
+        # Version déjà publiée : le zip est figé, on ne le refait pas.
+        kept = published_zip(addon_id, version)
+        kept_root = zip_addon_xml(kept, addon_id) if kept else None
+        if kept_root is not None and kept_root.get("version") == version:
+            print(f"     déjà publiée : {kept} conservé")
+            changed = sources_differ(src, root, kept, addon_id)
+            if changed:
+                warn(f"{addon_id} {version} : sources modifiées depuis la publication "
+                     f"({', '.join(changed[:5])}{'…' if len(changed) > 5 else ''}) — "
+                     "monter la version pour publier ces changements")
+            prune_old_zips(addon_id, version)
+            addon_nodes.append(kept_root)
+            continue
+
+        check_new_version(src, addon_id, version)
         vendor_dir = build_vendor(src)
         try:
             zpath = zip_addon(src, addon_id, version, root, vendor_dir)
