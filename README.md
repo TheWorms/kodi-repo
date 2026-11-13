@@ -14,7 +14,7 @@ Compatible Kodi 19+ (Matrix / Nexus / Omega), testé sur CoreELEC.
 | **[SoundCloud](https://github.com/TheWorms/kodi-addon-soundcloud)** | `plugin.audio.soundcloud` | Streaming musical et podcasts SoundCloud | 6.0.8 |
 | **[Radio](https://github.com/TheWorms/kodi-addon-radio)** | `plugin.audio.radio` | Flux radio | 1.2.19 |
 | **[Météo Concept](https://github.com/TheWorms/kodi-addon-meteo)** | `weather.meteoconcept` | Prévisions météo pour la France (API Météo Concept) | 1.0.11 |
-| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.22.5 |
+| **[EmbyCon](https://github.com/TheWorms/kodi-addon-emby)** | `plugin.video.embycon` | Client Emby pour Kodi — fork français | 1.22.6 |
 | **[Keyboard Battery](https://github.com/TheWorms/kodi-addon-keyboardbattery)** | `service.keyboardbattery` | Surveillance du niveau de batterie du clavier | 1.5.7 |
 | **[Wtube](https://github.com/TheWorms/kodi-addon-youtube)** | `plugin.video.wtube` | YouTube sans compte : interface plein écran, SponsorBlock, widgets | 0.6.30 |
 | **[Moteur JavaScript](https://github.com/TheWorms/kodi-addon-jsruntime)** | `script.module.jsruntime` | Deno / Node.js pour les addons qui en ont besoin (requis par Wtube) | 1.0.4 |
