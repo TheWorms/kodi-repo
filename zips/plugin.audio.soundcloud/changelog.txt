@@ -1,3 +1,7 @@
+6.0.9 (2026-11-17) - sound is back: SoundCloud's AAC HLS streams played by VideoPlayer
+
+SoundCloud now serves most tracks only as AAC in HLS (presets aac_160k, aac_96k and the abr_sq master playlist); the MP3 and Opus versions the "Audio format" setting picks from are gone. The add-on then fell back to the first version listed, and Kodi gave it to its audio player, PAPlayer, which reads these fragmented-MP4 playlists badly: no sound, each track skipped after a few seconds ("Error reading samples"), and sometimes a crash of Kodi in the audio decoder (seen on CoreELEC 21.3, decoder reporting 36 channels). HLS streams now carry the audio/aacp MIME type, which makes Kodi play them with VideoPlayer and its built-in HLS reader, like any .m3u8 link; InputStream Adaptive is not used (given a bare media playlist it assumes a video track and fails). Plain MP3 streams still go to PAPlayer. When the configured format is missing, the add-on now picks the best playable version instead of the first one: full tracks before 30-second previews, MP3 over HTTP, then AAC by bitrate, MP3 and Opus HLS, the adaptive playlist last, and encrypted streams (which need DRM keys) only when nothing else exists.
+
 6.0.8 (2026-11-12) - splash watcher stops with the script
 
 When the UI failed to open (error), the thread waiting for it to cover the splash kept waiting 60 seconds: Kodi kept the script alive meanwhile, and its late "hide" signal could close the splash of a new opening. It now stops as soon as the script closes the splash itself. Found by the audit of 12/11/2026.
