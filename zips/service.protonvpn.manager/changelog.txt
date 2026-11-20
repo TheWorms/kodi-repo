@@ -1,3 +1,13 @@
+v0.6.8
+- Pause du VPN : un addon en exception peut demander la pause AVANT sa
+  lecture (propriete protonvpn.pause_request, qui expire seule). Sert a
+  Wtube 0.6.31 : l'adresse d'un flux YouTube est liee a l'IP qui l'a
+  obtenue, et la pause ne venait qu'au demarrage de la lecture ; le flux
+  obtenu par le VPN etait lu sans lui et YouTube le coupait au bout de
+  20 a 30 s. Le service publie aussi la liste des addons en exception
+  (protonvpn.exception_ids) et signale quand le tunnel est coupe
+  (protonvpn.pause_ready).
+
 v0.6.7
 - OpenVPN : un fichier .ovpn peut faire executer des commandes a OpenVPN
   (up, down, route-up, plugin...), en root si sudo est actif. La copie

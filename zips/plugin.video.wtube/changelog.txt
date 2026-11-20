@@ -1,3 +1,17 @@
+v0.6.31
+- Vidéos coupées au bout de 20 à 30 s avec ProtonVPN : l'adresse d'un flux
+  YouTube est liée à l'adresse IP qui l'a obtenue, et ProtonVPN ne se
+  mettait en pause qu'au démarrage de la lecture ; le flux, obtenu par le
+  VPN, était lu sans lui et YouTube le refusait une fois le tampon épuisé
+  (HTTP 403). Wtube demande maintenant la pause avant d'interroger YouTube
+  et attend qu'elle soit en place (6 s au plus). Il faut ProtonVPN 0.6.8 ;
+  rien ne change sans ProtonVPN ou si Wtube n'est pas dans ses exceptions.
+- Identités de lecteur YouTube automatiques (réglage avancé vide par
+  défaut) : celles que yt-dlp choisit lui-même pour sa version, puis
+  web_embedded en dernier recours ; celle qui a fonctionné en dernier est
+  essayée en premier. Les anciennes valeurs par défaut passent en
+  automatique ; une liste saisie à la main reste utilisée telle quelle.
+
 v0.6.30
 - Les recherches lancées depuis les fiches du skin (acteurs, films) créent
   chacune un fichier de cache ; aucun n'était jamais effacé. Le service
